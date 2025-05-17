@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>대통령 후보 비교</title>
+  <meta name="description" content="2025 한국 대통령 후보 비교 - VoteKorea.kr에서 대통령 후보들의 자질을 비교해보세요.">
+  <meta name="keywords" content="투표, 대통령 선거, 2025, 한국, 후보 비교, VoteKorea">
+  <title>대통령 후보 비교 - VoteKorea</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <style>
     body {
@@ -12,6 +14,7 @@
     .content-wrapper {
       max-width: 100%;
       padding: 1rem;
+      padding-top: 70px; /* Adjust for navbar height */
     }
     @media (min-width: 992px) {
       .content-wrapper {
@@ -119,6 +122,25 @@
     .accordion-body h6 {
       text-align: center;
     }
+    .navbar {
+      font-family: Pretendard, sans-serif;
+      font-weight: 500;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .navbar-brand {
+      font-weight: 600;
+      color: #333;
+    }
+    .nav-link {
+      color: #333;
+      padding: 0.5rem 1rem;
+      transition: color 0.2s;
+    }
+    .nav-link:hover,
+    .nav-link.active {
+      color: #4a90e2;
+      border-bottom: 2px solid #4a90e2;
+    }
     @media (max-width: 768px) {
       .table {
         font-size: 0.9rem;
@@ -132,22 +154,52 @@
       .accordion-body {
         font-size: 0.9rem;
       }
+      .nav-link {
+        padding: 0.5rem;
+      }
     }
   </style>
 </head>
 <body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">VoteKorea</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#start-btn" onclick="scrollToSection('start-btn')">선거일정</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#election-table-container" onclick="scrollToSection('election-table-container')">토론일정</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#debate-table-container" onclick="scrollToSection('debate-table-container')">미리보기</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#share-btn" onclick="scrollToSection('share-btn')">AI기준</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://badboytest.info/" target="_blank">그 외</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
   <div class="container mt-5 content-wrapper text-center">
     <h1 class="mb-4"><b>대통령 후보 자질 비교</b></h1>
     <p class="mb-4">주요 후보들의 자질을 직접 비교하고, <br> 어떤 후보에게 투표할지 판단하세요.</p>
     <!-- 🧭 작성 버튼 -->
-    <div class="d-grid gap-3">
+    <div class="d-grid gap-3" id="start-btn">
       <a href="compare.html" class="btn btn-primary btn-lg">후보 비교표 작성하기</a>
     </div>
     <br>
     <!-- ⏲️ 선거 일정 테이블 -->
     <h6 class="mb-4"><b>🗳️ 제 21 대 대통령 선거 일정</b></h6>
-    <div class="table-container mt-0">
-      <table class="table table-bordered election-table" style="font-size:70%">
+    <div class="table-container mt-0" id="election-table-container">
+      <table class="table table-bordered election-table" id="election-table" style="font-size:70%">
         <tbody>
           <tr id="candidate-reg-end">
             <td>후보자등록 신청</td>
@@ -181,8 +233,8 @@
     <br>
     <!-- 📺 토론 일정 테이블 -->
     <h6 class="mb-4"><b>📺 후보자 토론 일정</b></h6>
-    <div class="table-container mt-0">
-      <table class="table table-bordered debate-table" style="font-size:70%">
+    <div class="table-container mt-0" id="debate-table-container">
+      <table class="table table-bordered debate-table" id="debate-table" style="font-size:70%">
         <thead>
           <tr>
             <th>회차</th>
@@ -221,7 +273,7 @@
     </div>
     <br>
     <!-- 🔍 비교표 미리보기 (이미지로 대체) -->
-    <div class="preview-container">
+    <div class="preview-container" id="preview-container">
       <p class="mb-4"><b>후보 비교표 미리보기</b>(PC)</p>
       <img src="/img/preview_pc.PNG" alt="후보 비교표 미리보기PC" class="preview-image-pc" />
       <div class="preview-fade"></div>
@@ -233,11 +285,11 @@
     </div>
     <!-- 🧭 공유 버튼 -->
     <div class="d-grid gap-3">
-      <button onclick="shareSite()" class="btn btn-outline-secondary btn-lg">사이트 공유하기</button>
+      <button onclick="shareSite()" class="btn btn-outline-secondary btn-lg" id="share-btn">사이트 공유하기</button>
     </div>
     <!-- 🤖 AI 평가 기준 -->
     <section class="mt-5 mb-5">
-      <h4 class="mb-4 text-center">🤖 AI가 본 2025 대통령 후보 평가 기준</h4>
+      <h4 class="mb-4 text-center" id="aiCriteria">🤖 AI가 본 2025 대통령 후보 평가 기준</h4>
       <div class="accordion" id="aiCriteriaAccordion">
         <!-- Grok 3 기준 -->
         <div class="accordion-item">
@@ -429,17 +481,30 @@
     </section>
   </div>
   <footer class="text-center mt-5 mb-3">
-    © 2025 허슬업 - 소중한 투표권을 신중히 행사합시다.
-    <br> 문의 - hustlin.up@gmail.com
+    © 2025 허슬업 - 소중한 투표권 행사를 위한 툴 <a href="https://votekorea.kr/">VoteKorea.kr</a>
+    <br> 문의 - <a href="mailto:hustlin.up@gmail.com">hustlin.up@gmail.com</a>
   </footer>
   <!-- 🔧 스크립트 -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     function shareSite() {
-      const url = window.location.href;
+      const url = "https://votekorea.kr/";
       navigator.clipboard.writeText(url).then(() => {
-        alert('사이트 링크가 복사되었습니다. 카카오톡 등으로 공유해보세요!');
+        alert('사이트 링크가 복사되었습니다: https://votekorea.kr/\n카카오톡 등으로 공유해보세요!');
       });
+    }
+    function scrollToSection(sectionId) {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const offset = 70; // Navbar height (~56px) + buffer
+        const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+          top: elementPosition - offset,
+          behavior: 'smooth'
+        });
+        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+        document.querySelector(`a[href="#${sectionId}"]`).classList.add('active');
+      }
     }
     // Countdown timer logic
     const timers = [
