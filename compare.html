@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>비교표 작성</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+        font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    }
+    .candidate-input {
+      width: 100%;
+      border: none;
+      font-weight: bold;
+      background: transparent;
+      text-align: center;
+      border-radius: 4px;
+      padding: 6px;
+    }
+    .content-wrapper {
+      width: 100%;
+      padding: 0 1rem;
+    }
+    @media (min-width: 992px) {
+      .content-wrapper {
+        max-width: 70%;
+        margin: auto;
+      }
+    }
+    th input.candidate-input {
+      width: 100%;
+    }
+    th {
+      vertical-align: middle;
+      text-align: center;
+    }
+    th.active-candidate {
+      position: relative;
+      backdrop-filter: none;
+      background-color: #fff;
+      z-index: 7;
+    }
+    .candidate-input::placeholder {
+      color: #cccccc;
+      opacity: 1;
+    }
+    .criteria-input {
+      width: 70%;
+      padding: 8px;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      margin-right: 5px;
+    }
+    .delete-btn {
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: #fff;
+      border: 1px solid #c8c8c8;
+      color: #c8c8c8;
+      font-size: 12px;
+      line-height: 20px;
+      margin-right: 6px;
+      transition: background-color 0.2s;
+    }
+    .delete-btn:hover {
+      background-color: #b3b3b3;
+    }
+    .delete-candidate-btn {
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: #fff;
+      border: 1px solid #c8c8c8;
+      color: #c8c8c8;
+      font-size: 12px;
+      line-height: 20px;
+      margin: 5px auto;
+      transition: background-color 0.2s;
+    }
+    .delete-candidate-btn:hover {
+      background-color: #5a6268;
+    }
+    .add-criteria-cell {
+      vertical-align: middle;
+      padding: 8px;
+      text-align: center;
+    }
+    .add-candidate-cell {
+      vertical-align: middle;
+      text-align: center;
+      padding: 8px;
+      width: 100px;
+    }
+    .criteria-column {
+      width: 30%;
+      font-weight: 600;
+    }
+    .criteria-column.active-criterion {
+      backdrop-filter: none;
+      z-index: 6;
+    }
+    .number-btn {
+      width: 25px;
+      height: 25px;
+      padding: 0;
+      margin: 0;
+      border: 1px solid #ced4da;
+      background-color: #f8f9fa;
+      font-size: 10px;
+      font-weight: 400;
+      line-height: 25px;
+      display: inline-block;
+      cursor: pointer;
+      border-radius: 15px;
+      transition: background-color 0.2s, transform 0.1s, display 0.2s, z-index 0.2s;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      position: relative;
+      overflow: hidden;
+      z-index: 2;
+    }
+    .number-btn.selected {
+      color: rgb(255, 0, 0);
+      background-color: #ffffff;
+      border-color: #ff0000;
+    }
+    .number-btn:active {
+      background-color: #ff0000;
+      transform: scale(0.95);
+    }
+    .number-btn.hidden {
+      display: none;
+    }
+    .touch-go-container.active .number-btn {
+      z-index: 2;
+    }
+    .number-btn .stamp, .touch-go-option .stamp {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%) scale(0);
+      width: 24px;
+      height: 24px;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .number-btn.selected .stamp, .touch-go-option.selected .stamp {
+      animation: stampEffect 0.5s ease-out forwards;
+    }
+    @keyframes stampEffect {
+      0% {
+        transform: translateX(-50%) scale(0);
+        opacity: 0;
+      }
+      50% {
+        transform: translateX(-50%) scale(1.2);
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(-50%) scale(1);
+        opacity: 0;
+      }
+    }
+    td.text-center, th:not(.criteria-column):not(.add-candidate-cell) {
+      padding: 0;
+      text-align: center;
+      min-width: 150px;
+    }
+    .description-text {
+      font-size: 1rem;
+      color: #6c757d;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .table {
+      border: 1px solid #dee2e6;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      background-color: #fff;
+    }
+    .table-container {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .table th, .table td {
+      border: 1px solid #dee2e6;
+      padding: 8px;
+    }
+    .table tbody tr:hover {
+      background-color: #f8f9fa;
+    }
+    .table thead th {
+      background-color: #e9ecef;
+      font-weight: 600;
+    }
+    .btn-primary {
+      background-color: #4a90e2;
+      border-color: #4a90e2;
+    }
+    .btn-primary:hover {
+      background-color: #357abd;
+      border-color: #357abd;
+    }
+    .btn-outline-primary {
+      color: #a4a4a4;
+      border-color: #ffffff;
+    }
+    .btn-outline-primary:hover {
+      background-color: #b1b1b1;
+      color: #757575;
+    }
+    .btn-secondary {
+      background-color: #6c757d;
+      border-color: #6c757d;
+    }
+    .btn-secondary:hover {
+      background-color: #5a6268;
+      border-color: #5a6268;
+    }
+    .criteria-actions {
+      display: inline-block;
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.875rem;
+      text-decoration: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    /* Mobile-specific styles */
+    @media (max-width: 768px) {
+      .table {
+        table-layout: fixed;
+      }
+      .criteria-column {
+        width: 180px;
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        position: sticky;
+        left: 0;
+        background-color: #fff;
+        z-index: 2;
+        box-shadow: 2px 0 4px rgba(0,0,0,0.1);
+      }
+      .candidate-input {
+        width: 50%;
+        height: 80px;
+        font-size: 15px;
+        padding: 1px;
+      }
+      .candidate-input::placeholder {
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        text-align: center;
+      }
+      .delete-candidate-btn {
+        margin: 2px auto;
+      }
+      .add-candidate-cell {
+        width: 30px;
+      }
+      .add-candidate-btn {
+        padding: 2px 4px;
+        font-size: 10px;
+      }
+      .criteria-actions {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.4rem;
+      }
+      .touch-go-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px 0;
+        width: 30px;
+        margin: 0 auto;
+        z-index: 10;
+      }
+      .number-btn {
+        z-index: 2;
+      }
+      .touch-go-option {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        border: 1px solid #ff0000;
+        background-color: #ffffff;
+        color: rgb(255, 0, 0);
+        font-size: 10px;
+        line-height: 25px;
+        text-align: center;
+        border-radius: 15px;
+        transition: transform 0.2s, opacity 0.2s, box-shadow 0.2s, background-color 0.2s;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 3;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      }
+      .touch-go-container.active .touch-go-option {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .touch-go-option.selected, .touch-go-option.hovered {
+        box-shadow: 0 0 12px rgba(255, 0, 0, 0.7);
+        background-color: #ffe6e6;
+        transform: scale(1.1);
+      }
+      td.text-center {
+        padding: 2px;
+        vertical-align: middle;
+        min-height: 30px;
+      }
+      .blur-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(5px);
+        z-index: 5;
+        display: none;
+      }
+      .blur-overlay.active {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="blur-overlay" id="blur-overlay"></div>
+  <div class="container mt-5 content-wrapper">
+    <h2 class="mb-4 text-center"><b>후보 비교표</b></h2>
+    <p class="description-text">표 오른쪽에서 후보를 추가, 아래에서 원하는 자질 항목을 추가 할 수 있습니다.</p>
+    <p class="description-text">자질이 좋을수록 높은 점수를 주세요.</p>
+    <form id="comparison-form">
+      <div class="table-container">
+        <table class="table">
+          <thead>
+            <tr id="candidate-header">
+              <th class="criteria-column">
+                <a href="javascript:void(0)" onclick="deleteAllCriteria()" class="criteria-actions">🗑️모두 삭제</a>
+                <a href="javascript:void(0)" onclick="loadAICriteria()" class="criteria-actions">🤖AI PICK</a>
+                <br>자질 항목
+              </th>
+              <th data-candidate-id="A">
+                <span class="delete-candidate-btn" onclick="deleteCandidate('A')">−</span>
+                <input type="text" id="nameA" class="candidate-input" placeholder="후보 A" required />
+              </th>
+              <th data-candidate-id="B">
+                <span class="delete-candidate-btn" onclick="deleteCandidate('B')">−</span>
+                <input type="text" id="nameB" class="candidate-input" placeholder="후보 B" required />
+              </th>
+              <th class="add-candidate-cell"><button type="button" class="btn btn-outline-primary btn-xs add-candidate-btn" onclick="addCandidate()" aria-label="Add Candidate">추가</button></th>
+            </tr>
+          </thead>
+          <tbody id="comparison-table-body"></tbody>
+        </table>
+      </div>
+      <div class="text-center mt-3">
+        <button type="submit" class="btn btn-primary btn-lg">결과 보기</button>
+      </div>
+    </form>
+  </div>
+    <footer class="text-center mt-5 mb-3">
+    © 2025 허슬업 - 소중한 투표권을 신중히 행사합시다.
+    <br> 문의 - hustlin.up@gmail.com
+  </footer>
+
+  <script>
+    // Default criteria
+    const defaultCriteria = [
+      "도덕성과 청렴성",
+      "정책 실현 가능성",
+      "경제 감각 및 민생",
+      "복지·의료·교육 정책",
+      "국방 전략과 북한 대응력",
+      "위기관리 능력",
+      "국민통합 및 포용성",
+      "소통 능력과 공감력",
+      "정치·행정 경력",
+      "장기적 미래 비전",
+      "디지털 전환 및 AI 감수성",
+      "청년 및 미래세대 정책",
+      "공정·정의 실현 의지",
+      "기후 및 환경 대응력",
+      "외교 전략과 국제 감각"
+    ];
+
+    // Initialize state
+    let criteria = [...defaultCriteria];
+    let candidateCount = 2;
+    let candidateIds = ['A', 'B'];
+    let candidateNames = {};
+    let scores = {};
+    const maxCandidates = 3;
+
+    // Check localStorage expiration
+    const EXPIRATION_TIME = 30 * 60 * 1000; // 30 minutes in milliseconds
+    function checkLocalStorageExpiration() {
+      const timestamp = localStorage.getItem('timestamp');
+      if (timestamp) {
+        const now = Date.now();
+        if (now - parseInt(timestamp) > EXPIRATION_TIME) {
+          localStorage.clear();
+        }
+      }
+    }
+
+    // Load from localStorage if not expired
+    checkLocalStorageExpiration();
+    if (localStorage.getItem('criteria')) {
+      criteria = JSON.parse(localStorage.getItem('criteria')) || [...defaultCriteria];
+      candidateCount = parseInt(localStorage.getItem('candidateCount')) || 2;
+      candidateIds = JSON.parse(localStorage.getItem('candidateIds')) || ['A', 'B'];
+      candidateNames = JSON.parse(localStorage.getItem('candidateNames')) || {};
+      scores = JSON.parse(localStorage.getItem('scores')) || {};
+    }
+
+    // Save to localStorage with timestamp
+    function saveToLocalStorage() {
+      localStorage.setItem('criteria', JSON.stringify(criteria));
+      localStorage.setItem('candidateCount', candidateCount);
+      localStorage.setItem('candidateIds', JSON.stringify(candidateIds));
+      localStorage.setItem('candidateNames', JSON.stringify(candidateNames));
+      localStorage.setItem('scores', JSON.stringify(scores));
+      localStorage.setItem('timestamp', Date.now());
+    }
+
+    // Save initial state
+    saveToLocalStorage();
+
+    function renderTable() {
+      const tbody = document.getElementById("comparison-table-body");
+      const headerRow = document.getElementById("candidate-header");
+      const isMobile = window.innerWidth <= 768;
+
+      // Render header
+      headerRow.innerHTML = `
+        <th class="criteria-column">
+          <a href="javascript:void(0)" onclick="deleteAllCriteria()" class="criteria-actions">🗑️모두 삭제</a>
+          <a href="javascript:void(0)" onclick="loadAICriteria()" class="criteria-actions">🤖AI Pick</a>
+          <br>자질 항목
+        </th>
+        ${candidateIds.map(id => `
+          <th data-candidate-id="${id}">
+            <span class="delete-candidate-btn" onclick="deleteCandidate('${id}')">−</span>
+            <input type="text" id="name${id}" class="candidate-input" placeholder="후보 ${id}" value="${candidateNames[id] || ''}" required />
+          </th>
+        `).join('')}
+        ${candidateCount < maxCandidates ? '<th class="add-candidate-cell"><button type="button" class="btn btn-outline-primary btn-xs add-candidate-btn" onclick="addCandidate()" aria-label="Add Candidate">추가</button></th>' : ''}
+      `;
+
+      // Render body
+      tbody.innerHTML = '';
+      criteria.forEach((item, index) => {
+        const row = document.createElement("tr");
+        let rowHtml = `<td class="criteria-column" data-criterion-index="${index}"><span class="delete-btn" onclick="deleteCriteria(${index})">−</span>${item}</td>`;
+        candidateIds.forEach(candidate => {
+          const scoreKey = `${candidate.toLowerCase()}${index}`;
+          const scoreValue = scores[scoreKey] || 3;
+          if (isMobile) {
+            const allOptions = [1, 2, 3, 4, 5];
+            const touchGoOptions = allOptions.filter(n => n !== scoreValue);
+            const lowerOptions = touchGoOptions.filter(n => n < scoreValue).sort((a, b) => b - a);
+            const higherOptions = touchGoOptions.filter(n => n > scoreValue).sort((a, b) => a - b);
+            rowHtml += `
+              <td class="text-center">
+                <div class="touch-go-container" data-candidate="${scoreKey}" data-candidate-id="${candidate}" data-criterion-index="${index}" aria-live="polite">
+                  <button type="button" class="number-btn selected" data-candidate="${scoreKey}" data-value="${scoreValue}" aria-label="Score ${scoreValue} for candidate ${candidate}, criterion ${item}. Touch and move to select a score, or tap to cycle.">
+                    ${scoreValue}
+                    <svg class="stamp" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="10" fill="white" stroke="red" stroke-width="2" />
+                      <path d="M12 4 V20" stroke="red" stroke-width="2" />
+                      <path d="M12 12 L18 18" stroke="red" stroke-width="2" />
+                    </svg>
+                  </button>
+                  ${higherOptions.map((n, i) => `
+                    <button type="button" class="touch-go-option" data-candidate="${scoreKey}" data-value="${n}" style="transform: translateY(-${(i + 1) * 30}px);" aria-label="Score ${n} for candidate ${candidate}, criterion ${item}">
+                      ${n}
+                      <svg class="stamp" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" fill="white" stroke="red" stroke-width="2" />
+                        <path d="M12 4 V20" stroke="red" stroke-width="2" />
+                        <path d="M12 12 L18 18" stroke="red" stroke-width="2" />
+                      </svg>
+                    </button>
+                  `).join('')}
+                  ${lowerOptions.map((n, i) => `
+                    <button type="button" class="touch-go-option" data-candidate="${scoreKey}" data-value="${n}" style="transform: translateY(${(i + 1) * 30}px);" aria-label="Score ${n} for candidate ${candidate}, criterion ${item}">
+                      ${n}
+                      <svg class="stamp" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" fill="white" stroke="red" stroke-width="2" />
+                        <path d="M12 4 V20" stroke="red" stroke-width="2" />
+                        <path d="M12 12 L18 18" stroke="red" stroke-width="2" />
+                      </svg>
+                    </button>
+                  `).join('')}
+                </div>
+              </td>
+            `;
+          } else {
+            rowHtml += `
+              <td class="text-center">
+                ${[1, 2, 3, 4, 5].map(n => `
+                  <button type="button" class="number-btn${n === scoreValue ? ' selected' : ''}" data-candidate="${scoreKey}" data-value="${n}" aria-label="Score ${n} for candidate ${candidate}, criterion ${item}">
+                    ${n}
+                    <svg class="stamp" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="10" fill="white" stroke="red" stroke-width="2" />
+                      <path d="M12 4 V20" stroke="red" stroke-width="2" />
+                      <path d="M12 12 L18 18" stroke="red" stroke-width="2" />
+                    </svg>
+                  </button>
+                `).join('')}
+              </td>
+            `;
+          }
+        });
+        if (candidateCount < maxCandidates) {
+          rowHtml += `<td class="add-candidate-cell"></td>`;
+        }
+        row.innerHTML = rowHtml;
+        tbody.appendChild(row);
+      });
+      // Render last row for adding criteria
+      const lastRow = document.createElement("tr");
+      lastRow.innerHTML = `
+        <td class="add-criteria-cell" colspan="${candidateCount + (candidateCount < maxCandidates ? 2 : 1)}">
+          <input type="text" id="new-criteria" class="criteria-input" placeholder="새 자질 항목 입력" />
+          <button type="button" class="btn btn-secondary btn-sm" onclick="addCriteria()">항목 추가</button>
+        </td>
+      `;
+      tbody.appendChild(lastRow);
+
+      // Add input handlers for candidate names
+      document.querySelectorAll('.candidate-input').forEach(input => {
+        input.addEventListener('input', function() {
+          const id = this.id.replace('name', '');
+          candidateNames[id] = this.value;
+          saveToLocalStorage();
+        });
+      });
+    }
+
+    // Set up event delegation for number buttons and touch-and-go/tap interactions
+    document.getElementById('comparison-table-body').addEventListener('click', function(e) {
+      if (e.target.classList.contains('number-btn') && window.innerWidth <= 768) {
+        // Tap-to-cycle for mobile accessibility
+        const scoreKey = e.target.getAttribute('data-candidate');
+        let currentValue = parseInt(e.target.getAttribute('data-value')) || 3;
+        currentValue = currentValue === 5 ? 1 : currentValue + 1;
+        scores[scoreKey] = currentValue;
+        e.target.setAttribute('data-value', currentValue);
+        e.target.textContent = currentValue;
+        e.target.setAttribute('aria-label', `Score ${currentValue} for candidate ${scoreKey[0].toUpperCase()}, criterion ${criteria[parseInt(scoreKey.slice(1))]}. Touch and move to select a score, or tap to cycle.`);
+        e.target.classList.add('selected');
+        console.log(`Number button tapped (cycle): scoreKey: ${scoreKey}, new value: ${currentValue}, scores:`, scores);
+        saveToLocalStorage();
+        renderTable(); // Re-render to update touch-go options
+      } else if (e.target.classList.contains('number-btn')) {
+        // Desktop click
+        const scoreKey = e.target.getAttribute('data-candidate');
+        const value = parseInt(e.target.getAttribute('data-value'));
+        document.querySelectorAll(`.number-btn[data-candidate="${scoreKey}"]`).forEach(btn => {
+          btn.classList.remove('selected');
+        });
+        e.target.classList.add('selected');
+        scores[scoreKey] = value;
+        console.log(`Number button clicked: scoreKey: ${scoreKey}, value: ${value}, scores:`, scores);
+        saveToLocalStorage();
+      } else if (e.target.classList.contains('touch-go-option')) {
+        // Direct click on touch-go option
+        const scoreKey = e.target.getAttribute('data-candidate');
+        const value = parseInt(e.target.getAttribute('data-value'));
+        const container = e.target.closest('.touch-go-container');
+        const numberBtn = container.querySelector('.number-btn');
+        numberBtn.setAttribute('data-value', value);
+        numberBtn.textContent = value;
+        numberBtn.setAttribute('aria-label', `Score ${value} for candidate ${scoreKey[0].toUpperCase()}, criterion ${criteria[parseInt(scoreKey.slice(1))]}. Touch and move to select a score, or tap to cycle.`);
+        numberBtn.classList.add('selected');
+        scores[scoreKey] = value;
+        container.classList.remove('active');
+        document.getElementById('blur-overlay').classList.remove('active');
+        document.querySelectorAll('.number-btn').forEach(btn => btn.classList.remove('hidden'));
+        document.querySelectorAll('.criteria-column').forEach(cell => cell.classList.remove('active-criterion'));
+        document.querySelectorAll('th[data-candidate-id]').forEach(th => th.classList.remove('active-candidate'));
+        console.log(`Touch-go option clicked: scoreKey: ${scoreKey}, value: ${value}, scores:`, scores);
+        saveToLocalStorage();
+        renderTable(); // Re-render to update touch-go options
+      }
+    });
+
+    // Touch-and-go interaction for mobile
+    document.getElementById('comparison-table-body').addEventListener('touchstart', function(e) {
+      if (window.innerWidth > 768) return;
+      const target = e.target.closest('.touch-go-container');
+      if (!target) return;
+      target.classList.add('active');
+      document.getElementById('blur-overlay').classList.add('active');
+      document.querySelectorAll('.number-btn').forEach(btn => {
+        if (!target.contains(btn)) btn.classList.add('hidden');
+      });
+      const criterionIndex = target.getAttribute('data-criterion-index');
+      document.querySelector(`.criteria-column[data-criterion-index="${criterionIndex}"]`).classList.add('active-criterion');
+      const candidateId = target.getAttribute('data-candidate-id');
+      const candidateTh = document.querySelector(`th[data-candidate-id="${candidateId}"]`);
+      if (candidateTh) {
+        candidateTh.classList.add('active-candidate');
+        console.log(`Applied active-candidate to candidateId: ${candidateId}`);
+      } else {
+        console.error(`No th found for candidateId: ${candidateId}`);
+      }
+      target.dataset.originalValue = target.querySelector('.number-btn').getAttribute('data-value');
+      console.log(`Touch-and-go started: scoreKey: ${target.getAttribute('data-candidate')}, candidateId: ${candidateId}`);
+    });
+
+    document.getElementById('comparison-table-body').addEventListener('touchmove', function(e) {
+      if (window.innerWidth > 768) return;
+      const target = e.target.closest('.touch-go-container');
+      if (!target || !target.classList.contains('active')) return;
+      e.preventDefault(); // Prevent scrolling during touch-and-go
+      const touch = e.touches[0];
+      const touchX = touch.clientX;
+      const touchY = touch.clientY;
+
+      // Find the touch-go-option under the finger
+      const options = target.querySelectorAll('.touch-go-option');
+      let hoveredOption = null;
+      options.forEach(opt => {
+        const rect = opt.getBoundingClientRect();
+        if (
+          touchX >= rect.left &&
+          touchX <= rect.right &&
+          touchY >= rect.top &&
+          touchY <= rect.bottom
+        ) {
+          hoveredOption = opt;
+        }
+        opt.classList.remove('hovered');
+      });
+
+      // Apply hover effect to the touched option
+      if (hoveredOption) {
+        hoveredOption.classList.add('hovered');
+        const value = parseInt(hoveredOption.getAttribute('data-value'));
+        console.log(`Touch-and-go moved: scoreKey: ${target.getAttribute('data-candidate')}, hovered value: ${value}`);
+      }
+    });
+
+    document.getElementById('comparison-table-body').addEventListener('touchend', function(e) {
+      if (window.innerWidth > 768) return;
+      const target = e.target.closest('.touch-go-container');
+      if (!target) return;
+      target.classList.remove('active');
+      document.getElementById('blur-overlay').classList.remove('active');
+      document.querySelectorAll('.number-btn').forEach(btn => btn.classList.remove('hidden'));
+      document.querySelectorAll('.criteria-column').forEach(cell => cell.classList.remove('active-criterion'));
+      document.querySelectorAll('th[data-candidate-id]').forEach(th => th.classList.remove('active-candidate'));
+      target.querySelectorAll('.touch-go-option').forEach(opt => opt.classList.remove('hovered', 'selected'));
+
+      const numberBtn = target.querySelector('.number-btn');
+      const scoreKey = numberBtn.getAttribute('data-candidate');
+      const originalValue = parseInt(target.dataset.originalValue);
+
+      // Find the touch-go-option under the finger at touchend
+      const touch = e.changedTouches[0];
+      const touchX = touch.clientX;
+      const touchY = touch.clientY;
+      const options = target.querySelectorAll('.touch-go-option');
+      let selectedOption = null;
+      options.forEach(opt => {
+        const rect = opt.getBoundingClientRect();
+        if (
+          touchX >= rect.left &&
+          touchX <= rect.right &&
+          touchY >= rect.top &&
+          touchY <= rect.bottom
+        ) {
+          selectedOption = opt;
+        }
+      });
+
+      let newValue = originalValue;
+      if (selectedOption) {
+        newValue = parseInt(selectedOption.getAttribute('data-value'));
+        numberBtn.setAttribute('data-value', newValue);
+        numberBtn.textContent = newValue;
+        numberBtn.setAttribute('aria-label', `Score ${newValue} for candidate ${scoreKey[0].toUpperCase()}, criterion ${criteria[parseInt(scoreKey.slice(1))]}. Touch and move to select a score, or tap to cycle.`);
+        numberBtn.classList.add('selected');
+        scores[scoreKey] = newValue;
+      }
+
+      console.log(`Touch-and-go ended: scoreKey: ${scoreKey}, final value: ${newValue}, scores:`, scores);
+      saveToLocalStorage();
+      delete target.dataset.originalValue;
+      renderTable(); // Re-render to update touch-go options
+    });
+
+    function addCriteria() {
+      const input = document.getElementById("new-criteria");
+      const newCriterion = input.value.trim();
+      if (newCriterion) {
+        criteria.push(newCriterion);
+        input.value = '';
+        saveToLocalStorage();
+        renderTable();
+      } else {
+        alert("새 자질 항목을 입력해주세요.");
+      }
+    }
+
+    function deleteCriteria(index) {
+      criteria.splice(index, 1);
+      candidateIds.forEach(candidate => {
+        delete scores[`${candidate.toLowerCase()}${index}`];
+      });
+      const newScores = {};
+      Object.keys(scores).forEach(key => {
+        const candidate = key.match(/[a-c]/)[0];
+        const idx = parseInt(key.replace(/[a-c]/, ''));
+        if (idx > index) {
+          newScores[`${candidate}${idx - 1}`] = scores[key];
+        } else if (idx < index) {
+          newScores[key] = scores[key];
+        }
+      });
+      scores = newScores;
+      saveToLocalStorage();
+      renderTable();
+    }
+
+    function deleteAllCriteria() {
+      if (confirm("모든 자질 항목을 삭제하시겠습니까?")) {
+        criteria = [];
+        scores = {};
+        saveToLocalStorage();
+        renderTable();
+      }
+    }
+
+    function loadAICriteria() {
+      if (confirm("AI 항목을 불러오시겠습니까? 기존 항목이 초기화됩니다.")) {
+        criteria = [...defaultCriteria];
+        scores = {};
+        saveToLocalStorage();
+        renderTable();
+      }
+    }
+
+    function addCandidate() {
+      if (candidateCount >= maxCandidates) {
+        alert(`최대 ${maxCandidates}명의 후보까지 추가할 수 있습니다.`);
+        return;
+      }
+      candidateCount++;
+      const newCandidateId = String.fromCharCode(65 + candidateCount - 1);
+      candidateIds.push(newCandidateId);
+      saveToLocalStorage();
+      renderTable();
+    }
+
+    function deleteCandidate(candidateId) {
+      if (candidateCount <= 2) {
+        alert("최소 2명의 후보가 필요입니다.");
+        return;
+      }
+      const index = candidateIds.indexOf(candidateId);
+      candidateIds.splice(index, 1);
+      candidateCount--;
+      Object.keys(scores).forEach(key => {
+        if (key.startsWith(candidateId.toLowerCase())) {
+          delete scores[key];
+        }
+      });
+      delete candidateNames[candidateId];
+      saveToLocalStorage();
+      renderTable();
+    }
+
+    // Initial render
+    renderTable();
+
+    document.getElementById("comparison-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const scoresArray = new Array(candidateCount).fill(0);
+      const names = candidateIds.map(id => document.getElementById(`name${id}`).value || `후보 ${id}`);
+      criteria.forEach((_, i) => {
+        candidateIds.forEach((candidate, j) => {
+          const selectedButton = document.querySelector(`.number-btn[data-candidate='${candidate.toLowerCase()}${i}'].selected`);
+          scoresArray[j] += selectedButton ? parseInt(selectedButton.getAttribute('data-value')) : 0;
+        });
+      });
+      const queryParams = candidateIds.map((id, i) => `${id.toLowerCase()}=${scoresArray[i]}&n${i + 1}=${encodeURIComponent(names[i])}`).join('&');
+      localStorage.clear();
+      window.location.href = `result.html?${queryParams}`;
+    });
+  </script>
+</body>
+</html>

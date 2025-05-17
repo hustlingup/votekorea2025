@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>대통령 후보 비교</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <style>
+    body {
+        font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    }
+    .content-wrapper {
+      max-width: 100%;
+      padding: 1rem;
+    }
+    @media (min-width: 992px) {
+      .content-wrapper {
+        max-width: 30%;
+        margin: auto;
+      }
+    }
+    .preview-container {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+    .preview-image-pc {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .preview-image-mobile {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .preview-fade {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 30%;
+      width: 100%;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, white 100%);
+    }
+    .table-container {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-top: 2rem;
+    }
+    .table {
+      font-size: 1rem;
+      color: #333;
+      font-weight: 500;
+    }
+    .table th, .table td {
+      text-align: center;
+      vertical-align: middle;
+      padding: 0.5rem;
+      border: 1px solid #dee2e6;
+    }
+    .table thead th {
+      background-color: #e9ecef;
+      font-weight: 600;
+    }
+    .table .remaining-time {
+      font-family: monospace;
+      color: #4a90e2;
+      padding: 0 0.5rem;
+    }
+    .table .expired .remaining-time {
+      color: #ff0000;
+      font-weight: bold;
+    }
+    .election-table th:nth-child(1) {
+      width: 25%;
+    }
+    .election-table th:nth-child(2) {
+      width: 25%;
+    }
+    .election-table th:nth-child(3) {
+      width: 50%;
+    }
+    .debate-table th:nth-child(1) {
+      width: 20%;
+    }
+    .debate-table th:nth-child(2) {
+      width: 25%;
+    }
+    .debate-table th:nth-child(3) {
+      width: 35%;
+    }
+    .debate-table th:nth-child(4) {
+      width: 20%;
+    }
+    .accordion-item {
+      background-color: #f8f9fa;
+      border: 1px solid #dee2e6;
+      margin-bottom: 0.5rem;
+      border-radius: 8px;
+    }
+    .accordion-button {
+      font-weight: 600;
+      color: #333;
+      background-color: #e9ecef;
+    }
+    .accordion-button:not(.collapsed) {
+      background-color: #d3e4f5;
+      color: #4a90e2;
+    }
+    .accordion-body {
+      font-size: 1rem;
+      color: #333;
+      font-weight: 500;
+      text-align: left;
+    }
+    .accordion-body h5,
+    .accordion-body h6 {
+      text-align: center;
+    }
+    @media (max-width: 768px) {
+      .table {
+        font-size: 0.9rem;
+      }
+      .table th, .table td {
+        padding: 0.3rem;
+      }
+      .table .remaining-time {
+        padding: 0 0.3rem;
+      }
+      .accordion-body {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5 content-wrapper text-center">
+    <h1 class="mb-4"><b>대통령 후보 자질 비교</b></h1>
+    <p class="mb-4">주요 후보들의 자질을 직접 비교하고, <br> 어떤 후보에게 투표할지 판단하세요.</p>
+    <!-- 🧭 작성 버튼 -->
+    <div class="d-grid gap-3">
+      <a href="compare.html" class="btn btn-primary btn-lg">후보 비교표 작성하기</a>
+    </div>
+    <br>
+    <!-- ⏲️ 선거 일정 테이블 -->
+    <h6 class="mb-4"><b>🗳️ 제 21 대 대통령 선거 일정</b></h6>
+    <div class="table-container mt-0">
+      <table class="table table-bordered election-table" style="font-size:70%">
+        <tbody>
+          <tr id="candidate-reg-end">
+            <td>후보자등록 신청</td>
+            <td><span class="remaining-time">00일 00:00:00</span></td>
+            <td class="expire-time">5월 11일 까지</td>
+          </tr>
+          <tr id="early-voting-start">
+            <td>사전투표 시작까지</td>
+            <td><span class="remaining-time">00일 00:00:00</span></td>
+            <td class="expire-time">5월29일 오전 6시부터</td>
+          </tr>
+          <tr id="early-voting-end">
+            <td>사전투표 종료까지</td>
+            <td><span class="remaining-time">00일 00:00:00</span></td>
+            <td class="expire-time">5월 30일 오후 6시까지</td>
+          </tr>
+          <tr id="election-day-start">
+            <td>본 투표 시작까지</td>
+            <td><span class="remaining-time">00일 00:00:00</span></td>
+            <td class="expire-time">6월 3일 오전 6시부터</td>
+          </tr>
+          <tr id="election-day-end">
+            <td>본 투표 종료까지</td>
+            <td><span class="remaining-time">00일 00:00:00</span></td>
+            <td class="expire-time">6월 3일 오후 8시까지</td>
+          </tr>
+        </tbody>
+      </table>
+      <h5><b>투표 종료 후 즉시 개표 시작!</b></h5>
+    </div>
+    <br>
+    <!-- 📺 토론 일정 테이블 -->
+    <h6 class="mb-4"><b>📺 후보자 토론 일정</b></h6>
+    <div class="table-container mt-0">
+      <table class="table table-bordered debate-table" style="font-size:70%">
+        <thead>
+          <tr>
+            <th>회차</th>
+            <th>일시</th>
+            <th>주제</th>
+            <th>방송사</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>초청 1차</td>
+            <td>5월 18일(일) 20:00~22:00</td>
+            <td>저성장 극복과 민생경제 활성화 방안</td>
+            <td>SBS</td>
+          </tr>
+          <tr>
+            <td>특별회자</td>
+            <td>5월 19일(월) 22:00~24:00</td>
+            <td>미초청 후보자 토론(주제 미정)</td>
+            <td>SBS</td>
+          </tr>
+          <tr>
+            <td>초청 2차</td>
+            <td>5월 23일(금) 20:00~22:00</td>
+            <td>사회 갈등 극복과 통합 방안</td>
+            <td>KBS</td>
+          </tr>
+          <tr>
+            <td>초청 3차</td>
+            <td>5월 27일(화) 20:00~22:00</td>
+            <td>정치 양극화 해소 방안</td>
+            <td>MBC</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <!-- 🔍 비교표 미리보기 (이미지로 대체) -->
+    <div class="preview-container">
+      <p class="mb-4"><b>후보 비교표 미리보기</b>(PC)</p>
+      <img src="/img/preview_pc.PNG" alt="후보 비교표 미리보기PC" class="preview-image-pc" />
+      <div class="preview-fade"></div>
+    </div>
+    <div class="preview-container">
+      <p class="mb-4"><b>후보 비교표 미리보기</b>(모바일)</p>
+      <img src="/img/preview_mobile.PNG" alt="후보 비교표 미리보기 모바일" class="preview-image-mobile" />
+      <div class="preview-fade"></div>
+    </div>
+    <!-- 🧭 공유 버튼 -->
+    <div class="d-grid gap-3">
+      <button onclick="shareSite()" class="btn btn-outline-secondary btn-lg">사이트 공유하기</button>
+    </div>
+    <!-- 🤖 AI 평가 기준 -->
+    <section class="mt-5 mb-5">
+      <h4 class="mb-4 text-center">🤖 AI가 본 2025 대통령 후보 평가 기준</h4>
+      <div class="accordion" id="aiCriteriaAccordion">
+        <!-- Grok 3 기준 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="grokHeading">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#grokCollapse" aria-expanded="true" aria-controls="grokCollapse">
+              Grok 3의 평가 기준
+            </button>
+          </h2>
+          <div id="grokCollapse" class="accordion-collapse collapse show" aria-labelledby="grokHeading" data-bs-parent="#aiCriteriaAccordion">
+            <div class="accordion-body">
+              <h5>2025년 한국 대통령의 자질과 덕목</h5>
+              <ol>
+                <li><strong>리더십과 비전</strong>
+                  <ul>
+                    <li>명확한 국가 비전 제시: 장기적인 국가 발전 목표와 이를 실현할 구체적인 계획을 제시할 수 있어야 함.</li>
+                    <li>결단력: 위기 상황에서 신속하고 단호한 결정을 내릴 수 있는 능력.</li>
+                    <li>통합적 리더십: 다양한 계층, 지역, 이념을 아우르며 국민을 하나로 묶는 능력.</li>
+                    <li>글로벌 리더십: 국제 사회에서 한국의 위상을 높이고 외교 무대에서 주도적 역할을 할 수 있는 역량.</li>
+                  </ul>
+                </li>
+                <li><strong>도덕성과 청렴성</strong>
+                  <ul>
+                    <li>투명성: 공직자로서 모든 행동과 결정이 투명하고 국민에게 공개될 수 있어야 함.</li>
+                    <li>청렴함: 부패와 비리로부터 자유롭고, 공익을 최우선으로 삼는 태도.</li>
+                    <li>윤리적 판단력: 도덕적 딜레마에서 공정하고 정의로운 선택을 할 수 있는 능력.</li>
+                    <li>책임감: 자신의 결정과 행동에 대해 책임을 지고, 필요 시 사과와 반성을 할 줄 아는 자세.</li>
+                  </ul>
+                </li>
+                <li><strong>소통 능력</strong>
+                  <ul>
+                    <li>국민과의 소통: 다양한 채널을 통해 국민의 목소리를 듣고, 정책을 알기 쉽게 설명할 수 있는 능력.</li>
+                    <li>공감력: 국민의 고충과 감정을 이해하고 이를 정책에 반영할 수 있는 태도.</li>
+                    <li>설득력: 자신의 비전과 정책을 국민과 국회에 효과적으로 설득할 수 있는 능력.</li>
+                    <li>언론과의 원활한 관계: 언론과 건설적인 관계를 유지하며 공정한 정보 전달을 보장.</li>
+                  </ul>
+                </li>
+                <li><strong>정책 전문성</strong>
+                  <ul>
+                    <li>경제 이해도: 경제 성장, 일자리 창출, 재정 건전성을 위한 정책을 수립할 수 있는 전문성.</li>
+                    <li>사회 복지 역량: 교육, 의료, 주거 등 국민 삶의 질을 높이는 정책 설계 능력.</li>
+                    <li>외교 및 안보 지식: 국제 정세를 읽고, 한반도 안정과 국가 안보를 보장할 수 있는 전략적 사고.</li>
+                    <li>과학기술 및 혁신 이해: 4차 산업혁명, AI, 친환경 기술 등 미래 산업을 육성할 수 있는 안목.</li>
+                    <li>환경 정책 역량: 기후 위기 대응과 지속 가능한 발전을 위한 정책 추진 능력.</li>
+                  </ul>
+                </li>
+                <li><strong>위기 관리 능력</strong>
+                  <ul>
+                    <li>위기 대응력: 자연재해, 경제 위기, 안보 위협 등 예상치 못한 상황에서 침착하고 효과적으로 대응할 수 있는 능력.</li>
+                    <li>유연성: 급변하는 상황에 맞춰 정책과 전략을 조정할 수 있는 적응력.</li>
+                    <li>팀워크: 전문가, 관료, 민간과 협력하여 위기를 극복할 수 있는 협업 능력.</li>
+                  </ul>
+                </li>
+                <li><strong>공정성과 포용성</strong>
+                  <ul>
+                    <li>공정성: 특정 집단이나 계층에 치우치지 않고 모든 국민에게 공정한 기회를 제공하는 태도.</li>
+                    <li>다양성 존중: 성별, 지역, 세대, 이념 등 다양한 배경을 가진 사람들의 의견을 존중하고 반영.</li>
+                    <li>사회적 약자 배려: 소외된 계층을 위한 정책을 우선시하고, 사회적 갈등을 완화할 수 있는 능력.</li>
+                  </ul>
+                </li>
+                <li><strong>국제적 감각</strong>
+                  <ul>
+                    <li>외국어 능력: 국제 무대에서 원활한 소통을 위해 필요한 언어 능력(특히 영어 및 주요 언어).</li>
+                    <li>문화적 이해: 다양한 국가와 문화에 대한 이해를 바탕으로 외교적 신뢰를 구축할 수 있는 역량.</li>
+                    <li>글로벌 네트워크: 국제기구, 외국 정부, 글로벌 리더들과 협력할 수 있는 인적 네트워크.</li>
+                  </ul>
+                </li>
+                <li><strong>법치주의와 민주주의 존중</strong>
+                  <ul>
+                    <li>법치주의 준수: 헌법과 법률을 준수하며, 권력을 남용하지 않는 태도.</li>
+                    <li>민주적 가치 수호: 언론의 자유, 시민의 권리, 삼권분립 등 민주주의 원칙을 지키는 자세.</li>
+                    <li>국회와의 협력: 입법부와의 건설적 협력을 통해 안정적인 국정 운영을 이끌어갈 수 있는 능력.</li>
+                  </ul>
+                </li>
+                <li><strong>혁신과 변화 주도</strong>
+                  <ul>
+                    <li>개혁 의지: 관행과 비효율을 타파하고, 국가 시스템을 현대화하려는 강한 의지.</li>
+                    <li>창의적 문제 해결: 기존의 틀을 넘어서는 창의적인 접근으로 복잡한 문제를 해결할 수 있는 능력.</li>
+                    <li>미래 지향성: 인구 감소, 고령화, 기술 변화 등 미래 과제에 선제적으로 대응할 수 있는 안목.</li>
+                  </ul>
+                </li>
+                <li><strong>신뢰 구축</strong>
+                  <ul>
+                    <li>일관성: 말과 행동이 일치하며, 정책 추진에서 신뢰를 줄 수 있는 태도.</li>
+                    <li>약속 이행: 국민과의 약속을 지키고, 공약을 성실히 이행하려는 노력.</li>
+                    <li>겸손함: 국민 위에 군림하지 않고, 국민과 함께하는 리더로서의 자세.</li>
+                  </ul>
+                </li>
+              </ol>
+              <h6>결론</h6>
+              <p>2025년 한국 대통령은 복잡한 국내외 환경 속에서 국가를 안정적으로 이끌고, 국민의 신뢰를 얻을 수 있는 다방면의 자질과 덕목을 갖추어야 합니다. 국민은 후보자의 과거 행적, 정책 제안, 그리고 위 자질을 충족하는지를 면밀히 검토하여 현명한 선택을 해야 할 것입니다.</p>
+            </div>
+          </div>
+        </div>
+        <!-- ChatGPT 기준 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="chatgptHeading">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#chatgptCollapse" aria-expanded="false" aria-controls="chatgptCollapse">
+              ChatGPT의 평가 기준
+            </button>
+          </h2>
+          <div id="chatgptCollapse" class="accordion-collapse collapse" aria-labelledby="chatgptHeading" data-bs-parent="#aiCriteriaAccordion">
+            <div class="accordion-body">
+              <h5>2025년 한국 대통령 후보 평가 기준</h5>
+              <ol>
+                <li><strong>도덕성과 신뢰성</strong>
+                  <ul>
+                    <li>정직성과 청렴함 (부정부패 연루 전력 여부).</li>
+                    <li>가족 및 친인척 비리 관련 여부.</li>
+                    <li>과거 언행의 일관성과 진정성.</li>
+                    <li>공사 구분이 명확한가.</li>
+                    <li>권력 남용 가능성 여부.</li>
+                  </ul>
+                </li>
+                <li><strong>정책 전문성과 실행력</strong>
+                  <ul>
+                    <li>경제 정책에 대한 이해와 실현 가능성.</li>
+                    <li>복지, 노동, 교육 정책에 대한 구체적인 계획.</li>
+                    <li>국방 및 안보 전략의 현실성.</li>
+                    <li>부동산 정책의 실효성과 공정성.</li>
+                    <li>저출산·고령화 문제에 대한 구조적 해결 의지.</li>
+                    <li>디지털·AI 시대에 대한 전략적 준비.</li>
+                  </ul>
+                </li>
+                <li><strong>국민과의 소통 능력</strong>
+                  <ul>
+                    <li>국민 눈높이에 맞춘 언어와 태도.</li>
+                    <li>다양한 계층과 세대의 목소리를 들을 수 있는 태도.</li>
+                    <li>갈등을 중재하고 통합하는 능력.</li>
+                    <li>언론과의 관계 투명성.</li>
+                    <li>위기 상황에서 국민에게 신뢰감을 주는 메시지 능력.</li>
+                  </ul>
+                </li>
+                <li><strong>국제 감각과 외교 역량</strong>
+                  <ul>
+                    <li>미중 갈등 등 복잡한 국제 정세에 대한 균형 감각.</li>
+                    <li>북한과의 관계에서 실용적 접근.</li>
+                    <li>국제 사회에서 한국의 위상을 높일 수 있는 전략.</li>
+                    <li>한일, 한미, 한중 외교 감각과 유연성.</li>
+                  </ul>
+                </li>
+                <li><strong>시대 변화에 대한 감수성</strong>
+                  <ul>
+                    <li>기후 변화, 탄소 중립 등 글로벌 이슈에 대한 준비.</li>
+                    <li>청년 세대와 미래 세대의 감수성을 이해하려는 노력.</li>
+                    <li>디지털 전환, 스타트업·벤처 지원에 대한 이해.</li>
+                    <li>성평등, 다양성, 인권 감수성.</li>
+                  </ul>
+                </li>
+                <li><strong>공정성과 정의에 대한 신념</strong>
+                  <ul>
+                    <li>사회적 불평등 해소를 위한 실질적 방안.</li>
+                    <li>공정한 기회와 경쟁을 위한 제도적 보완.</li>
+                    <li>법과 원칙을 누구에게나 똑같이 적용할 수 있는가.</li>
+                  </ul>
+                </li>
+                <li><strong>위기 관리 능력</strong>
+                  <ul>
+                    <li>재난(자연재해, 팬데믹, 경제위기) 대응 역량.</li>
+                    <li>국민의 안전을 최우선시하는 자세.</li>
+                    <li>감정적 판단보다 데이터와 전문가 의견 존중.</li>
+                  </ul>
+                </li>
+                <li><strong>정치적 통합력</strong>
+                  <ul>
+                    <li>이념, 지역, 세대 간의 갈등 조율 능력.</li>
+                    <li>당리당략을 떠난 국정 운영 의지.</li>
+                    <li>야당과의 협치 가능성.</li>
+                  </ul>
+                </li>
+                <li><strong>정치 경력과 리더십 경험</strong>
+                  <ul>
+                    <li>행정 경험 또는 입법 활동에서의 성과.</li>
+                    <li>위기 시 냉철한 판단력과 결단력.</li>
+                    <li>조율, 타협, 리더십의 유연성.</li>
+                  </ul>
+                </li>
+                <li><strong>미래 비전 제시 능력</strong>
+                  <ul>
+                    <li>10년, 20년 뒤의 대한민국을 어떻게 그리고 있는가.</li>
+                    <li>구체적인 국가 비전과 방향성.</li>
+                    <li>국민이 그 비전에 공감할 수 있는 스토리텔링 능력.</li>
+                  </ul>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <footer class="text-center mt-5 mb-3">
+    © 2025 허슬업 - 소중한 투표권을 신중히 행사합시다.
+    <br> 문의 - hustlin.up@gmail.com
+  </footer>
+  <!-- 🔧 스크립트 -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function shareSite() {
+      const url = window.location.href;
+      navigator.clipboard.writeText(url).then(() => {
+        alert('사이트 링크가 복사되었습니다. 카카오톡 등으로 공유해보세요!');
+      });
+    }
+    // Countdown timer logic
+    const timers = [
+      {
+        id: 'candidate-reg-end',
+        name: '후보자등록 신청',
+        endTime: new Date('2025-05-11T23:59:59+09:00').getTime(),
+        expireText: '2025.05.11 23:59'
+      },
+      {
+        id: 'early-voting-start',
+        name: '사전투표 시작까지',
+        endTime: new Date('2025-05-29T06:00:00+09:00').getTime(),
+        expireText: '2025.05.29 06:00'
+      },
+      {
+        id: 'early-voting-end',
+        name: '사전투표 종료까지',
+        endTime: new Date('2025-05-30T18:00:00+09:00').getTime(),
+        expireText: '2025.05.30 18:00'
+      },
+      {
+        id: 'election-day-start',
+        name: '선거일 투표 시작까지',
+        endTime: new Date('2025-06-03T06:00:00+09:00').getTime(),
+        expireText: '2025.06.03 06:00'
+      },
+      {
+        id: 'election-day-end',
+        name: '선거일 투표 종료까지',
+        endTime: new Date('2025-06-03T20:00:00+09:00').getTime(),
+        expireText: '2025.06.03 20:00'
+      }
+    ];
+    function updateTimers() {
+      const now = new Date().getTime();
+      timers.forEach(timer => {
+        const row = document.getElementById(timer.id);
+        const remainingCell = row.querySelector('.remaining-time');
+        const distance = timer.endTime - now;
+        if (distance <= 0) {
+          row.classList.add('expired');
+          remainingCell.textContent = '마감';
+          return;
+        }
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        remainingCell.textContent = `${days.toString().padStart(2, '0')}일 ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      });
+    }
+    // Initial update
+    updateTimers();
+    // Update every second
+    setInterval(updateTimers, 1000);
+  </script>
+</body>
+</html>

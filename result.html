@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>결과 페이지</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+        font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    }
+    .content-wrapper {
+      max-width: 100%;
+      padding: 1rem;
+    }
+    @media (min-width: 992px) {
+      .content-wrapper {
+        max-width: 30%;
+        margin: auto;
+      }
+    }
+    .table-container {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-top: 1.5rem;
+    }
+    .table {
+      font-size: 1rem;
+      color: #333;
+      font-weight: 500;
+    }
+    .table th, .table td {
+      text-align: center;
+      vertical-align: middle;
+      padding: 0.5rem;
+      border: 1px solid #dee2e6;
+    }
+    .table thead th {
+      background-color: #e9ecef;
+      font-weight: 600;
+    }
+    .alert-success {
+      font-weight: 500;
+      animation: fadeIn 0.5s ease-in;
+    }
+    .chart-container {
+      position: relative;
+      margin: 2rem 0;
+      padding: 1rem;
+      background: #f8f9fa;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 768px) {
+      .table {
+        font-size: 0.9rem;
+      }
+      .table th, .table td {
+        padding: 0.3rem;
+      }
+      .chart-container {
+        padding: 0.5rem;
+      }
+      .alert-success {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container mt-5 content-wrapper">
+    <h2 class="mb-4 text-center">나의 비교 결과</h2>
+    
+    <!-- 최고 점수 -->
+    <div id="topCandidate" class="alert alert-success text-center" role="alert">
+      최고 점수: 계산 중...
+    </div>
+
+    <!-- 차트 -->
+    <div class="chart-container">
+      <canvas id="resultChart" width="400" height="200"></canvas>
+    </div>
+
+    <!-- ⏲️ 선거 일정 테이블 -->
+    <h6 class="mb-4"><b>🗳️ 제 21 대 대통령 선거 일정</b></h6>
+    <div class="table-container">
+      <table class="table table-bordered election-table" style="font-size:70%">
+        <tbody>
+          <tr id="candidate-reg-end">
+            <td>후보자등록 신청</td>
+            <td class="expire-time">5월 11일 까지</td>
+          </tr>
+          <tr id="early-voting-start">
+            <td>사전투표 시작까지</td>
+            <td class="expire-time">5월29일 오전 6시부터</td>
+          </tr>
+          <tr id="early-voting-end">
+            <td>사전투표 종료까지</td>
+            <td class="expire-time">5월 30일 오후 6시까지</td>
+          </tr>
+          <tr id="election-day-start">
+            <td>본 투표 시작까지</td>
+            <td class="expire-time">6월 3일 오전 6시부터</td>
+          </tr>
+          <tr id="election-day-end">
+            <td>본 투표 종료까지</td>
+            <td class="expire-time">6월 3일 오후 8시까지</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <!-- 📺 토론 일정 테이블 -->
+    <h6 class="mb-4"><b>📺 다가오는 토론 일정</b></h6>
+    <div class="table-container">
+      <table class="table table-bordered debate-table" style="font-size:70%">
+        <thead>
+          <tr>
+            <th>회차</th>
+            <th>일시</th>
+            <th>주제</th>
+            <th>방송사</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>초청 1차</td>
+            <td>5월 18일(일) 오후 8시</td>
+            <td>저성장 극복과 민생경제 활성화 방안</td>
+            <td>SBS</td>
+          </tr>
+          <tr>
+            <td>특별회자</td>
+            <td>5월 19일(월) 오후 10시</td>
+            <td>미초청 후보자 토론(주제 미정)</td>
+            <td>SBS</td>
+          </tr>
+          <tr>
+            <td>초청 2차</td>
+            <td>5월 23일(금) 오후 8시</td>
+            <td>사회 갈등 극복과 통합 방안</td>
+            <td>KBS</td>
+          </tr>
+          <tr>
+            <td>초청 3차</td>
+            <td>5월 27일(화) 오후 8시</td>
+            <td>정치 양극화 해소 방안</td>
+            <td>MBC</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 행동 유도 -->
+    <p class="text-success mt-4 text-center">소중한 한 표, 비교하고 신중하게 선택하세요!</p>
+    <p class="text-muted text-center">친구들과 결과를 공유하거나 비교표를 수정해보세요!</p>
+    <div class="text-center mt-4">
+      <div class="d-grid gap-2">
+        <a href="compare.html" class="btn btn-primary btn-lg">비교표 수정하기</a>
+        <button id="shareBtn" class="btn btn-outline-secondary btn-lg">내 결과표 공유하기</button>
+        <a href="index.html" class="btn btn-danger btn-lg">홈으로</a>
+      </div>
+    </div>
+  </div>
+    <footer class="text-center mt-5 mb-3">
+    © 2025 허슬업 - 소중한 투표권을 신중히 행사합시다.
+    <br> 문의 - hustlin.up@gmail.com
+  </footer>
+  
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const scoreA = parseInt(params.get("a")) || 0;
+    const scoreB = parseInt(params.get("b")) || 0;
+    const scoreC = parseInt(params.get("c")) || 0;
+    const nameA = params.get("n1") || "홍길동";
+    const nameB = params.get("n2") || "이몽룡";
+    const nameC = params.get("n3") || "성춘향";
+
+    // 최고 점수 계산
+    const scores = [
+      { name: nameA, score: scoreA },
+      { name: nameB, score: scoreB },
+      { name: scoreC ? nameC : null, score: scoreC }
+    ].filter(c => c.score > 0);
+    const maxScore = Math.max(scoreA, scoreB, scoreC);
+    const topCandidates = scores.filter(c => c.score === maxScore).map(c => c.name);
+    const topCandidateText = topCandidates.length > 1 
+      ? `공동 1위: ${topCandidates.join(", ")} (${maxScore}점)`
+      : `최고 점수: ${topCandidates[0]} (${maxScore}점)`;
+    document.getElementById("topCandidate").textContent = topCandidateText;
+
+    // 차트 생성
+    new Chart(document.getElementById("resultChart"), {
+      type: "bar",
+      data: {
+        labels: scores.map(c => c.name),
+        datasets: [{
+          label: "총점",
+          data: scores.map(c => c.score),
+          backgroundColor: [
+            'rgba(74, 144, 226, 0.8)',
+            'rgba(233, 78, 119, 0.8)',
+            'rgba(247, 183, 49, 0.8)'
+          ],
+          borderColor: [
+            'rgba(74, 144, 226, 1)',
+            'rgba(233, 78, 119, 1)',
+            'rgba(247, 183, 49, 1)'
+          ],
+          borderWidth: 1,
+          hoverBackgroundColor: [
+            'rgba(74, 144, 226, 1)',
+            'rgba(233, 78, 119, 1)',
+            'rgba(247, 183, 49, 1)'
+          ],
+          hoverBorderColor: '#333',
+          hoverBorderWidth: 2
+        }]
+      },
+      options: {
+        animation: {
+          duration: 1000,
+          easing: 'easeOutQuart'
+        },
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            enabled: true,
+            backgroundColor: 'rgba(0,0,0,0.8)',
+            titleFont: { size: 14 },
+            bodyFont: { size: 12 },
+            callbacks: {
+              label: function(context) {
+                const score = context.raw;
+                const percentage = ((score / 75) * 100).toFixed(1);
+                return `${context.label}: ${score}점 (${percentage}%)`;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            ticks: {
+              font: { size: 12, weight: 'bold' },
+              color: '#333',
+              maxRotation: 45,
+              minRotation: 0
+            },
+            grid: { display: false }
+          },
+          y: {
+            beginAtZero: true,
+            max: 75,
+            ticks: {
+              stepSize: 15,
+              font: { size: 12 },
+              color: '#333'
+            },
+            grid: {
+              color: '#dee2e6',
+              borderDash: [5, 5]
+            }
+          }
+        },
+        responsive: true,
+        maintainAspectRatio: false,
+        layout: {
+          padding: 10
+        },
+        elements: {
+          bar: {
+            borderRadius: 4,
+            hoverShadow: '0 4px 8px rgba(0,0,0,0.2)'
+          }
+        }
+      }
+    });
+
+    // 공유 버튼
+    document.getElementById("shareBtn").addEventListener("click", () => {
+      const shareUrl = window.location.href;
+      if (navigator.share) {
+        navigator.share({ title: "내 대선 비교표", url: shareUrl });
+      } else {
+        navigator.clipboard.writeText(shareUrl).then(() => {
+          alert("결과 URL이 복사되었습니다. 공유해보세요!");
+        });
+      }
+    });
+  </script>
+</body>
+</html>
