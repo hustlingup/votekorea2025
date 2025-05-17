@@ -16,7 +16,22 @@
       padding: 1rem;
       padding-top: 70px; /* Adjust for navbar height */
     }
+    .main-image-container {
+      width: 100%;
+      max-width: 100%;
+      text-align: center;
+    }
+    .main-image {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
     @media (min-width: 992px) {
+      .main-image-container {
+    max-width: 100%;
+    }
       .content-wrapper {
         max-width: 30%;
         margin: auto;
@@ -191,6 +206,9 @@
   <div class="container mt-5 content-wrapper text-center">
     <h1 class="mb-4"><b>대통령 후보 자질 비교</b></h1>
     <p class="mb-4">주요 후보들의 자질을 직접 비교하고, <br> 어떤 후보에게 투표할지 판단하세요.</p>
+    <div class="main-image-container mb-4">
+      <img src="/img/main.jpg" alt="2025 대통령 후보 비교 메인 이미지" class="main-image" />
+    </div>
     <!-- 🧭 작성 버튼 -->
     <div class="d-grid gap-3" id="start-btn">
       <a href="compare.html" class="btn btn-primary btn-lg">후보 비교표 작성하기</a>
