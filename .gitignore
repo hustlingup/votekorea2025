@@ -1,0 +1,11 @@
+# Secret credentials — never commit these
+config.js
+.env
+
+# OS / editor artifacts
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+*.swp
+*~
