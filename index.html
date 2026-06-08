@@ -70,11 +70,13 @@
   <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" crossorigin="anonymous"></script>
 
   <style>
+    html { overflow-x: hidden; }
     body {
       font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
         'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
       background: #f8f9fa;
       color: #333;
+      overflow-x: hidden;
     }
 
     /* ===== READING PROGRESS ===== */
@@ -99,6 +101,27 @@
     }
     .lang-btn.active { background: #4a90e2; border-color: #4a90e2; color: #fff; }
     .lang-btn:hover:not(.active) { border-color: #4a90e2; color: #4a90e2; }
+
+    /* ===== HERO LANG SWITCHER ===== */
+    .hero-lang {
+      display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;
+      margin-top: 1.75rem;
+    }
+    .hero-lang-btn {
+      background: rgba(255,255,255,0.14); color: rgba(255,255,255,0.9);
+      border: 1.5px solid rgba(255,255,255,0.35);
+      border-radius: 24px; padding: 0.38rem 1.1rem;
+      font-size: 0.82rem; font-weight: 700; cursor: pointer;
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      transition: all 0.18s; letter-spacing: 0.02em;
+    }
+    .hero-lang-btn.active {
+      background: rgba(255,255,255,0.9); color: #111;
+      border-color: rgba(255,255,255,0.9);
+    }
+    .hero-lang-btn:hover:not(.active) {
+      background: rgba(255,255,255,0.25); border-color: rgba(255,255,255,0.6);
+    }
 
     /* ===== HERO ===== */
     .hero-section {
@@ -544,6 +567,12 @@
         <a href="#timeline" class="btn btn-outline-light btn-lg fw-bold lang-ko" onclick="smoothTo('timeline')">사건 일지 보기</a>
         <a href="#timeline" class="btn btn-outline-light btn-lg fw-bold lang-en d-none" onclick="smoothTo('timeline')">Read Timeline</a>
         <a href="#timeline" class="btn btn-outline-light btn-lg fw-bold lang-ja d-none" onclick="smoothTo('timeline')">経緯を読む</a>
+      </div>
+
+      <div class="hero-lang">
+        <button class="hero-lang-btn active" onclick="setLang('ko')" id="hero-btn-ko">🇰🇷 한국어</button>
+        <button class="hero-lang-btn"        onclick="setLang('en')" id="hero-btn-en">🇺🇸 English</button>
+        <button class="hero-lang-btn"        onclick="setLang('ja')" id="hero-btn-ja">🇯🇵 日本語</button>
       </div>
     </div>
     <div class="hero-scroll-hint lang-ko">▼ 아래로 스크롤</div>
@@ -1704,6 +1733,8 @@
       });
       const btn = document.getElementById('btn-' + l);
       if (btn) btn.classList.toggle('active', l === lang);
+      const heroBtn = document.getElementById('hero-btn-' + l);
+      if (heroBtn) heroBtn.classList.toggle('active', l === lang);
     });
     document.documentElement.lang = lang === 'ja' ? 'ja' : lang === 'en' ? 'en' : 'ko';
     localStorage.setItem('vk-lang', lang);
