@@ -13,15 +13,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>재투표해야한다 | 2026 지방선거 민주주의 수호 운동 - VoteKorea</title>
-  <meta name="description" content="2025년 6월 3일 대선 투표용지 부족 사태와 재투표 요구 운동. 2026년 제9회 전국동시지방선거를 앞두고 당신의 목소리를 남겨주세요.">
-  <meta name="keywords" content="재투표, 투표용지 부족, 2025 대선, 2026 지방선거, 민주주의, VoteKorea, 재투표해야한다, 선관위, 잠실 투표소, 올림픽공원">
+  <title>재투표해야한다 | 2026 지방선거 투표용지 부족 사태 종합 - VoteKorea</title>
+  <meta name="description" content="2026년 6월 3일 제9회 전국동시지방선거 투표용지 부족 사태 종합 분석. 전국 50개 투표소 부족, 22곳 중단, 선관위원장 사퇴. 재투표 운동 현황.">
+  <meta name="keywords" content="재투표, 투표용지 부족, 2026 지방선거, 민주주의, VoteKorea, 재투표해야한다, 선관위, 잠실 투표소, 올림픽공원, 쌍둥이 득표">
   <meta name="author" content="VoteKorea">
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://votekorea.kr/" />
-  <meta property="og:title" content="재투표해야한다 | 투표용지 부족 사태 - VoteKorea" />
-  <meta property="og:description" content="2025년 대선 투표용지 부족 사태. 전국 50개 투표소 중단, 22곳 완전 중단. 민주주의를 지키기 위한 재투표 요구 운동에 참여하세요." />
+  <meta property="og:title" content="재투표해야한다 | 2026 지방선거 투표용지 부족 사태 - VoteKorea" />
+  <meta property="og:description" content="2026년 지방선거 투표용지 부족 사태. 전국 50개 투표소 중단, 22곳 완전 중단. 민주주의를 지키기 위한 재투표 요구 운동에 참여하세요." />
   <meta property="og:image" content="https://votekorea.kr/img/2026main.webp" />
   <meta property="og:locale" content="ko_KR" />
   <meta property="og:locale:alternate" content="en_US" />
@@ -30,7 +30,7 @@
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="재투표해야한다 | VoteKorea" />
-  <meta name="twitter:description" content="2025 대선 투표용지 부족 → 전국 민주적 재투표 운동. 당신의 한 표." />
+  <meta name="twitter:description" content="2026 지방선거 투표용지 부족 → 전국 민주적 재투표 운동. 당신의 한 표." />
   <meta name="twitter:image" content="https://votekorea.kr/img/2026main.webp" />
 
   <link rel="alternate" hreflang="ko" href="https://votekorea.kr/" />
@@ -43,8 +43,8 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "재투표해야한다 | 2026 지방선거 민주주의 수호 운동",
-    "description": "2025년 6월 3일 대선 투표용지 부족 사태와 재투표 요구 운동",
+    "name": "재투표해야한다 | 2026 지방선거 투표용지 부족 사태 종합",
+    "description": "2026년 6월 3일 지방선거 투표용지 부족 사태와 재투표 요구 운동",
     "url": "https://votekorea.kr/",
     "inLanguage": ["ko", "en", "ja"],
     "publisher": { "@type": "Organization", "name": "VoteKorea", "url": "https://votekorea.kr" },
@@ -77,6 +77,15 @@
       color: #333;
     }
 
+    /* ===== READING PROGRESS ===== */
+    #reading-progress {
+      position: fixed; top: 0; left: 0; z-index: 10001;
+      height: 3px; width: 0%;
+      background: linear-gradient(90deg, #dc3545 0%, #ff6b35 100%);
+      transition: width 0.08s linear; border-radius: 0 2px 2px 0;
+      pointer-events: none;
+    }
+
     /* ===== NAVBAR ===== */
     .navbar { box-shadow: 0 2px 4px rgba(0,0,0,.1); font-weight: 500; background: #fff !important; }
     .navbar-brand { font-weight: 700; color: #333 !important; }
@@ -93,28 +102,86 @@
 
     /* ===== HERO ===== */
     .hero-section {
-      background: #fff;
-      border-bottom: 1px solid #dee2e6;
-      padding: 5rem 1rem 2.5rem;
+      position: relative;
+      min-height: 100vh;
+      background: url('/img/olympicparkdroneshot.webp') center / cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 1.5rem 4rem;
     }
-    .hero-inner { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; justify-content: center; max-width: 900px; margin: auto; }
-    .hero-text { flex: 1; min-width: 260px; }
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(170deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.78) 100%);
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 860px;
+      margin: auto;
+    }
+    .hero-text { width: 100%; }
     .hero-badge {
       display: inline-block; background: #dc3545; color: #fff;
       font-size: 0.78rem; font-weight: 700; padding: 0.25rem 0.75rem;
-      border-radius: 20px; margin-bottom: 0.75rem; letter-spacing: 0.03em;
+      border-radius: 20px; margin-bottom: 1.1rem; letter-spacing: 0.03em;
     }
-    .hero-title { font-size: clamp(1.7rem, 5vw, 2.6rem); font-weight: 900; line-height: 1.2; color: #222; }
-    .hero-title .red { color: #dc3545; }
-    .hero-subtitle { font-size: clamp(0.9rem, 2.5vw, 1.05rem); color: #555; margin-top: 0.75rem; line-height: 1.7; }
-    .hero-cta { margin-top: 1.5rem; }
-    .hero-img { flex: 0 0 auto; max-width: 340px; width: 100%; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,.12); }
-    @media (max-width: 640px) { .hero-img { max-width: 100%; } }
+    .hero-eyebrow {
+      display: block;
+      font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+      font-weight: 600;
+      color: rgba(255,255,255,0.75);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.6rem;
+    }
+    .hero-title {
+      font-size: clamp(2.4rem, 8vw, 5rem);
+      font-weight: 900;
+      line-height: 1.08;
+      color: #fff;
+      text-shadow: 0 2px 18px rgba(0,0,0,0.55);
+    }
+    .hero-title .red { color: #ff5262; }
+    .hero-subtitle {
+      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+      color: rgba(255,255,255,0.82);
+      margin-top: 1rem;
+      line-height: 1.75;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-cta { margin-top: 2rem; display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+    .hero-scroll-hint {
+      margin-top: 3rem;
+      color: rgba(255,255,255,0.45);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      animation: bobble 2s ease-in-out infinite;
+    }
+    @keyframes bobble {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(6px); }
+    }
 
     /* ===== SECTION COMMON ===== */
+    .section-eyebrow {
+      display: block; font-size: 0.67rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 0.18em; color: #dc3545; text-align: center; margin-bottom: 0.45rem;
+    }
     .section-title {
-      font-size: 1.25rem; font-weight: 800; color: #222;
-      margin-bottom: 1.25rem; text-align: center;
+      font-size: clamp(1.3rem, 3.5vw, 1.85rem); font-weight: 900; color: #111;
+      margin-bottom: 0.5rem; text-align: center; line-height: 1.28; letter-spacing: -0.01em;
+    }
+    .section-title-accent {
+      width: 32px; height: 3px; background: #dc3545; border-radius: 2px; margin: 0 auto 2.25rem;
     }
     .vk-section { padding: 2.5rem 1rem; }
     .vk-section-light { background: #fff; }
@@ -139,7 +206,6 @@
     .vote-btn-no:hover:not(:disabled)  { background: #3a7bd5; box-shadow: 0 6px 20px rgba(74,144,226,.35); }
     .vote-btn:disabled { opacity: 0.65; cursor: not-allowed; }
 
-    /* Stamp animation (reused from compare.html) */
     .vote-btn .stamp {
       position: absolute; left: 50%;
       transform: translateX(-50%) scale(0);
@@ -189,34 +255,176 @@
     .share-copy     { background: #6c757d; color: #fff; }
     .share-icon { width: 17px; height: 17px; flex-shrink: 0; }
 
+    /* ===== EDITOR NOTE ===== */
+    .editor-note {
+      background: #fffbeb; border: 1px solid #fde68a; border-radius: 12px;
+      padding: 1.1rem 1.25rem 1.1rem 3.5rem; margin-bottom: 2rem;
+      font-size: 0.87rem; line-height: 1.8; color: #555; position: relative;
+    }
+    .editor-note::before {
+      content: '✎'; position: absolute; left: 0.9rem; top: 0.9rem;
+      background: #f59e0b; color: #fff; border-radius: 7px;
+      width: 1.7rem; height: 1.7rem; font-size: 0.85rem;
+      display: flex; align-items: center; justify-content: center; line-height: 1;
+    }
+    .editor-note strong { color: #92400e; }
+
+    /* ===== STATS BOX ===== */
+    .stats-box {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: #e5e7eb; border-radius: 14px;
+      overflow: hidden; margin: 0 0 2.5rem;
+      box-shadow: 0 1px 5px rgba(0,0,0,.07);
+    }
+    .stat-card {
+      background: #fff; padding: 1.5rem 1rem; text-align: center; position: relative;
+    }
+    .stat-card::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    }
+    .stat-card:nth-child(1)::after { background: #dc3545; }
+    .stat-card:nth-child(2)::after { background: #f59e0b; }
+    .stat-card:nth-child(3)::after { background: #3b82f6; }
+    .stat-number { font-size: clamp(2.2rem, 7vw, 3.2rem); font-weight: 900; line-height: 1; }
+    .stat-label  { font-size: 0.75rem; color: #6b7280; margin-top: 0.4rem; font-weight: 500; line-height: 1.4; }
+    .stat-card:nth-child(1) .stat-number { color: #dc3545; }
+    .stat-card:nth-child(2) .stat-number { color: #d97706; }
+    .stat-card:nth-child(3) .stat-number { color: #3b82f6; }
+
+    /* ===== TIMELINE TOC ===== */
+    .timeline-toc {
+      background: #fff; border: 1px solid #e5e7eb; border-radius: 14px;
+      padding: 0; margin-bottom: 3rem; overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,.07);
+    }
+    .toc-title {
+      display: flex; align-items: center; justify-content: space-between;
+      font-weight: 800; color: #111; margin-bottom: 0; cursor: pointer;
+      user-select: none; padding: 0.9rem 1.25rem;
+      background: #f9fafb; border-bottom: 1px solid #e5e7eb;
+      font-size: 0.87rem; letter-spacing: 0.01em; transition: background 0.15s;
+    }
+    .toc-title:hover { background: #f3f4f6; }
+    .toc-title:after { content: '⌄'; font-size: 1.1rem; color: #9ca3af; line-height: 1; font-weight: 400; }
+    .toc-title.collapsed:after { content: '›'; }
+    #toc-body { padding: 0.75rem 1.25rem 1.25rem; margin-top: 0 !important; }
+    .toc-list { list-style: none; padding: 0; margin: 0; columns: 2; }
+    @media (max-width: 600px) { .toc-list { columns: 1; } }
+    .toc-list li { margin: 0; break-inside: avoid; }
+    .toc-list a {
+      display: flex; align-items: flex-start; gap: 0.3rem;
+      color: #374151; text-decoration: none; padding: 0.3rem 0.5rem;
+      border-radius: 6px; font-size: 0.82rem; transition: all 0.15s; line-height: 1.45;
+    }
+    .toc-list a:hover { background: #fef2f2; color: #dc3545; text-decoration: none; }
+    .toc-tag { font-size: 0.6rem; font-weight: 800; padding: 0.1rem 0.38rem; border-radius: 10px; margin-right: 0.2rem; flex-shrink: 0; margin-top: 0.17rem; }
+    .toc-tag-unverified { background: #fee2e2; color: #991b1b; }
+
     /* ===== TIMELINE BLOG POST ===== */
     .timeline-section { padding: 2.5rem 1rem; }
-    .timeline-entry { margin-bottom: 4rem; max-width: 800px; margin-left: auto; margin-right: auto; }
-    .timeline-divider {
-      display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;
+    .timeline-section .inner-wrap { counter-reset: entry-counter; }
+    .timeline-entry {
+      counter-increment: entry-counter;
+      margin-bottom: 0; max-width: 800px; margin-left: auto; margin-right: auto;
+      position: relative; padding-top: 3.5rem;
     }
-    .timeline-divider::before, .timeline-divider::after {
-      content: ''; flex: 1; border-top: 2px solid #dee2e6;
+    .timeline-entry + .timeline-entry { border-top: 1px solid #f0f0f0; }
+    /* Left timeline rail */
+    .tl-rail { position: relative; padding-left: 1.75rem; }
+    .tl-rail::before {
+      content: ''; position: absolute; left: calc(0.875rem - 1px); top: 0.5rem; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, #dc3545 0%, #4a90e2 60%, transparent 100%);
+      border-radius: 1px;
     }
+    .tl-rail .timeline-entry::before {
+      content: ''; position: absolute; left: calc(-0.875rem - 5px); top: 4.25rem;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: #fff; border: 2.5px solid #dc3545;
+      box-shadow: 0 0 0 3px rgba(220,53,69,0.12);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .tl-rail .timeline-entry:hover::before {
+      border-color: #4a90e2;
+      box-shadow: 0 0 0 4px rgba(74,144,226,0.15);
+    }
+    /* Remove old horizontal divider lines */
+    .timeline-divider { display: block; margin-bottom: 0.8rem; }
+    .timeline-divider::before, .timeline-divider::after { display: none; }
+    /* Date badge — monospace outline chip */
     .timeline-date-badge {
-      background: #dc3545; color: #fff;
-      padding: 0.3rem 1.1rem; border-radius: 20px;
-      font-size: 0.9rem; font-weight: 700; white-space: nowrap;
+      display: inline-flex; align-items: center;
+      color: #dc3545; border: 1.5px solid #dc3545; background: transparent;
+      padding: 0.18rem 0.7rem; border-radius: 4px;
+      font-size: 0.72rem; font-weight: 800; white-space: nowrap;
+      letter-spacing: 0.05em; font-family: 'Courier New', Consolas, monospace;
     }
-    .timeline-entry h3 { font-size: 1.2rem; font-weight: 800; color: #222; margin-bottom: 1rem; }
+    /* Chapter number counter above headline */
+    .timeline-entry h3::before {
+      content: counter(entry-counter, decimal-leading-zero);
+      display: block; font-size: 0.6rem; font-weight: 800; letter-spacing: 0.2em;
+      color: #c4c4c4; margin-bottom: 0.25rem; font-family: 'Courier New', monospace;
+    }
+    .timeline-entry h3 {
+      font-size: clamp(1.15rem, 3.5vw, 1.45rem); font-weight: 900; color: #111;
+      margin-bottom: 0.65rem; line-height: 1.28; letter-spacing: -0.01em;
+      border-bottom: 2px solid #f3f4f6; padding-bottom: 0.7rem;
+    }
+    /* Entry tag — pill with border */
+    .entry-tag {
+      display: inline-flex; align-items: center;
+      font-size: 0.66rem; font-weight: 800;
+      padding: 0.22rem 0.75rem; border-radius: 20px;
+      text-transform: uppercase; letter-spacing: 0.07em;
+      margin-bottom: 0.6rem; vertical-align: middle;
+    }
+    .tag-fact       { background: #ecfdf5; color: #059669; border: 1px solid #a7f3d0; }
+    .tag-analysis   { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
+    .tag-unverified { background: #fff1f2; color: #e11d48; border: 1px solid #fecdd3; }
+    /* Photo */
     .timeline-photo {
-      width: 100%; max-width: 700px; border-radius: 10px;
-      margin: 1rem 0 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,.1);
-      display: block; background: #e9ecef; min-height: 180px; object-fit: cover;
+      width: 100%; max-width: 100%; border-radius: 10px;
+      margin: 1.25rem 0 0.35rem; box-shadow: 0 2px 14px rgba(0,0,0,.1);
+      display: block; background: #e9ecef; min-height: 180px;
+      object-fit: cover; aspect-ratio: 16/9;
     }
-    .timeline-entry p { line-height: 1.85; color: #444; margin-bottom: 0.9rem; font-size: 0.97rem; }
-    .timeline-entry h4 { font-size: 1.05rem; font-weight: 800; color: #333; margin: 1.5rem 0 0.5rem; }
+    .timeline-entry p { line-height: 1.88; color: #3d3d3d; margin-bottom: 0.95rem; font-size: 0.97rem; }
+    .timeline-entry h4 { font-size: 1.02rem; font-weight: 800; color: #222; margin: 1.5rem 0 0.5rem; }
+    .timeline-entry ul { padding-left: 1.3rem; margin-bottom: 0.9rem; }
+    .timeline-entry ul li { line-height: 1.85; color: #444; margin-bottom: 0.4rem; font-size: 0.97rem; }
+    /* Time tag — dark terminal style */
     .time-tag {
-      display: inline-block; background: #4a90e2; color: #fff;
-      font-size: 0.75rem; font-weight: 700; padding: 0.12rem 0.55rem;
+      display: inline-block; background: #18181b; color: #4ade80;
+      font-family: 'Courier New', Consolas, monospace;
+      font-size: 0.7rem; font-weight: 700; padding: 0.14rem 0.55rem;
       border-radius: 4px; margin-right: 0.4rem; vertical-align: middle;
-      white-space: nowrap;
+      white-space: nowrap; letter-spacing: 0.02em;
     }
+
+    /* ===== PROTEST QUOTE ===== */
+    .protest-quote {
+      position: relative; border: none; background: none;
+      padding: 0.75rem 1.25rem 0.75rem 2rem; margin: 1.5rem 0;
+      font-style: normal; color: #444; line-height: 1.9;
+    }
+    .protest-quote::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px; background: linear-gradient(to bottom, #dc3545 60%, transparent);
+      border-radius: 2px;
+    }
+    .protest-quote .quote-line { display: block; font-style: normal; font-weight: 800; color: #dc3545; font-size: 1.02em; }
+
+    /* ===== UNVERIFIED BANNER ===== */
+    .unverified-banner {
+      display: flex; gap: 0.75rem; align-items: flex-start;
+      background: #fff8f8; border: 1.5px solid #fecdd3;
+      border-radius: 10px; padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem; font-size: 0.87rem; color: #991b1b; line-height: 1.7;
+    }
+    .unverified-banner::before { content: '⚠'; flex-shrink: 0; font-size: 1rem; line-height: 1.7; }
+    .unverified-banner strong { color: #7f1d1d; }
+
+    /* ===== COMPARE TABLE ===== */
     .compare-table-wrap { overflow-x: auto; margin: 1rem 0; }
     .compare-table {
       width: 100%; border-collapse: collapse; font-size: 0.85rem;
@@ -244,15 +452,31 @@
     footer { background: #fff; border-top: 1px solid #dee2e6; color: #6c757d; padding: 1.5rem 1rem; text-align: center; font-size: 0.85rem; }
     footer a { color: #4a90e2; }
 
+    /* ===== BACK TO TOP ===== */
+    #back-to-top {
+      position: fixed; bottom: 2rem; right: 1.5rem; z-index: 9999;
+      background: #4a90e2; color: #fff; border: none; border-radius: 50%;
+      width: 46px; height: 46px; font-size: 1.2rem; cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0,0,0,.25); display: none;
+      align-items: center; justify-content: center; transition: background 0.18s;
+    }
+    #back-to-top:hover { background: #3a7bd5; }
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 576px) {
       .vote-wrap { flex-direction: column; align-items: center; }
       .vote-btn { max-width: 100%; width: 100%; }
       .share-btn { font-size: 0.78rem; padding: 0.5rem 0.8rem; }
+      .tl-rail { padding-left: 1.25rem; }
+      .tl-rail::before { left: calc(0.625rem - 1px); }
+      .tl-rail .timeline-entry::before { left: calc(-0.625rem - 4px); width: 8px; height: 8px; }
+      .stats-box { grid-template-columns: repeat(3, 1fr); }
+      .stat-card { padding: 1.1rem 0.6rem; }
     }
   </style>
 </head>
 <body>
+<div id="reading-progress"></div>
 
 <!-- ===== NAVBAR ===== -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
@@ -281,46 +505,1089 @@
 <section class="hero-section">
   <div class="hero-inner">
     <div class="hero-text">
-      <span class="hero-badge lang-ko">2025 대선 투표용지 부족 사태</span>
-      <span class="hero-badge lang-en d-none">2025 Presidential Election — Ballot Shortage</span>
-      <span class="hero-badge lang-ja d-none">2025年大統領選挙 投票用紙不足</span>
+      <span class="hero-badge lang-ko">2026 제9회 전국동시지방선거 투표용지 부족 사태</span>
+      <span class="hero-badge lang-en d-none">2026 The 9th Nationwide Local Elections — Ballot Shortage Crisis</span>
+      <span class="hero-badge lang-ja d-none">2026年 第9回全国同時地方選挙 投票用紙不足事態</span>
+
+      <span class="hero-eyebrow lang-en d-none">What happened to South Korea's democracy?</span>
 
       <h1 class="hero-title lang-ko">
         <span class="red">재투표해야한다</span><br>
-        <span style="font-size:0.55em;font-weight:700;color:#444">민주주의를 지켜라</span>
+        <span style="font-size:0.48em;font-weight:700;color:rgba(255,255,255,0.8)">민주주의를 지켜라</span>
       </h1>
       <h1 class="hero-title lang-en d-none">
-        <span class="red">Re-Vote Now</span><br>
-        <span style="font-size:0.55em;font-weight:700;color:#444">Defend Democracy</span>
+        <span class="red">They Ran Out<br>of Ballots.</span><br>
+        <span style="font-size:0.45em;font-weight:700;color:rgba(255,255,255,0.8)">Demand a Re-Vote</span>
       </h1>
       <h1 class="hero-title lang-ja d-none">
         <span class="red">再投票を求める</span><br>
-        <span style="font-size:0.55em;font-weight:700;color:#444">民主主義を守れ</span>
+        <span style="font-size:0.48em;font-weight:700;color:rgba(255,255,255,0.8)">民主主義を守れ</span>
       </h1>
 
       <p class="hero-subtitle lang-ko">
-        2025년 6월 3일 대선에서 전국 50개 투표소 투표용지 부족, 22곳 완전 중단.<br>
-        2026 지방선거 전, 우리의 목소리를 높여야 할 때입니다.
+        2026년 6월 3일 지방선거, 전국 50개 투표소에서 투표용지가 부족해 22곳이 완전 중단됐습니다.<br>
+        선거는 끝났지만, 투표권 침해에 분노하는 목소리는 계속됩니다.
       </p>
       <p class="hero-subtitle lang-en d-none">
-        On June 3, 2025, ballot papers ran out at 50 polling stations nationwide.<br>
-        22 locations were completely shut down. Before the 2026 local elections — make your voice heard.
+        On June 3, 2026, ballot papers ran out at 50 polling stations across South Korea — 22 locations fully suspended voting.<br>
+        The election is over. The anger over violated voting rights is not.
       </p>
       <p class="hero-subtitle lang-ja d-none">
-        2025年6月3日の大統領選挙で、全国50カ所の投票所で投票用紙が不足し、22カ所が完全停止。<br>
-        2026年地方選挙の前に、声を上げましょう。
+        2026年6月3日の地方選挙で、全国50カ所の投票所で投票用紙が不足し、22カ所が完全停止しました。<br>
+        選挙は終わりましたが、投票権侵害への怒りは続いています。
       </p>
 
       <div class="hero-cta">
-        <a href="#vote-section" class="btn btn-danger btn-lg fw-bold me-2 lang-ko" onclick="smoothTo('vote-section')">지금 투표하기 ▼</a>
-        <a href="#vote-section" class="btn btn-danger btn-lg fw-bold me-2 lang-en d-none" onclick="smoothTo('vote-section')">Vote Now ▼</a>
-        <a href="#vote-section" class="btn btn-danger btn-lg fw-bold me-2 lang-ja d-none" onclick="smoothTo('vote-section')">今すぐ投票 ▼</a>
-        <a href="#timeline" class="btn btn-outline-secondary btn-lg fw-bold lang-ko" onclick="smoothTo('timeline')">사건 일지 보기</a>
-        <a href="#timeline" class="btn btn-outline-secondary btn-lg fw-bold lang-en d-none" onclick="smoothTo('timeline')">Read Timeline</a>
-        <a href="#timeline" class="btn btn-outline-secondary btn-lg fw-bold lang-ja d-none" onclick="smoothTo('timeline')">経緯を読む</a>
+        <a href="#vote-section" class="btn btn-danger btn-lg fw-bold lang-ko" onclick="smoothTo('vote-section')">지금 투표하기 ▼</a>
+        <a href="#vote-section" class="btn btn-danger btn-lg fw-bold lang-en d-none" onclick="smoothTo('vote-section')">Vote Now ▼</a>
+        <a href="#vote-section" class="btn btn-danger btn-lg fw-bold lang-ja d-none" onclick="smoothTo('vote-section')">今すぐ投票 ▼</a>
+        <a href="#timeline" class="btn btn-outline-light btn-lg fw-bold lang-ko" onclick="smoothTo('timeline')">사건 일지 보기</a>
+        <a href="#timeline" class="btn btn-outline-light btn-lg fw-bold lang-en d-none" onclick="smoothTo('timeline')">Read Timeline</a>
+        <a href="#timeline" class="btn btn-outline-light btn-lg fw-bold lang-ja d-none" onclick="smoothTo('timeline')">経緯を読む</a>
       </div>
     </div>
-    <img src="/img/2026main.webp" alt="2026 지방선거 재투표 운동" class="hero-img" width="340" height="228" loading="eager"/>
+    <div class="hero-scroll-hint lang-ko">▼ 아래로 스크롤</div>
+    <div class="hero-scroll-hint lang-en d-none">▼ Scroll to explore</div>
+    <div class="hero-scroll-hint lang-ja d-none">▼ スクロールして見る</div>
+  </div>
+</section>
+
+<!-- ===== TIMELINE ===== -->
+<section class="timeline-section vk-section-light" id="timeline">
+  <div class="inner-wrap">
+    <span class="section-eyebrow lang-ko">2026 제9회 전국동시지방선거</span>
+    <span class="section-eyebrow lang-en d-none">2026 Local Elections · Crisis Report</span>
+    <span class="section-eyebrow lang-ja d-none">2026年 地方選挙 · 危機報告</span>
+    <h2 class="section-title lang-ko">멈춰 선 한 표: 제9회 전국동시지방선거 투표용지 부족 사태 종합</h2>
+    <h2 class="section-title lang-en d-none">The Vote That Stalled: An Anatomy of the Ballot-Shortage Crisis</h2>
+    <h2 class="section-title lang-ja d-none">止まった一票 ― 第9回全国同時地方選挙「投票用紙不足」事態の総合分析</h2>
+    <div class="section-title-accent"></div>
+
+    <!-- EDITOR'S NOTE -->
+    <div class="editor-note">
+      <strong class="lang-ko">편집자 주</strong><strong class="lang-en d-none">Editor's note</strong><strong class="lang-ja d-none">編集者注</strong>
+      <span class="lang-ko"> — 이 글은 2026년 6월 8일까지 보도된 내용을 바탕으로 한다. 투표용지 부족, 투표 중단, 봉쇄 시위, 선관위원장 사퇴, 정부·정치권의 대응 등은 다수 언론이 확인한 사실이다. 반면 '부정선거' 주장, 송도 동일 득표 의혹, 경찰의 '수상한 행동' 목록, 서울시장 '야합·백기투항' 해석 등은 검증되지 않은 주장으로, 주체를 밝혀 전달하고 선관위·전문가의 반론을 함께 적었다.</span>
+      <span class="lang-en d-none"> — This article reflects reporting available through 8 June 2026. The ballot shortage, the temporary suspensions, the blockade protests, the resignation of the election-commission chief, and the government and party responses are facts confirmed by multiple outlets. Claims of "election fraud," the Songdo "identical-tally" suspicion, the list of "suspicious" police behaviors, and the "collusion / white-flag" reading of the Seoul mayoral concession are unverified allegations; they are attributed to those who made them and paired with the official rebuttals.</span>
+      <span class="lang-ja d-none"> — 本稿は2026年6月8日までの報道に基づく。投票用紙不足・投票中断・封鎖デモ・選管委員長辞任・政府と政界の対応は複数の報道で確認された事実である。一方、「不正選挙」主張、松島の同一得票疑惑、警察の「不審な行動」リスト、ソウル市長の「野合・白旗降伏」という解釈は未検証の主張であり、主体を明示し選管・専門家の反論を併記した。</span>
+    </div>
+
+    <!-- STATS BOX -->
+    <div class="stats-box">
+      <div class="stat-card">
+        <div class="stat-number">50</div>
+        <div class="stat-label lang-ko">개 투표소 부족</div>
+        <div class="stat-label lang-en d-none">stations ran short</div>
+        <div class="stat-label lang-ja d-none">投票所で不足</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">22</div>
+        <div class="stat-label lang-ko">곳 투표 완전 중단</div>
+        <div class="stat-label lang-en d-none">stations fully suspended</div>
+        <div class="stat-label lang-ja d-none">か所で投票中断</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">67</div>
+        <div class="stat-label lang-ko">곳 긴급 용지 공급</div>
+        <div class="stat-label lang-en d-none">emergency resupplied</div>
+        <div class="stat-label lang-ja d-none">か所に緊急供給</div>
+      </div>
+    </div>
+
+    <!-- TABLE OF CONTENTS -->
+    <div class="timeline-toc">
+      <div class="toc-title collapsed" id="toc-title" onclick="toggleToc()">
+        <span class="lang-ko">목차 — 17개 항목</span>
+        <span class="lang-en d-none">Table of Contents — 17 entries</span>
+        <span class="lang-ja d-none">目次 — 17項目</span>
+      </div>
+      <div id="toc-body" style="display:none; margin-top:0.75rem;">
+        <ul class="toc-list">
+          <li><a href="#entry-1" onclick="smoothTo('entry-1')">1. <span class="lang-ko">사전투표 실시</span><span class="lang-en d-none">Early Voting</span><span class="lang-ja d-none">期日前投票実施</span></a></li>
+          <li><a href="#entry-2" onclick="smoothTo('entry-2')">2. <span class="lang-ko">투표 당일 — 투표용지 부족</span><span class="lang-en d-none">Election Day — Shortage</span><span class="lang-ja d-none">投票当日</span></a></li>
+          <li><a href="#entry-3" onclick="smoothTo('entry-3')">3. <span class="lang-ko">선관위 사과 및 전국 규모 확인</span><span class="lang-en d-none">NEC Apology &amp; Nationwide Scale</span><span class="lang-ja d-none">選管謝罪・全国規模確認</span></a></li>
+          <li><a href="#entry-4" onclick="smoothTo('entry-4')">4. <span class="lang-ko">잠실7동 밤샘 대치</span><span class="lang-en d-none">Jamsil Overnight Standoff</span><span class="lang-ja d-none">蚕室7洞 徹夜対峙</span></a></li>
+          <li><a href="#entry-5" onclick="smoothTo('entry-5')">5. <span class="lang-ko">올림픽공원 개표소 봉쇄</span><span class="lang-en d-none">Olympic Park Siege</span><span class="lang-ja d-none">五輪公園 開票所封鎖</span></a></li>
+          <li><a href="#entry-6" onclick="smoothTo('entry-6')">6. <span class="lang-ko">청와대 결집 시도 차단</span><span class="lang-en d-none">Cheongwadae March Blocked</span><span class="lang-ja d-none">青瓦台集結阻止</span></a></li>
+          <li><a href="#entry-7" onclick="smoothTo('entry-7')">7. <span class="lang-ko">대통령실 대응 및 국정조사</span><span class="lang-en d-none">Presidential Response &amp; Investigation</span><span class="lang-ja d-none">大統領室対応・国政調査</span></a></li>
+          <li><a href="#entry-8" onclick="smoothTo('entry-8')">8. <span class="lang-ko">선관위·정당 입장</span><span class="lang-en d-none">NEC &amp; Party Positions</span><span class="lang-ja d-none">選管・政党の見解</span></a></li>
+          <li><a href="#entry-9" onclick="smoothTo('entry-9')">9. <span class="lang-ko">사태의 뿌리: 50~60% 인쇄 지침</span><span class="lang-en d-none">Root Cause: 50–60% Print Rule</span><span class="lang-ja d-none">根本原因：50〜60％印刷指針</span></a></li>
+          <li><a href="#entry-10" onclick="smoothTo('entry-10')">10. <span class="lang-ko">광장의 방어기제</span><span class="lang-en d-none">The Square's Defense Mechanism</span><span class="lang-ja d-none">広場の防御機序</span></a></li>
+          <li><a href="#entry-11" onclick="smoothTo('entry-11')">11. <span class="lang-ko">선택적 분노: 스타벅스 vs 투표지</span><span class="lang-en d-none">Selective Anger: Starbucks vs Ballot</span><span class="lang-ja d-none">選択的怒り：スターバックス vs 投票用紙</span></a></li>
+          <li><a href="#entry-12" onclick="smoothTo('entry-12')">12. <span class="lang-ko">사라진 선결제 릴레이</span><span class="lang-en d-none">The Vanished Pre-payment Relay</span><span class="lang-ja d-none">消えた先払いリレー</span></a></li>
+          <li><a href="#entry-13" onclick="smoothTo('entry-13')">13. <span class="lang-ko">인쇄된 분노 vs 손글씨의 절규</span><span class="lang-en d-none">Printed Anger vs Handwritten Outcries</span><span class="lang-ja d-none">印刷された怒り vs 手書きの叫び</span></a></li>
+          <li><a href="#entry-14" onclick="smoothTo('entry-14')">14. <span class="lang-ko">⚠️ 서울시장 0.6%p 역전 의혹</span><span class="lang-en d-none">⚠️ Seoul Mayor 0.6%p Reversal</span><span class="lang-ja d-none">⚠️ ソウル市長0.6pt逆転疑惑</span></a></li>
+          <li><a href="#entry-15" onclick="smoothTo('entry-15')">15. <span class="lang-ko">⚠️ 쌍둥이 득표수 통계 의혹</span><span class="lang-en d-none">⚠️ Twin Vote Counts Anomaly</span><span class="lang-ja d-none">⚠️ 双子の得票数疑惑</span></a></li>
+          <li><a href="#entry-16" onclick="smoothTo('entry-16')">16. <span class="lang-ko">⚠️ 경찰의 5가지 수상한 행동</span><span class="lang-en d-none">⚠️ Five Suspicious Police Behaviors</span><span class="lang-ja d-none">⚠️ 警察の5つの不審な行動</span></a></li>
+          <li><a href="#entry-17" onclick="smoothTo('entry-17')">17. <span class="lang-ko">정리: 확인된 사실 vs 미검증 주장</span><span class="lang-en d-none">Summary: Facts vs Unverified Claims</span><span class="lang-ja d-none">まとめ：確認済み事実 vs 未検証主張</span></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-rail">
+    <!-- ===== ENTRY 1: 사전투표 ===== -->
+    <article class="timeline-entry" id="entry-1">
+      <div class="timeline-divider">
+        <span class="timeline-date-badge">2026.05.29–30</span>
+      </div>
+      <span class="entry-tag tag-fact lang-ko">확인된 사실</span>
+      <span class="entry-tag tag-fact lang-en d-none">CONFIRMED FACT</span>
+      <span class="entry-tag tag-fact lang-ja d-none">確認済み事実</span>
+      <h3>
+        <span class="lang-ko">사전투표 실시 — 높아진 참여율이 뿌린 씨앗</span>
+        <span class="lang-en d-none">Early Voting — The Rising Turnout That Sowed the Crisis</span>
+        <span class="lang-ja d-none">期日前投票実施——上昇する投票率が蒔いた種</span>
+      </h3>
+      <img src="/img/2026main.webp" alt="사전투표 현장" class="timeline-photo" loading="lazy"/>
+      <div class="lang-ko">
+        <p>5월 29일~30일 이틀간 제9회 전국동시지방선거 사전투표가 전국에서 정상 실시됐다. 최근 선거에서 사전투표율이 꾸준히 오른 점이 이후 본투표 용지 수량 논란의 배경이 된다.</p>
+        <p>선관위는 사전투표를 마친 유권자는 본투표소에서 다시 투표하지 않으므로, 본투표소용 용지는 전체 선거인 수보다 적게 준비한다고 설명했다. 사전투표율 상승을 감안해 지방선거 용지를 선거인 수의 50% 수준까지 줄여 인쇄할 수 있도록 한 내부 지침이 있었으나, 이것이 6월 3일 사태의 씨앗이 됐다. 투표소별 당일 투표자 수 편차와 긴급 이송 절차를 충분히 반영하지 못한 채 균일 배분한 것이 문제였다.</p>
+      </div>
+      <div class="lang-en d-none">
+        <p>Early voting for the 9th Nationwide Simultaneous Local Elections was held nationwide on 29–30 May without incident. Steadily rising early-voting rates in recent elections become the backdrop to the later dispute over how many election-day ballots to print.</p>
+        <p>Because voters who cast early ballots do not vote again on election day, the NEC stocks election-day stations with fewer ballots than the total electorate. An internal guideline allowed local-election ballots to be printed down to about 50% of eligible voters, reflecting rising early-voting rates — but it failed to adequately account for station-by-station turnout variance or emergency-transport procedures. This became the seed of the June 3 crisis.</p>
+      </div>
+      <div class="lang-ja d-none">
+        <p>5月29〜30日の2日間、第9回全国同時地方選挙の期日前投票が全国で正常に実施された。近年の選挙で期日前投票率が着実に上昇してきたことが、後の本投票用紙数をめぐる論争の背景となる。</p>
+        <p>選管は、期日前投票を済ませた有権者は本投票所で再び投票しないため、本投票所用の用紙は全有権者数より少なく準備すると説明した。期日前投票率の上昇を踏まえ地方選の用紙を有権者数の50％水準まで減らして印刷できる内部指針があったが、投票所ごとの当日投票者数のばらつきや緊急移送手順を十分に反映できなかった。これが6月3日の事態の種となった。</p>
+      </div>
+    </article>
+
+    <!-- ===== ENTRY 2: 투표 당일 ===== -->
+    <article class="timeline-entry" id="entry-2">
+      <div class="timeline-divider">
+        <span class="timeline-date-badge">2026.06.03</span>
+      </div>
+      <span class="entry-tag tag-fact lang-ko">확인된 사실</span>
+      <span class="entry-tag tag-fact lang-en d-none">CONFIRMED FACT</span>
+      <span class="entry-tag tag-fact lang-ja d-none">確認済み事実</span>
+      <h3>
+        <span class="lang-ko">투표 당일 — 전국 투표용지 부족 사태 (초유의 사태)</span>
+        <span class="lang-en d-none">Election Day — Nationwide Ballot Shortage (Unprecedented Crisis)</span>
+        <span class="lang-ja d-none">投票当日——全国的な投票用紙不足（前代未聞の事態）</span>
+      </h3>
+      <img src="/img/6월 3일 투표소 현장.webp" alt="6월 3일 투표소 현장" class="timeline-photo" loading="lazy"/>
+      <div class="lang-ko">
+        <p><span class="time-tag">06:00</span> 전국 투표소 일제 개시.</p>
+        <p><span class="time-tag">11:40경</span> <strong>최초 이상 징후 감지 및 문의</strong> — 서울 송파구 선거관리위원회가 현장 투표 열기가 예상보다 뜨거워 용지가 모자랄 상황을 대비해 서울시 선관위에 대처 방안을 유선으로 문의했습니다.</p>
+        <p><span class="time-tag">13:00–15:00</span> <strong>현장 투표지 고갈 및 투표 중단 (초유의 사태)</strong> — 잠실2동 제6투표소, 가락2동 제3투표소, 잠실4동, 문정2동 등에서 용지 소진으로 유권자 대기. 14시 무렵 선관위 내부 단체방에 부족 호소가 잇따르고, 오후 2시경부터 '무번호 투표용지' 불출이 시작됨. 송파구 잠실 일대, 강남구 청담동, 광진구 구의3동 등 서울 동남권 투표소를 중심으로 준비된 투표지가 완전히 바닥나기 시작했습니다.</p>
+        <p><span class="time-tag">16:00–17:00</span> <strong>시민 항의 및 유권자 이탈</strong> — 16시 10분경 일부 투표소 투표 중단. 대기 인원이 수십 명에서 100여 명 이상으로 늘어나며 현장에서 선관위 관계자를 향한 격렬한 항의가 쏟아졌습니다. 대기 시간을 견디지 못하고 투표를 포기한 채 돌아가는 유권자들이 대거 목격되었습니다.</p>
+        <p><span class="time-tag">17:20</span> 일부 투표소는 여전히 재개되지 못한 상태로 전해짐.</p>
+        <p><span class="time-tag">18:00</span> <strong>본투표 마감 및 투표 연장 조치</strong> — 본래 마감 시각이지만, 6시 이전 입장 유권자는 대기번호로 투표 가능하도록 조치, 투표 시간을 오후 10시까지 연장. 긴급 이송된 추가 용지로 투표를 진행했습니다.</p>
+        <p><span class="time-tag">24:00</span> <strong>선관위 긴급위원회 소집</strong> — 개표가 진행되는 한편, 잠실7동 제2투표소에서는 투표함 반출을 막는 봉쇄가 시작됨. 노태악 중앙선관위원장 주재로 뒤늦게 긴급위원회가 소집되어 대책 회의에 돌입했습니다.</p>
+      </div>
+      <div class="lang-en d-none">
+        <p><span class="time-tag">06:00</span> Polls open nationwide.</p>
+        <p><span class="time-tag">~11:40</span> <strong>First warning signal detected</strong> — Songpa-gu (Seoul) NEC contacted Seoul NEC by phone, concerned that unexpectedly high turnout could exhaust ballot paper supplies.</p>
+        <p><span class="time-tag">13:00–15:00</span> <strong>Ballots run out; voting suspended (unprecedented)</strong> — Ballots run out at Jamsil 2-dong No. 6, Garak 2-dong No. 3, Jamsil 4-dong, Munjeong 2-dong and others. Around 2 p.m., shortage reports flood the NEC's internal chat and distribution of "un-numbered" ballots begins. Stations in Jamsil, Cheongdam-dong and Gwangjin ran completely dry.</p>
+        <p><span class="time-tag">16:00–17:00</span> <strong>Citizen protests and voter abandonment</strong> — Around 4:10 p.m., some stations suspend voting. Queues swelled to 100+ people per location. Furious voters confronted NEC officials on-site. Dozens were photographed leaving without casting ballots.</p>
+        <p><span class="time-tag">17:20</span> Some stations are reported as still not resumed.</p>
+        <p><span class="time-tag">18:00</span> <strong>Polls close; voting hours extended</strong> — Nominal close, but anyone who entered before 6 p.m. may vote via a waiting number; voting extended to 10 p.m. Extra ballot paper was rushed to affected stations.</p>
+        <p><span class="time-tag">24:00</span> <strong>Emergency NEC committee convened</strong> — Counting proceeds, while at Jamsil 7-dong No. 2 a blockade begins to prevent the ballot boxes from leaving. NEC Chairman Roh Tae-ak chairs a late-night emergency meeting.</p>
+      </div>
+      <div class="lang-ja d-none">
+        <p><span class="time-tag">06:00</span> 全国の投票所が一斉に開始。</p>
+        <p><span class="time-tag">11:40ごろ</span> <strong>最初の異常徴候を検知</strong> — ソウル松坡区選管が、現場の投票熱が予想以上に高く用紙が不足する恐れがあるとして、ソウル市選管に対応策を電話で問い合わせました。</p>
+        <p><span class="time-tag">13:00〜15:00</span> <strong>現場で投票用紙が底をつき投票一時停止（前代未聞の事態）</strong> — 蚕室2洞第6、可楽2洞第3、蚕室4洞、文井2洞などで用紙が尽き、有権者が待機。14時ごろ選管の内部チャットに不足の訴えが相次ぎ、午後2時ごろから「番号なし投票用紙」の払い出しが始まる。</p>
+        <p><span class="time-tag">16:00〜17:00</span> <strong>市民の抗議と有権者の離脱</strong> — 16時10分ごろ一部投票所で投票中断。待機人数が100名以上に膨れ上がり、選管関係者への激しい抗議が相次ぎました。</p>
+        <p><span class="time-tag">17:20</span> 一部投票所はなお再開できていないと伝えられる。</p>
+        <p><span class="time-tag">18:00</span> <strong>本投票終了・投票時間延長措置</strong> — 本来の締め切りだが、6時前に入場した有権者は整理番号で投票可能とし、投票時間を午後10時まで延長。</p>
+        <p><span class="time-tag">24:00</span> <strong>選管緊急委員会が招集</strong> — 開票が進む一方、蚕室7洞第2投票所では投票箱の搬出を阻む封鎖が始まる。盧泰岳中央選管委員長の主宰で遅れて緊急委員会が招集されました。</p>
+      </div>
+    </article>
+
+    <!-- ===== ENTRY 3: 선관위 사과 + 전국 규모 ===== -->
+    <article class="timeline-entry" id="entry-3">
+      <div class="timeline-divider">
+        <span class="timeline-date-badge">2026.06.04–05</span>
+      </div>
+      <span class="entry-tag tag-fact lang-ko">확인된 사실</span>
+      <span class="entry-tag tag-fact lang-en d-none">CONFIRMED FACT</span>
+      <span class="entry-tag tag-fact lang-ja d-none">確認済み事実</span>
+      <h3>
+        <span class="lang-ko">선관위 사과 및 파장 확산 — '수도권 14곳'에서 '전국 50곳'으로</span>
+        <span class="lang-en d-none">NEC Apology &amp; Mounting Fallout — From "14 Metro Stations" to "50 Nationwide"</span>
+        <span class="lang-ja d-none">選管謝罪・波紋拡大——「首都圏14か所」から「全国50か所」へ</span>
+      </h3>
+      <img src="/img/선관위 사과 발표.webp" alt="선관위 사과 발표" class="timeline-photo" loading="lazy"/>
+      <div class="lang-ko">
+        <p><span class="time-tag">06.04 03:55</span> <strong>선관위 1차 입장 발표</strong> — 선관위는 "이번 사태가 공직선거법상 선거 연기나 재선거 사유에 해당하지 않는다"고 선을 그으며, 개표 중단은 불가능하므로 투표함을 개표소로 이송하겠다고 발표했습니다.</p>
+        <p><span class="time-tag">06.04 주간</span> <strong>투표함 반출 대치 및 개표 지연</strong> — 서울 송파구 잠실7동 제2투표소 등 일부 현장에서는 부정선거 의혹을 제기하는 시민들이 투표함 반출을 몸으로 막아서며 선관위·경찰과 사흘간 극심한 대치를 이어갔습니다. 이로 인해 서울 지역 최종 개표 및 비례대표 결과 확정이 크게 지연되었습니다.</p>
+        <p><span class="time-tag">06.05 오후</span> <strong>전국 실태 확인 및 수뇌부 사퇴</strong> — 처음에는 서울 동남권 14개 투표소(송파 12·강남 1·광진 1)의 문제로 알려졌다. 그러나 선관위가 전수 점검에 나서면서, 실제 용지 부족은 전국 50개 투표소에서 발생했고 그중 22곳은 투표가 일시 중단됐다가 재개된 것으로 드러났다. 또 긴급 추가 용지가 투입된 투표소는 전국 67곳(서울 35, 부산·경남 8, 대구 7, 인천 6, 울산 3 등)으로 집계됐다. '서울만의 사고'라는 초기 인식이 '전국적 관리 실패'로 확대된 것이다. 허철훈 선관위 사무총장의 대국민 사과문 발표에 이어, 노태악 중앙선관위원장이 책임을 통감하며 사의를 표명했습니다.</p>
+      </div>
+      <div class="lang-en d-none">
+        <p><span class="time-tag">Jun 4, 3:55 AM</span> <strong>NEC's first official statement</strong> — The NEC stated the situation did not constitute legal grounds for postponing or re-running the election under the Public Official Election Act.</p>
+        <p><span class="time-tag">Jun 4 daytime</span> <strong>Ballot box blockades and delayed counting</strong> — At Jamsil 7-dong No. 2 and several other locations, citizens who suspected electoral fraud physically blocked the removal of ballot boxes. Three-day standoffs significantly delayed final vote tallies and proportional representation allocations for Seoul.</p>
+        <p><span class="time-tag">Jun 5 afternoon</span> <strong>Full national scope confirmed; NEC leadership resigns</strong> — The problem was first reported as 14 stations in southeastern Seoul (Songpa 12, Gangnam 1, Gwangjin 1). As the NEC reviewed the full picture, the count grew: actual shortages at 50 stations nationwide, of which 22 paused and resumed, plus 67 stations supplied with emergency ballots (Seoul 35; Busan/South Gyeongsang 8; Daegu 7; Incheon 6; Ulsan 3). What looked at first like a Seoul-only mishap became a nationwide management failure. NEC Secretary-General Heo Cheol-hoon issued a public apology, followed by NEC Chairman Roh Tae-ak announcing his resignation.</p>
+      </div>
+      <div class="lang-ja d-none">
+        <p><span class="time-tag">6月4日 午前3:55</span> <strong>選管の第一次公式声明</strong> — 選管は「今回の事態は公職選挙法上、選挙延期や再選挙の事由に該当しない」と線引きし、開票の中断は不可能であるため投票箱を開票所へ移送すると発表しました。</p>
+        <p><span class="time-tag">6月4日 日中</span> <strong>投票箱搬出をめぐる対立と開票遅延</strong> — 蚕室7洞第2投票所など一部現場では、不正選挙を疑う市民が投票箱の搬出を体で阻止し、選管・警察と3日間にわたって激しく対立しました。</p>
+        <p><span class="time-tag">6月5日 午後</span> <strong>全国実態の確認と幹部の辞任</strong> — 当初はソウル南東部14投票所（松坡12・江南1・広津1）の問題として伝えられた。しかし選管が全面点検に乗り出すと、実際の用紙不足は全国50投票所で発生し、うち22か所は投票が一時中断後に再開したことが判明。緊急に追加用紙が投入された投票所は全国67か所（ソウル35、釜山・慶南8、大邱7、仁川6、蔚山3ほか）に上った。「ソウルだけの事故」という初期認識が「全国的な管理失敗」へと拡大した。許哲勳選管事務総長が国民に向けた謝罪文を発表した後、盧泰岳中央選管委員長も責任を痛感するとして辞意を表明しました。</p>
+      </div>
+    </article>
+
+    <!-- ===== ENTRY 4: 잠실7동 밤샘 대치 ===== -->
+    <article class="timeline-entry" id="entry-4">
+      <div class="timeline-divider">
+        <span class="timeline-date-badge">2026.06.03 밤 ~ 06.05</span>
+      </div>
+      <span class="entry-tag tag-fact lang-ko">확인된 사실</span>
+      <span class="entry-tag tag-fact lang-en d-none">CONFIRMED FACT</span>
+      <span class="entry-tag tag-fact lang-ja d-none">確認済み事実</span>
+      <h3>
+        <span class="lang-ko">잠실7동 제2투표소 — 밤샘 대치와 투표함 강제 반출</span>
+        <span class="lang-en d-none">Jamsil 7-dong No. 2 — Overnight Standoff and Ballot-Box Removal</span>
+        <span class="lang-ja d-none">蚕室7洞第2投票所 ― 徹夜の対峙と投票箱搬出</span>
+      </h3>
+      <img src="/img/잠실 투표소 대치 현장.webp" alt="잠실 투표소 대치 현장" class="timeline-photo" loading="lazy"/>
+      <div class="lang-ko">
+        <p>용지 부족이 발생한 송파구 잠실7동 제2투표소에는 마감 후에도 시민들이 몰려 입구를 에워쌌다. 이들은 '부정선거'를 주장하며 "개표 중단"을 외치고 투표함의 개표소 이송을 막았다. 국민의힘 김재섭·김은혜 의원 등이 중재를 자처했지만 성과가 없었고, 날이 밝도록 투표함은 옮겨지지 못했다.</p>
+        <p><span class="time-tag">06.03 22:00 ~ 06.04 새벽</span> 연장 투표가 종료되자마자 시민들이 투표소 입구를 봉쇄했습니다. "선거 무효", "부실 관리된 투표함의 개표소 이송 반대"를 외치며 투표함 반출을 몸으로 막아섰습니다. 밤사이 이 일대에서만 135건의 112 경찰 신고가 빗발쳤습니다.</p>
+        <p><span class="time-tag">06.04 (이틀째)</span> 황교안 자유와혁신 대표 등 보수 정치인들이 현장을 찾아 "우리가 여기를 지키지 못하면 다음 선거는 없다"며 시위대를 독려했습니다. 선관위는 이 투표소에 유권자 2천여 명의 표가 묶여 있어 개표를 진행하지 못해 서울 지역 최종 개표가 마비되었습니다.</p>
+        <p><span class="time-tag">06.05 오전</span> <strong>경찰 강제 진입 및 반출</strong> — 결국 6월 5일 오전 경찰 기동대(보도상 약 1천 명 규모)가 투입돼 시위대를 해산시키고 투표함 2개를 반출, 마감 약 35시간 만에 개표가 재개됐다. 이후 개표 결과 송파 지역 비례대표 의석수가 뒤집히는 등 막판 파장을 낳았습니다.</p>
+      </div>
+      <div class="lang-en d-none">
+        <p>After the shortage, crowds remained at Jamsil 7-dong No. 2 well past closing, ringing the entrance. Alleging fraud, they chanted "stop the count" and blocked the boxes from being taken to the counting center. People Power Party lawmakers Kim Jae-seop and Kim Eun-hye offered to mediate, without success, and the boxes remained in place until daybreak.</p>
+        <p><span class="time-tag">Jun 3, 10 PM – Jun 4, dawn</span> Immediately after extended voting ended, citizens blockaded the polling station entrance. Police received 135 emergency calls from the area overnight.</p>
+        <p><span class="time-tag">Jun 4 (Day 2)</span> Conservative politicians including Hwang Kyo-ahn visited the scene, telling protesters "if we can't hold this ground, there will be no next election." With approximately 2,000 votes locked inside, the NEC was unable to proceed with counting, paralyzing Seoul's final tally.</p>
+        <p><span class="time-tag">Morning of 5 June</span> <strong>Police forced entry and removal</strong> — Riot police (reported at roughly 1,000 officers) dispersed the crowd and removed the two boxes; counting resumed about 35 hours after polls closed. The delayed count resulted in a reversal of proportional representation seat allocations for Songpa district.</p>
+      </div>
+      <div class="lang-ja d-none">
+        <p>用紙不足が起きた松坡区蚕室7洞第2投票所には締め切り後も市民が押し寄せ、入口を取り囲んだ。彼らは「不正選挙」を主張して「開票中止」を叫び、投票箱の開票所移送を阻んだ。国民の力の金在燮・金恩慧議員らが仲裁を試みたが成果はなく、夜が明けても投票箱は移せなかった。</p>
+        <p><span class="time-tag">6月3日 22:00 ~ 6月4日 未明</span> 延長投票が終了するや否や、市民が投票所入口を封鎖しました。「選挙無効」「ずさんに管理された投票箱の移送反対」を叫びながら体で阻止し、一帯では一夜で135件の通報が相次ぎました。</p>
+        <p><span class="time-tag">6月4日（2日目）</span> 黄教安・自由と革新代表など保守系政治家が現場を訪れ「ここを守れなければ次の選挙はない」と激励しました。この投票所に約2,000人分の票が閉じ込められたため、ソウル地区の最終開票が麻痺状態に陥りました。</p>
+        <p><span class="time-tag">6月5日朝</span> <strong>警察の強制突入と搬出</strong> — 結局6月5日朝、警察機動隊（報道で約1千人規模）が投入されデモ隊を解散させ、投票箱2個を搬出。締め切りから約35時間後に開票が再開した。その後の開票で松坡区の比例代表議席数が逆転するなど、最終局面でも波紋が広がりました。</p>
+      </div>
+    </article>
+
+    <!-- ===== ENTRY 5: 올림픽공원 포위 ===== -->
+    <article class="timeline-entry" id="entry-5">
+      <div class="timeline-divider">
+        <span class="timeline-date-badge">2026.06.05–06</span>
+      </div>
+      <span class="entry-tag tag-fact lang-ko">확인된 사실</span>
+      <span class="entry-tag tag-fact lang-en d-none">CONFIRMED FACT</span>
+      <span class="entry-tag tag-fact lang-ja d-none">確認済み事実</span>
+      <h3>
+        <span class="lang-ko">올림픽공원 핸드볼경기장 개표소 봉쇄와 '인간 띠'</span>
+        <span class="lang-en d-none">Olympic Park Handball Stadium Siege and the "Human Chain"</span>
+        <span class="lang-ja d-none">オリンピック公園ハンドボール競技場の封鎖と「人間の鎖」</span>
+      </h3>
+      <img src="/img/올림픽공원 집회.webp" alt="올림픽공원 집회" class="timeline-photo" loading="lazy"/>
+      <div class="lang-ko">
+        <p>잠실7동에서 해산된 시위대는 투표함이 옮겨진 올림픽공원 핸드볼경기장 개표소로 이동해 8개 출입구를 에워쌌다. 이들은 태극기와 손으로 쓴 '재선거' 피켓을 들고 투표함 반출을 감시했다.</p>
+        <p><span class="time-tag">06.05 오후 ~ 06.06 새벽</span> 유튜브 방송과 온라인 커뮤니티를 통해 "올림픽공원으로 집결하라"는 명령이 공유되며 보수 유튜버와 시민들이 급증했습니다. 6일 자정 기준, 참여 인원은 경찰 비공식 추산 6,000~7,000명까지 불어났습니다. 선관위 직원·시설 관계자·취재진 약 100명이 한때 고립됐다. 일부 시위대가 내부 인원의 신분증을 임의로 확인하고, 진보 성향 매체에는 더 엄격한 확인을 요구했다는 보도가 나왔다.</p>
+        <p><span class="time-tag">06.06 (대규모 운집)</span> 인파는 경찰 추산 1만 명에서 주최 측 주장 최대 수만 명으로 폭증했습니다. 특히 이 시위에는 기존 보수층뿐만 아니라 "참정권을 박탈당했다"며 분노한 2030 청년층과 대학생, 유모차를 끈 30대 부부들이 대거 자발적으로 합류했습니다. 주말 사이 규모는 경찰 비공식 추산 한때 약 3만 명까지 불었고, 새벽에는 수천 명으로 줄었다.</p>
+        <p><strong>K-팝 공연과의 동선 대치:</strong> 인접한 KSPO돔에서는 같은 기간 대형 음악 페스티벌(위버스콘)이 예정돼 운영에 영향이 빚어졌습니다. 주최 측과 경찰이 펜스를 치고 동선을 분리하여 물리적 충돌은 피했습니다.</p>
+      </div>
+      <div class="lang-en d-none">
+        <p>The dispersed crowd moved to the Olympic Park Handball Stadium, where the boxes had been taken, and surrounded its eight entrances. Holding hand-drawn national flags and handwritten "re-vote" placards, they watched for any attempt to remove the boxes.</p>
+        <p><span class="time-tag">Jun 5 pm – Jun 6 dawn</span> Online platforms circulated calls to "converge on Olympic Park." By midnight on June 6, police unofficially estimated 6,000–7,000 people had gathered. Inside, roughly 100 NEC staff, facility workers, and journalists were temporarily trapped; reports said some protesters checked occupants' IDs and demanded stricter checks of progressive-leaning media.</p>
+        <p><span class="time-tag">Jun 6 (mass rally)</span> Crowds swelled to a police estimate of 10,000 and organizer claims of tens of thousands. Crucially, the protest attracted not only traditional conservative supporters but large numbers of young people in their 20s and 30s who joined spontaneously, setting aside ideology and demanding only "a re-election to remedy the violation of our constitutional right to vote." Over the weekend, police unofficially estimated the peak crowd at about 30,000.</p>
+        <p><strong>K-pop cross-traffic:</strong> The Weverse Con Festival, a major K-pop event, was being held simultaneously at the adjacent KSPO Dome. Organizers and police erected fences to separate the two crowds and physical clashes were avoided.</p>
+      </div>
+      <div class="lang-ja d-none">
+        <p>蚕室7洞で解散させられたデモ隊は、投票箱が移されたオリンピック公園ハンドボール競技場の開票所へ移動し、8つの出入口を取り囲んだ。手描きの太極旗と手書きの「再選挙」プラカードを掲げ、投票箱の搬出を監視した。</p>
+        <p><span class="time-tag">6月5日 午後 ~ 6月6日 未明</span> YouTubeやオンラインコミュニティで「オリンピック公園に集結せよ」という呼びかけが広まり、6日深夜には警察の非公式推計で6,000〜7,000人にまで膨れ上がりました。競技場内には選管職員・施設関係者・取材陣ら約100人が一時孤立。一部のデモ隊が内部の人物の身分証を任意に確認し、進歩系メディアにはより厳格な確認を求めたとの報道も出た。</p>
+        <p><span class="time-tag">6月6日（大規模集結）</span> 群衆は警察推計1万人、主催者側の主張では最大数万人にまで激増。特にこの抗議には従来の保守層だけでなく、「参政権を剥奪された」と怒る20〜30代の若者層・大学生、ベビーカーを押した30代の夫婦が大挙して自発的に参加しました。週末には警察非公式推計で一時約3万人に膨らみ、未明には数千人に減った。</p>
+        <p><strong>K-POPフェスとの動線対立:</strong> 隣接するKSPOドームではWeverse Conフェスティバルという大規模K-POPイベントが開催され、数万人のファンと抗議参加者が入り混じりました。主催者側と警察がフェンスを設置して動線を分離し、物理的衝突は避けられました。</p>
+      </div>
+    </article>
+
+    <!-- ===== ENTRY 6: 청와대 결집 시도 ===== -->
+    <article class="timeline-entry" id="entry-6">
+      <div class="timeline-divider">
+        <span class="timeline-date-badge">2026.06.05–06</span>
+      </div>
+      <span class="entry-tag tag-fact lang-ko">확인된 사실</span>
+      <span class="entry-tag tag-fact lang-en d-none">CONFIRMED FACT</span>
+      <span class="entry-tag tag-fact lang-ja d-none">確認済み事実</span>
+      <h3>
+        <span class="lang-ko">청와대 앞 결집 시도, 차단 — 광화문으로 우회</span>
+        <span class="lang-en d-none">March on Cheongwadae Blocked — Crowd Diverts to Gwanghwamun</span>
+        <span class="lang-ja d-none">青瓦台への集結試みが阻止——光化門へ迂回</span>
+      </h3>
+      <img src="/img/광화문 집회.webp" alt="광화문 집회" class="timeline-photo" loading="lazy"/>
+      <div class="lang-ko">
+        <p><span class="time-tag">06.05 밤</span> 올림픽공원 연단에 오른 김민수 국민의힘 최고위원 등은 "행정안전부와 정부의 사후 대처도 미흡했다"며 "6일 오후 4시 청와대 인근(사랑채 앞)에 집회 신고를 마쳤으니 이제 청와대 앞으로 모여 달라"고 선동했습니다.</p>
+        <p><span class="time-tag">06.06 오후</span> 시위대와 보수 유튜버들은 대통령 선거관리실패 책임을 물으며 청와대 정문 및 영빈관 방향으로 행진과 결집을 시도했습니다. 그러나 경찰은 청와대 춘추관 및 사랑채 진입로 일대에 철제 펜스를 치고 기동대를 촘촘히 배치하여 시위대의 청와대 경내 접근을 엄격히 차단했습니다. 진입이 막힌 시위대 중 전광훈 목사가 이끄는 대한민국바로세우기국민운동본부 등 수만 명의 인파는 광화문 광장으로 우회하여 대규모 '6·6 규탄 대회'를 열었습니다.</p>
+        <p><strong>청와대 및 대학가 공식 입장 (06.07 현재):</strong> 청와대 강유정 수석대변인은 "선관위는 국민 참정권을 보장해야 하는 독립 기관"이라며 책임 있는 규명을 요구했습니다. 서울대·고려대·연세대 등 주요 10개 대학 총학생회 공동포럼은 국정조사와 특검 도입을 촉구하는 시국 입장문을 일제히 발표했습니다.</p>
+      </div>
+      <div class="lang-en d-none">
+        <p><span class="time-tag">Jun 5 night</span> PPP senior official Kim Min-su, speaking from the Olympic Park stage, declared that the government's post-crisis response had also been inadequate, and called on protesters to converge on the area near Cheongwadae the following afternoon.</p>
+        <p><span class="time-tag">Jun 6 afternoon</span> Protesters and conservative content creators attempted to march toward Cheongwadae's main gate. Police erected steel fences and deployed riot units at the Chunchu Gate and Sarangchae approaches, strictly blocking access. Blocked from entering, tens of thousands — including the Korea Patriots' Movement led by Pastor Jeon Gwang-hoon — diverted to Gwanghwamun Square for a mass "June 6 Denunciation Rally."</p>
+        <p><strong>Official positions (as of Jun 7):</strong> Presidential spokesperson Kang Yu-jeong said the NEC is an independent body that "must guarantee citizens' right to vote" and called for accountable investigation. The joint forum of 10 major university student councils — including Seoul National, Korea, and Yonsei Universities — issued statements calling for a national investigation and special counsel.</p>
+      </div>
+      <div class="lang-ja d-none">
+        <p><span class="time-tag">6月5日 夜</span> オリンピック公園の演壇に立った国民の力の金民洙最高委員らは、「行政安全部と政府の事後対応も不十分だった」として、「6日午後4時に青瓦台近くのサランチェ前への集会届を提出済みなので集まるよう」呼びかけました。</p>
+        <p><span class="time-tag">6月6日 午後</span> デモ参加者と保守系YouTuberは大統領の選挙管理失敗の責任を問い、青瓦台の正門・迎賓館方向への行進・集結を試みました。しかし警察は春秋館やサランチェへの進入路に鉄製フェンスを設置し機動隊を密集配置して経内への接近を厳しく遮断しました。行き場を失った数万人の群衆は光化門広場に迂回し、大規模な「6・6糾弾大会」を開催しました。</p>
+        <p><strong>青瓦台と大学側の公式立場（6月7日現在）:</strong> 大統領府の姜裕政首席報道官は「選管は国民の参政権を保障すべき独立機関」として責任ある究明を求めました。ソウル大・高麗大・延世大など主要10大学の総学生会共同フォーラムは、国政調査と特別検察官の導入を促す時局声明を一斉に発表しました。</p>
+      </div>
+    </article>
+
+    <!-- ===== ENTRY 7: 대통령실·국정조사 ===== -->
+    <article class="timeline-entry" id="entry-7">
+      <div class="timeline-divider">
+        <span class="timeline-date-badge">2026.06.07–08</span>
+      </div>
+      <span class="entry-tag tag-fact lang-ko">확인된 사실</span>
+      <span class="entry-tag tag-fact lang-en d-none">CONFIRMED FACT</span>
+      <span class="entry-tag tag-fact lang-ja d-none">確認済み事実</span>
+      <h3>
+        <span class="lang-ko">대통령실 공식 대응 및 국정조사·특검 여야 공방</span>
+        <span class="lang-en d-none">Presidential Response &amp; National Investigation / Special Counsel Debate</span>
+        <span class="lang-ja d-none">大統領室の公式対応・国政調査と特検をめぐる与野党攻防</span>
+      </h3>
+      <img src="/img/국정조사 요구.webp" alt="국정조사 요구" class="timeline-photo" loading="lazy"/>
+      <div class="lang-ko">
+        <h4>대통령실 (6월 7일)</h4>
+        <p>이재명 대통령은 6월 7일, 한 사람의 국민으로서, 또 정부를 책임지는 대통령으로서 깊은 유감을 표한다고 밝히고, 이번 사태를 국민주권의 근간을 훼손한 중대 사안으로 규정했다. 신뢰를 잃은 기관은 존재 이유를 잃는다는 취지로 선관위를 강하게 질타했고, 검·경 합동수사본부 구성과 국회의 조속한 국정조사 추진을 주문하며 필요하면 특검도 허용하겠다고 했다. 6월 8일에는 국회의장·대법원장·헌법재판소장·국무총리 등 4부 요인과 회동이 예고됐다.</p>
+        <h4>대학가</h4>
+        <p>약 100개 대학 총학생회 연대체(전국총학생회협의회)는 선관위의 참정권 침해·직무유기를 규탄했다. 경기대·경희대·고려대·동국대·명지대·서강대·서울대·서울시립대·성균관대·한국외대 등 개별 총학·비상대책위도 진상 규명, 책임자(노태악 위원장) 문책, 재발 방지책을 요구했다.</p>
+        <h4>국정조사 여야 합의 (6월 8일)</h4>
+        <p>국민의힘과 더불어민주당은 6월 8일 각각 국정조사요구서를 당론으로 제출하기로 공표했습니다. 한병도 민주당 원내대표는 국회의장에게 신속한 본회의 소집을 강력히 요구한 상태입니다. 조사 대상은 투표용지 수요 예측 실패, 부실한 공급망 관리 체계, 기관 간 소통 부재(칸막이 행정) 등 선거 행정 전반입니다.</p>
+        <h4>특별검사 도입 여야 입장 차이</h4>
+        <p><strong>국민의힘 (강경론):</strong> 장동혁 국민의힘 대표와 오세훈 서울시장은 "선관위의 고질적인 기강 해이이자 헌정 유린"이라며 국정조사와 특검을 동시에 추진해야 한다고 압박했습니다. 이준석 개혁신당 대표는 특검 요구에 힘을 실으면서도, 부정선거 음모론과 과격 시위에 대해서는 선을 그어야 한다고 조언했습니다.</p>
+        <p><strong>더불어민주당 (단계론):</strong> 민주당 지도부는 "무조건 특검부터 남발할 것이 아니라 우선 철저한 조사를 통해 잘못을 밝혀낸 후 필요에 따라 논의하자"며 선을 그었습니다.</p>
+        <h4>재선거·선거법 개정 논란</h4>
+        <p>장동혁 대표는 "선거가 오염되어 정당성을 인정할 수 없다"며 문제 발생 전국 50개 투표소 중심으로 재선거 실시가 불가피하다고 주장했습니다. 국민의힘은 사전투표제 폐지·본투표 3일 연장·당일 현장 개표 도입을 제안했습니다.</p>
+      </div>
+      <div class="lang-en d-none">
+        <h4>The presidential office (7 June)</h4>
+        <p>On 7 June, President Lee expressed deep regret both as a citizen and as the head of government, calling the episode a grave matter that undermined the foundation of popular sovereignty. In rebuking the NEC, he argued in effect that an institution that has lost public trust has lost its reason to exist. He ordered a joint prosecution–police investigation team, urged the National Assembly to move quickly on a parliamentary inquiry, and said he would permit a special counsel if needed. A meeting with the heads of the four branches of state was set for 8 June.</p>
+        <h4>The universities</h4>
+        <p>A coalition of roughly 100 university student councils condemned the NEC for infringing suffrage and dereliction of duty. Individual councils and emergency committees — at Kyonggi, Kyung Hee, Korea, Dongguk, Myongji, Sogang, Seoul National, the University of Seoul, Sungkyunkwan, Hankuk University of Foreign Studies and more — demanded a full accounting, the resignation of chairman Roh Tae-ak, and preventive reforms.</p>
+        <h4>Bipartisan National Investigation Agreement (8 June)</h4>
+        <p>Both the People Power Party (PPP) and Democratic Party of Korea (DP) announced they would submit national investigation requests as party-line votes on June 8. DP floor leader Han Byeong-do called on the National Assembly Speaker to convene a plenary session urgently. The investigation will target the NEC's failure to forecast demand, its supply chain management, and the inter-agency communication breakdown.</p>
+        <h4>Special Counsel — Divided Positions</h4>
+        <p><strong>PPP (hardline):</strong> PPP leader Chang Dong-hyeok and Seoul Mayor Oh Se-hoon called the crisis "chronic NEC negligence amounting to constitutional subversion," demanding simultaneous pursuit of national investigation and special counsel. Reform Party's Lee Jun-seok backed the special counsel push but warned against conspiracy theories and radical protest tactics.</p>
+        <p><strong>Democratic Party (step-by-step):</strong> DP leadership said a thorough investigation should precede any decision on a special counsel, cautioning against excessive politicization of the crisis.</p>
+      </div>
+      <div class="lang-ja d-none">
+        <h4>大統領室（6月7日）</h4>
+        <p>李大統領は6月7日、一国民として、また政府を担う大統領として深い遺憾を表明し、今回の事態を国民主権の根幹を損なう重大事案と規定した。信頼を失った機関は存在意義を失うとの趣旨で選管を強く叱責し、検察・警察の合同捜査本部の設置と国会による速やかな国政調査の推進を求め、必要なら特別検察官も許容すると述べた。6月8日には国会議長・大法院長・憲法裁判所長・国務総理ら4機関の長との会談が予告された。</p>
+        <h4>大学</h4>
+        <p>約100大学の総学生会連帯体（全国総学生会協議会）は、選管の参政権侵害・職務怠慢を糾弾した。京畿大・慶熙大・高麗大・東国大・明知大・西江大・ソウル大・ソウル市立大・成均館大・韓国外大などの個別の総学・非常対策委も、真相究明、責任者（盧泰岳委員長）の処分、再発防止策を要求した。</p>
+        <h4>国政調査で与野党が合意（6月8日）</h4>
+        <p>国民の力と共に民主党は6月8日に各々国政調査要求書を党論として提出することを公表しました。共に民主党の韓秉道院内代表は議長に対して本会議の迅速な招集を強く求めました。調査対象は投票用紙の需要予測失敗、ずさんな供給管理体制、省庁間の情報共有不在（縦割り行政）など選挙行政全般です。</p>
+        <h4>特別検察官導入をめぐる与野党の立場の差</h4>
+        <p><strong>国民の力（強硬論）:</strong> 張東赫代表と呉世勲ソウル市長は「選管の慢性的な綱紀弛緩であり憲政への蹂躙」として国政調査と特検の同時推進を求めました。改革党の李俊錫代表は特検要求を支持しながらも、不正選挙の陰謀論や過激なデモには線を引くべきと助言しました。</p>
+        <p><strong>共に民主党（段階論）:</strong> 党指導部は「まず特検から乱用するのではなく、徹底した調査で誤りを明らかにした後に必要に応じて議論すべき」として距離を置きました。</p>
+      </div>
+    </article>
+
+    <!-- ===== ENTRY 8: 선관위·정당 입장 ===== -->
+    <article class="timeline-entry" id="entry-8">
+      <div class="timeline-divider">
+        <span class="timeline-date-badge">분석</span>
+      </div>
+      <span class="entry-tag tag-analysis lang-ko">공식 입장</span>
+      <span class="entry-tag tag-analysis lang-en d-none">OFFICIAL POSITIONS</span>
+      <span class="entry-tag tag-analysis lang-ja d-none">公式見解</span>
+      <h3>
+        <span class="lang-ko">중앙선거관리위원회와 정당들의 입장</span>
+        <span class="lang-en d-none">The National Election Commission's Position and the Political Parties</span>
+        <span class="lang-ja d-none">中央選挙管理委員会と各政党の見解</span>
+      </h3>
+      <img src="/img/선관위 입장 발표.webp" alt="선관위 입장 발표" class="timeline-photo" loading="lazy"/>
+      <div class="lang-ko">
+        <h4>중앙선거관리위원회의 입장</h4>
+        <p>선관위는 투표율 상승으로 일부 투표소의 준비 용지가 부족했다고 1차 설명한 뒤, 배분·이송 절차의 미흡을 공식 인정했다. 노태악 위원장은 6월 5일 사퇴를 발표했고 허철훈 사무총장도 사의를 표했다. 동시에 선관위는 이번 사태가 선거 무효나 재선거 사유에는 해당하지 않는다는 입장을 유지했다. 인천시선관위는 후술할 '송도 동일 득표' 의혹에 대해 집계 오류가 아니라고 반박했다.</p>
+        <h4>정당들의 입장</h4>
+        <ul>
+          <li><strong>더불어민주당(여당):</strong> 사태를 엄중히 보고 진상 규명을 촉구. 한병도 원내대표는 국정조사 요구서 제출 방침을 밝혔다. 다만 대체로 '재선거 사유는 아니다'라는 정부·선관위 기조와 보조를 맞췄다.</li>
+          <li><strong>국민의힘(제1야당):</strong> 장동혁 대표는 서울시장 선거를 '오염된 선거'로 규정하고, 개표방송이 투표에 영향을 줄 수 있다며 개표 중단과 필요시 재선거를 요구. 과천 선관위로 이동해 협상에 나섰고, 일부 의원이 현장 중재에 나섰다.</li>
+          <li><strong>그 밖에:</strong> 개혁신당·진보당·정의당 등도 관리 실패에 대한 책임을 묻는 입장을 냈고, 황교안 전 총리(자유와혁신) 등 보수 인사들이 초기 시위에 가세했다.</li>
+        </ul>
+      </div>
+      <div class="lang-en d-none">
+        <h4>The National Election Commission's position</h4>
+        <p>The NEC first attributed the shortfall to higher-than-expected turnout outstripping prepared ballots, then formally admitted shortcomings in allocation and transport. Chairman Roh announced his resignation on 5 June; Secretary-General Huh also offered to resign. At the same time, the commission maintained that the episode did not amount to grounds for nullifying the election or holding a re-vote. The Incheon city commission separately rejected the Songdo "identical-tally" suspicion as not a counting error.</p>
+        <h4>The political parties</h4>
+        <ul>
+          <li><strong>Democratic Party (ruling):</strong> Treated the matter as serious and pressed for a full investigation; floor leader Han Byung-do said a request for a parliamentary inquiry would be submitted. It broadly aligned with the government/NEC view that this was not grounds for a re-vote.</li>
+          <li><strong>People Power Party (main opposition):</strong> Leader Jang Dong-hyeok branded the Seoul mayoral contest a "contaminated election," argued that broadcasting the count could influence voting, and called for halting the count and, if necessary, a re-vote. He went to the NEC in Gwacheon to negotiate, while some lawmakers tried to mediate on site.</li>
+          <li><strong>Others:</strong> The Reform Party, Progressive Party, Justice Party and others issued statements demanding accountability for the management failure, while conservative figures such as former PM Hwang Kyo-ahn joined the early protests.</li>
+        </ul>
+      </div>
+      <div class="lang-ja d-none">
+        <h4>中央選挙管理委員会の見解</h4>
+        <p>選管は当初、投票率の上昇により一部投票所の準備用紙が不足したと説明した後、配分・移送手順の不備を公式に認めた。盧委員長は6月5日に辞任を表明し、許事務総長も辞意を示した。同時に選管は、今回の事態は選挙無効や再選挙の事由には当たらないとの立場を維持した。仁川市選管は、後述の「松島同一得票」疑惑について集計エラーではないと反論した。</p>
+        <h4>各政党の見解</h4>
+        <ul>
+          <li><strong>共に民主党（与党）:</strong> 事態を重く受け止め真相究明を要求。韓秉道院内代表は国政調査要求書の提出方針を示した。ただし概ね「再選挙の事由ではない」とする政府・選管の基調に歩調を合わせた。</li>
+          <li><strong>国民の力（第1野党）:</strong> 張東赫代表はソウル市長選を「汚染された選挙」と規定し、開票中止と、必要なら再選挙を要求。果川の選管へ移動して交渉に臨み、一部議員が現場仲裁に動いた。</li>
+          <li><strong>その他:</strong> 改革新党・進歩党・正義党なども管理失敗の責任を問う見解を出し、黄教安元総理ら保守系人物が初期のデモに加わった。</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- ===== ENTRY 9: 뿌리 원인 ===== -->
+    <article class="timeline-entry" id="entry-9">
+      <div class="timeline-divider">
+        <span class="timeline-date-badge">분석</span>
+      </div>
+      <span class="entry-tag tag-analysis lang-ko">원인 분석</span>
+      <span class="entry-tag tag-analysis lang-en d-none">ROOT CAUSE</span>
+      <span class="entry-tag tag-analysis lang-ja d-none">根本原因</span>
+      <h3>
+        <span class="lang-ko">사태의 뿌리 — '50~60% 인쇄'와 행정 편의주의 논란</span>
+        <span class="lang-en d-none">The Root Cause — The "50–60% Printing" Rule and the Charge of Administrative Expediency</span>
+        <span class="lang-ja d-none">事態の根 ― 「50〜60％印刷」と行政便宜主義の論争</span>
+      </h3>
+      <img src="/img/투표용지 인쇄 논란.webp" alt="투표용지 인쇄 논란" class="timeline-photo" loading="lazy"/>
+      <div class="lang-ko">
+        <p>선관위는 사전투표를 마친 유권자는 본투표소에서 다시 투표하지 않으므로, 본투표소용 용지는 전체 선거인 수보다 적게 준비한다고 설명했다. 문제는 그 '적게'의 폭이었다. 선관위는 사전투표율 상승을 감안해 지방선거 용지를 선거인 수의 50% 수준까지 줄여 인쇄할 수 있도록 한 지침이 있었다고 밝혔다. 다만 투표소별 당일 투표자 수 편차와 긴급 이송 절차를 충분히 반영하지 못했다고 인정했다.</p>
+        <p>이 흐름의 배경으로, 2022년 선관위 정책연구용역('선거절차사무방안' 보고서)이 거론된다. 보도에 따르면 이 보고서는 과거 대선 최소 70%, 지방선거 최소 60% 수준이던 용지 인쇄량을 투표율·사전투표율 등을 고려해 더 줄여 비용을 절감하는 방안을 검토했다. 비판자들은 "예산상으로는 넉넉히 책정해 두고도 '예산 낭비·폐기 위험 방지'를 이유로 실제로는 최소 수준만 찍어, 투표소별 수요를 정밀하게 계산하지 않고 균일 배분한 행정 편의주의가 부른 사고"라고 본다. (선관위가 '선거인 수의 110%에 해당하는 인쇄비를 받았다'는 취지의 주장은 일부에서 제기됐으나, 본 정리 시점에서 공식 확인된 수치는 아니다.) 고려대·동국대 등 일부 대학 학생회는 '선거일 용지 인쇄 기준' 자체의 재검토를 요구했다.</p>
+      </div>
+      <div class="lang-en d-none">
+        <p>The NEC explained that because voters who cast early ballots do not vote again on election day, election-day stations are stocked with fewer ballots than the total electorate. The dispute was over how much fewer. The commission acknowledged an internal guideline allowing local-election ballots to be printed down to about 50% of eligible voters, reflecting rising early-voting rates — and conceded it had failed to adequately account for station-by-station turnout variance and emergency-transport procedures.</p>
+        <p>Commentators traced this to a 2022 NEC policy study on election-procedure administration, reported to have examined cutting print volumes (historically a minimum of roughly 70% for presidential and 60% for local elections) to reduce cost and waste. Critics frame the episode as administrative expediency: budgeting generously yet, citing the prevention of waste, printing only the bare minimum and distributing it uniformly without precisely calculating each station's demand. (A claim that the NEC had been funded for printing equivalent to 110% of the electorate has circulated but is not an officially confirmed figure as of this writing.) Some student councils, including those at Korea University and Dongguk University, called for the election-day printing standard itself to be revisited.</p>
+      </div>
+      <div class="lang-ja d-none">
+        <p>選管は、期日前投票を済ませた有権者は本投票所で再び投票しないため、本投票所用の用紙は全有権者数より少なく準備すると説明した。問題はその「少なさ」の幅だった。選管は、期日前投票率の上昇を踏まえ地方選の用紙を有権者数の50％水準まで減らして印刷できる指針があったと明らかにし、投票所ごとの当日投票者数のばらつきや緊急移送手順を十分に反映できなかったと認めた。</p>
+        <p>この流れの背景として、2022年の選管政策研究（選挙手続事務に関する報告書）が挙げられる。報道によれば、同報告書は従来「大統領選は最低約70％、地方選は最低約60％」だった印刷量を、投票率・期日前投票率を踏まえてさらに減らし費用を節減する案を検討していた。批判者は、予算は十分に計上しながら「浪費・廃棄の防止」を理由に実際は最小限しか刷らず、投票所ごとの需要を精密に計算せず一律配分した行政便宜主義が招いた事故だと見る。（「選管が有権者数の110％に相当する印刷費を受け取っていた」との主張も一部にあるが、本稿時点で公式に確認された数字ではない。）高麗大・東国大など一部の学生会は、「選挙日の用紙印刷基準」そのものの見直しを求めた。</p>
+      </div>
+    </article>
+
+    <!-- ===== ENTRY 10: 광장의 방어기제 ===== -->
+    <article class="timeline-entry" id="entry-10">
+      <div class="timeline-divider">
+        <span class="timeline-date-badge">분석</span>
+      </div>
+      <span class="entry-tag tag-analysis lang-ko">사회 분석</span>
+      <span class="entry-tag tag-analysis lang-en d-none">SOCIAL ANALYSIS</span>
+      <span class="entry-tag tag-analysis lang-ja d-none">社会分析</span>
+      <h3>
+        <span class="lang-ko">기생(寄生)을 거부하는 광장의 방어기제: 올림픽공원 집회가 국회의원과 선동꾼을 쫓아내는 이유</span>
+        <span class="lang-en d-none">The Square's Defense Mechanism Rejecting Parasitism: Why the Olympic Park Rally Is Ousting Lawmakers and Instigators</span>
+        <span class="lang-ja d-none">寄生を拒む広場の防御機序：オリンピック公園の集会が国会議員と扇動屋を追い出す理由</span>
+      </h3>
+      <img src="/img/올림픽공원 자정 운동.webp" alt="올림픽공원 자정 운동" class="timeline-photo" loading="lazy"/>
+      <div class="lang-ko">
+        <p>현재 올림픽공원에서 밤낮으로 재투표를 외치고 있는 시민들의 외침은 대한민국 시위 문화 역사상 유례없는 독특한 양상을 보이고 있습니다.</p>
+        <p>가장 핵심적인 특징은 이 광장이 좌/우, 진보/보수라는 기성 정치권의 이념 프레임을 완전히 거부하고 있다는 점입니다. 국민의 가장 신성한 권리인 '투표권'을 박탈당한 시민들의 분노는 그 자체로 너무나 순수하고 뜨겁기에, 이 분노에 빨대를 꽂아 자신들의 정치적 이익이나 상업적 이득을 취하려는 모든 외부 세력에 대해 강력한 '면역 반응'을 일으키고 있습니다.</p>
+        <h4>우파·보수 세력의 '정치적 하이재킹'과 상업주의 거부</h4>
+        <p>투표지 부족 사태 직후, 보수 성향의 정치인들과 영향력자(인플루언서)들은 이 집회를 자신들의 주도권을 확장할 '기회'로 보고 대거 올림픽공원으로 몰려들었습니다. 국민의힘 국회의원들, 개혁신당의 이준석 의원, 보수 성향 유튜버 'GROUND C', 그리고 평소 부정선거를 주장해 온 강사 전한길 씨 등이 대표적입니다.</p>
+        <p>이들은 각자 다양한 의도와 목적을 가지고 현장을 방문했습니다.</p>
+        <ul>
+          <li><strong>광장 주도 및 대오 이동 시도:</strong> 일부 인사들은 시민들의 분노를 동력 삼아 "청와대로 가자", "광화문으로 집결하자"며 시위의 방향성을 틀어 거대한 정치적 투쟁 국면을 진두지휘하려 했습니다.</li>
+          <li><strong>단순 방문 및 세력 과시:</strong> 대중적 인지도를 이용해 현장에서 주목받거나, 집회 참여를 자신의 정치적 자산으로 삼으려는 얄팍한 계산도 있었습니다.</li>
+        </ul>
+        <p><strong>결과 ❌: 현장 퇴출 및 거부</strong></p>
+        <p>시민들은 이들을 향해 환호 대신 "정치꾼들은 물러나라", "여론 조회수 장사하지 마라"며 강하게 반발했고, 결국 이들은 마이크 한 번 제대로 잡지 못한 채 쫓겨나거나 발길을 돌려야 했습니다. 시민들은 자신들의 참정권 투쟁이 특정 정당의 세력 싸움이나 유튜버들의 '돈벌이 수단'으로 전락하는 것을 본능적으로 거부한 것입니다.</p>
+        <h4>'평상복과 손글씨': 광장이 강제한 정치인들의 새로운 생존법</h4>
+        <p>좌우를 가리지 않고 '계산기'를 두드리며 찾아온 자들이 연이어 쫓겨나고 광장의 자체 규칙이 엄격해지자, 현장에는 아주 흥미로운 변화가 나타나기 시작했습니다. 집회에 참여하고 싶은 정치인들이 이제는 양복을 벗어던지고 '평상복'을 입기 시작한 것입니다.</p>
+        <p>광장의 새로운 규칙: <em>"이곳에 '지도자'나 '거물'은 없다. 오직 투표권을 빼앗긴 개별 국민만 존재한다."</em></p>
+        <p>정치인들은 더 이상 보좌진을 거느리고 카메라를 대동하지 않습니다. 대신 집에서 입던 편안한 옷을 입고, 다른 시민들처럼 주변의 박스 조각이나 스케치북에 매직으로 삐뚤비뚤하게 구호를 적은 '손글씨 피켓'을 듭니다. 그리고 시민들 틈바구니에 조용히 주저앉아 한 명의 '유권자'로서 침묵시위에 동참하는 방식을 선택하고 있습니다.</p>
+        <h4>결론: 기획된 동원 정치의 종말, '시민 면역력'의 승리</h4>
+        <p>올림픽공원에서 벌어지는 정치인들과 선동꾼들의 연쇄 퇴출, 그리고 뒤이은 자정 벽보의 등장은 대한민국 민주주의가 한 단계 진화하고 있음을 보여주는 결정적 장면입니다. 집회의 순수성을 지키기 위해 6월 8일 오전 현장에는 <strong>"정치성향성 발언이나 부정선거론은 자제해달라"</strong>는 내용의 벽보가 전격적으로 내걸렸습니다.</p>
+        <p>과거의 대규모 집회들이 거대 정당이나 시민단체의 철저한 기획과 동원 체제 아래에서 일사불란하게 움직였다면, 이번 사태는 배후가 없는 순수 개인들이 모였을 때 얼마나 강력한 집단지성과 '방어기제'를 발휘할 수 있는지를 증명하고 있습니다. 정치적 목적을 가진 자들의 마이크를 빼앗고, 과도한 음모론을 스스로 경계하며, 오직 개인의 거친 손글씨만 허용하는 올림픽공원의 단호한 분위기. 그 속에서 평상복을 입고 숨죽인 채 앉아있는 정치인들의 모습은, 우리 사회가 더 이상 '선택적 분노'나 '기획된 선동'에 휘둘리지 않는 성숙한 시민 면역력을 갖추게 되었음을 선언하는 가장 명확한 증거입니다.</p>
+      </div>
+      <div class="lang-en d-none">
+        <p>The cries of citizens chanting for a revote day and night at Olympic Park show a unique aspect unprecedented in the history of South Korean protest culture.</p>
+        <p>The most core characteristic is that this square completely rejects the ideological frames of the established political sphere, such as Left/Right and Progressive/Conservative. The anger of citizens who were deprived of their voting rights — the most sacred right of a citizen — is so pure and passionate in itself that it triggers a powerful "immune response" against any outside forces attempting to insert a straw into this anger to reap political or commercial profits.</p>
+        <h4>Rejection of 'Political Hijacking' and Commercialism by Right-wing and Conservative Forces</h4>
+        <p>Immediately after the ballot shortage incident, conservative politicians and influencers flocked to Olympic Park in large numbers, viewing this rally as an "opportunity" to expand their leadership. Representative examples include lawmakers from the People Power Party, Representative Lee Jun-seok of the Reform New Party, conservative YouTuber 'GROUND C', and instructor Jeon Han-gil.</p>
+        <ul>
+          <li><strong>Attempting to Lead the Square:</strong> Some figures tried to take command of a massive political struggle by altering the direction of the protest, chanting "Let's go to the Blue House" or "Let's gather at Gwanghwamun."</li>
+          <li><strong>Simple Visits and Displays of Power:</strong> There were also shallow calculations to gain attention at the scene using their public recognition or to use participation in the rally as their own political asset.</li>
+        </ul>
+        <p><strong>Result ❌: Expulsion from the Site</strong></p>
+        <p>Instead of cheering, citizens strongly protested against them, shouting "Politicians, back off!" and "Stop doing businesses for views and ratings!" Consequently, they were kicked out or had to turn back without even properly holding a microphone. The citizens instinctively rejected their struggle for voting rights degenerating into a power struggle between specific parties or a 'money-making tool' for YouTubers.</p>
+        <p>To protect the purity of the rally and maintain public empathy, posters reading <strong>"Please refrain from political-leaning remarks or election fraud theories"</strong> were put up at the site on the morning of June 8.</p>
+        <h4>'Casual Clothes and Handwritten Signs': The New Survival Method Forced on Politicians by the Square</h4>
+        <p>Politicians no longer bring aides or accompany cameras. Instead, they wear comfortable clothes they would wear at home and hold 'handwritten signs' with slogans scribbled with markers on pieces of cardboard boxes or sketchbooks like other citizens. The new rule of the square: <em>"There is no 'leader' or 'big shot' here. Only individual citizens deprived of their voting rights exist."</em></p>
+        <h4>Conclusion: The End of Planned Mobilization Politics, The Victory of 'Citizen Immunity'</h4>
+        <p>The consecutive expulsions of politicians and instigators taking place at Olympic Park, followed by the appearance of self-purification posters, are decisive scenes showing that South Korean democracy is evolving to the next level. While large-scale rallies in the past moved in an orderly fashion under systematic mobilization of giant political parties or civic groups, this incident proves how powerful a collective intelligence and 'defense mechanism' pure individuals without any puppet master can manifest when gathered.</p>
+      </div>
+      <div class="lang-ja d-none">
+        <p>現在、オリンピック公園で夜昼問わず再投票を叫んでいる市民たちの声は、大韓民国のデモ文化の歴史上、類を見ない独特な様相を見せています。</p>
+        <p>最も核心的な特徴は、この広場が左／右、進歩／保守という既成政治圏のイデオロギーフレームを完全に拒否している点です。国民の最も神聖な権利である「投票権」を剥奪された市民の怒りは、それ自体があまりにも純粋で熱いため、この怒りにストローを挿して自分たちの政治的利益や商業的利得を得ようとするすべての外部勢力に対して、強力な「免疫反応」を起こしています。</p>
+        <h4>右派・保守勢力の「政治的ハイジャック」と商業主義の拒否</h4>
+        <p>投票用紙不足の事態の直後、保守傾向の政治家やインフルエンサーたちは、この集会を自分たちの主動権を拡大する「機会」と捉え、大挙してオリンピック公園に押し寄せました。</p>
+        <p><strong>結果 ❌：現場からの退出および拒否</strong></p>
+        <p>市民たちは彼らに向かって歓声の代わりに「政治屋は引っ込め！」「世論の再生回数稼ぎの商売をするな！」と強く反発し、結局、彼らはマイクを一度もまともに握れないまま追い出されるか、引き返すしかありませんでした。</p>
+        <p>集会の純粋性を守り、大衆的な共感を維持するため、6月8日午前、現場には<strong>「政治的傾向の発言や不正選挙論は自粛してほしい」</strong>という内容の貼り紙が電撃的に掲げられました。</p>
+        <h4>「普段着と手書き」：広場が強制した政治家たちの新たな生存法</h4>
+        <p>広場の新しいルール：<em>「ここに『指導者』や『大物』はいない。ただ投票権を奪われた個々の国民だけが存在する。」</em></p>
+        <p>政治家たちはもはや補佐陣を引き連れず、カメラを同伴しません。代わりに家で着ていた楽な服を着て、他の市民と同じように周囲の段ボールの破片やスケッチブックにマジックで不格好にスローガンを書いた「手書きのプラカード」を持ちます。</p>
+        <h4>結論：企画された動員政治の終焉、「市民免疫力」の勝利</h4>
+        <p>オリンピック公園で繰り広げられる政治家や扇動屋たちの連続的な追放、そしてそれに続く自浄の貼り紙の登場は、大韓民国の民主主義が一段階進化していることを示す決定的な場面です。過去の大規模な集会が、巨大政党や市民団体の徹底した企画と動員体制の下で一糸乱れず動いていたとすれば、今回の事態は、背後のない純粋な個人が集まったときに、どれほど強力な集団知性と「防御機序」を発揮できるかを証明しています。</p>
+      </div>
+    </article>
+
+    <!-- ===== ENTRY 11: 선택적 분노 — 스타벅스 vs 투표지 ===== -->
+    <article class="timeline-entry" id="entry-11">
+      <div class="timeline-divider">
+        <span class="timeline-date-badge">분석</span>
+      </div>
+      <span class="entry-tag tag-analysis lang-ko">정치 분석</span>
+      <span class="entry-tag tag-analysis lang-en d-none">POLITICAL ANALYSIS</span>
+      <span class="entry-tag tag-analysis lang-ja d-none">政治分析</span>
+      <h3>
+        <span class="lang-ko">스타벅스 '탱크데이'와 투표용지 부족 사태로 본 선택적 분노: 진짜 '민주주의 후퇴'는 어디에 있는가</span>
+        <span class="lang-en d-none">Selective Anger of the Left-wing Camp Seen Through Starbucks' 'Tank Day' and the Ballot Shortage Crisis</span>
+        <span class="lang-ja d-none">スターバックス「タンクデー」と投票用紙不足事態から見た左派陣営の選択的怒り</span>
+      </h3>
+      <img src="/img/선택적 분노 분석.webp" alt="선택적 분노 분석" class="timeline-photo" loading="lazy"/>
+      <div class="lang-ko">
+        <p>최근 대한민국 사회에서 발생한 두 가지 중대한 사건은 현재 권력을 쥐고 있는 대통령과 여당, 그리고 좌파 진영이 '민주주의'를 어떻게 소비하고 있는지 그 민낯을 여실히 보여줍니다.</p>
+        <p>하나는 기업의 부적절한 마케팅 논란이었던 스타벅스 '탱크데이' 사건이며, 다른 하나는 대의민주주의의 근간이 무너진 헌정 사상 초유의 '투표용지 부족 사태'입니다. 두 사건 모두 "있을 수 없는 일"이라는 수식어가 붙었지만, 이를 대하는 권력층의 반응은 극단적으로 달랐습니다.</p>
+        <h4>기업의 실수에 쏟아진 '국가적 융단폭격' (스타벅스 탱크데이)</h4>
+        <p>스타벅스코리아가 5월 18일에 맞춰 진행한 '탱크 텀블러' 행사와 "책상에 탁!"이라는 홍보 문구는 5·18 민주화운동과 박종철 열사 고문치사 사건을 연상시킨다는 비판을 받았습니다. 분명 기업의 역사 인식 부재와 검수 시스템의 실패를 보여준 '부적절한 마케팅'이었습니다.</p>
+        <p>하지만 이에 대한 권력층의 반응은 하나의 기업을 멸절시킬 듯한 '국가적 융단폭격'에 가까웠습니다.</p>
+        <ul>
+          <li><strong>대통령의 직접 타격:</strong> 이재명 대통령은 일개 기업의 마케팅 논란을 향해 "저질 장사치 막장행태"라는 원색적인 비난을 쏟아냈습니다.</li>
+          <li><strong>여당과 좌파 진영의 총공세:</strong> 공공기관들까지 나서서 스타벅스 불매에 동참했고, 일베 등에 광고를 싣는 기업들까지 색출해 사과를 받아냈습니다.</li>
+          <li><strong>결과:</strong> 결국 스타벅스 코리아 대표가 전격 경질되었고, 정용진 신세계그룹 회장은 카메라 앞에서 고개를 숙이는 '대국민 사과'를 해야 했으며, 글로벌 본사까지 공식 사과문을 냈습니다.</li>
+        </ul>
+        <h4>참정권 박탈 앞에서는 '남 일 보듯 방관' (투표용지 부족 사태)</h4>
+        <p>반면, 6·3 지방선거에서 발생한 '투표용지 부족 사태'는 차원이 다른 문제입니다. 이는 국민의 가장 신성한 권리인 '참정권'이 국가 기관의 무능으로 인해 원천적으로 박탈당한, 대의민주주의 국가에서 '진짜로 일어나서는 안 될' 치명적인 시스템 붕괴입니다.</p>
+        <p>그러나 국가 시스템의 근간이 흔들린 이 사태 앞에서, '민주주의 수호'를 외치던 이들의 반응은 기이할 정도로 차분했습니다.</p>
+        <ul>
+          <li><strong>대통령의 유체이탈 화법:</strong> 참정권 보호의 최종 책임자인 대통령은 "매우 큰 유감을 표한다"는 수준의 건조한 입장 표명에 그쳤습니다. 청와대 역시 "선관위가 대응할 일"이라며 철저히 선을 그었습니다.</li>
+          <li><strong>여당의 꼬리 자르기:</strong> 표심이 왜곡되었을 가능성에도 불구하고 여당(더불어민주당)은 "재투표는 일고의 가치도 없다"며 사태를 덮고 넘어가는 데 급급했습니다.</li>
+        </ul>
+        <hr class="my-3">
+        <h4>확연히 다른 반응의 본질: '선택적 분노'의 정치학</h4>
+        <ul>
+          <li><strong>첫째, 진영 논리에 종속된 '선택적 분노'</strong> — 이들에게 분노의 기준은 '사안의 중대성(민주주의 훼손 정도)'이 아니라 '공격하기 좋은 타깃인가'에 있습니다. 과거 우파적 발언으로 눈밖에 났던 대기업 총수는 훌륭한 정치적 먹잇감이었습니다. 반면, 선관위의 관리 부실과 선거 참사는 자신들의 정치적 유불리와 직결되거나 책임론으로 번질 수 있기에 철저히 외면하고 축소한 것입니다.</li>
+          <li><strong>둘째, '진짜 민주주의 후퇴'에 대한 무감각</strong> — 상업용 텀블러 마케팅 문구는 감정을 상하게 할 순 있어도 민주주의 시스템 자체를 파괴하진 않습니다. 그러나 국민이 투표소에 갔는데 투표용지가 없어 투표를 못 한 사건은 물리적이고 직접적인 민주주의의 파괴입니다. 후자 앞에서 침묵하는 세력이 전자를 두고 '민주주의의 위기'를 논하는 것은 지독한 모순입니다.</li>
+          <li><strong>셋째, 권력의 사유화와 책임 회피</strong> — 기업의 실수에는 국가 최고 권력자가 직접 나서 막말에 가까운 비난을 가하며 "책임을 지라"고 윽박지릅니다. 하지만 헌법 기관의 중대한 선거 관리 실패로 국민이 피해를 본 상황에서는 "내 소관이 아니다"라며 방관자적 태도를 취합니다.</li>
+        </ul>
+        <hr class="my-3">
+        <p><strong>결론:</strong> 스타벅스 '탱크데이'에 쏟아진 분노의 크기만큼, 아니 그 수백 배의 분노가 국가의 '투표용지 부족 사태'에 쏟아졌어야 마땅합니다. 투표권 박탈이라는 진정한 민주주의의 붕괴 앞에서는 한없이 관대하고, 이념적 좌표가 찍힌 기업의 실수 앞에서는 잔인할 정도로 가혹한 '선택적 분노'. 이 위선적이고 편파적인 잣대야말로 현재 대한민국 민주주의가 직면한 가장 심각한 '후퇴'이자 위기일 것입니다.</p>
+      </div>
+      <div class="lang-en d-none">
+        <p>Two major incidents that recently occurred in South Korean society clearly reveal the true face of how the current president, ruling party, and left-wing camp in power are consuming 'democracy'.</p>
+        <p>One is the Starbucks 'Tank Day' incident, which was a controversy over inappropriate corporate marketing, and the other is the unprecedented 'ballot paper shortage crisis' in constitutional history, where the foundation of representative democracy collapsed. The modifier "an event that should not happen" was attached to both incidents, but the reaction of the ruling class to them was extremely different.</p>
+        <h4>'National Carpet Bombing' Poured on a Corporate Mistake (Starbucks Tank Day)</h4>
+        <p>Starbucks Korea's 'Tank Tumbler' event held in line with May 18th and the promotional phrase "Thud on the desk!" were criticized for being reminiscent of the May 18 Democratization Movement and the torture-death of martyr Park Jong-chul. However, the ruling class's reaction to this was close to a 'national carpet bombing' that seemed as if it would annihilate a single company.</p>
+        <ul>
+          <li><strong>Direct strike by the President:</strong> President Lee Jae-myung poured out raw criticism toward a single company's marketing controversy, calling it "the outrageous behavior of cheap merchants."</li>
+          <li><strong>All-out offensive by the ruling party and left-wing camp:</strong> Even public institutions stepped forward to join the Starbucks boycott, and they even hunted down companies that placed advertisements on Ilbe, extracting apologies from them.</li>
+          <li><strong>Result:</strong> Eventually, the CEO of Starbucks Korea was suddenly dismissed, Shinsegae Group Chairman Chung Yong-jin had to bow his head in a 'public apology' in front of cameras, and the global headquarters even issued an official letter of apology.</li>
+        </ul>
+        <h4>'Looking on as if it's Someone Else's Business' in the Face of the Deprivation of Suffrage</h4>
+        <p>On the other hand, the 'ballot paper shortage crisis' that occurred in the June 3 local elections is a problem on a different level. This is a fatal system collapse where the most sacred right of the people, 'suffrage', was fundamentally deprived due to the incompetence of state institutions.</p>
+        <ul>
+          <li><strong>The President's out-of-body speech:</strong> The President stopped at a dry statement of position, expressing "very deep regret." The Blue House also strictly drew a line, saying, "It is a matter for the National Election Commission to respond to."</li>
+          <li><strong>Tail-cutting by the ruling party:</strong> The ruling party (Democratic Party of Korea) was solely focused on covering up and moving past the incident, saying, "A re-election is not even worth considering."</li>
+        </ul>
+        <hr class="my-3">
+        <h4>The Essence of the Starkly Different Reactions: The Politics of 'Selective Anger'</h4>
+        <p><strong>First, 'selective anger' subordinated to factional logic</strong> — For them, the criterion for anger is not the 'gravity of the issue (the degree of damage to democracy)' but 'is it a good target to attack?'</p>
+        <p><strong>Second, insensitivity to the 'real retreat of democracy'</strong> — A marketing phrase for a commercial tumbler may hurt feelings, but it does not destroy the democratic system itself. However, an incident where citizens went to the polling station but could not vote due to a lack of ballot papers is a physical and direct destruction of democracy.</p>
+        <p><strong>Third, privatization of power and evasion of responsibility</strong> — For a corporate mistake, the highest national authority directly steps forward, hurling near-abusive criticism. However, in a situation where the people suffered damage due to the serious failure of election management by a constitutional institution, they adopt a bystander's attitude, saying, "It is not my jurisdiction."</p>
+        <hr class="my-3">
+        <p><strong>Conclusion:</strong> This hypocritical and biased standard is indeed the most serious 'retreat' and crisis currently facing South Korea's democracy.</p>
+      </div>
+      <div class="lang-ja d-none">
+        <p>最近の韓国社会で発生した2つの重大な事件は、現在権力を握っている大統領と与党、そして左派陣営が「民主主義」をどのように消費しているのか、その素顔を如実に示しています。</p>
+        <h4>企業のミスに注がれた「国家的な絨毯爆撃」（スターバックスタンクデー）</h4>
+        <p>スターバックスコーヒー・コリアが5月18日に合わせて進行した「タンクタンプラー」行事と「机をドン！」という広報文句は、5・18民主化運動と朴鍾哲烈士拷問致死事件を連想させると批判を受けました。しかし、これに対する権力層の反応は、一企業を絶滅させるかのような「国家的な絨毯爆撃」に近いものでした。</p>
+        <ul>
+          <li><strong>大統領の直接打撃：</strong> 李在明大統領は、一企業のマーケティング論争に向けて「低質な商売人のマクチャン形態」という原色的な非難を浴びせました。</li>
+          <li><strong>与党と左派陣営の総攻勢：</strong> 公共機関までが乗り出してスターバックス不買に同調し、結局、スターバックスコリアの代表が電撃更迭されました。</li>
+        </ul>
+        <h4>参政権剥奪の前では「他人の事を見るような傍観」（投票用紙不足事態）</h4>
+        <p>一方、6・3地方選挙で発生した「投票用紙不足事態」は次元の違う問題です。国民の最も神聖な権利である「参政権」が国家機関の無能により源泉的に剥奪された、致命的なシステム崩壊です。しかし、国家システムの根幹が揺らいだこの事態の前で、「民主主義の守護」を叫んでいた人々の反応は奇妙なほど冷静でした。</p>
+        <hr class="my-3">
+        <h4>結論：怒るべき所で沈黙する社会</h4>
+        <p>スターバックス「タンクデー」に注がれた怒りの大きさほど、いやその数百倍の怒りが、国家の「投票用紙不足事態」に注がれてしかるべきです。この偽善的で偏向的な基準こそ、現在の韓国の民主主義が直面している最も深刻な「後退」であり危機であると言えるでしょう。</p>
+      </div>
+    </article>
+
+    <!-- ===== ENTRY 12: 사라진 선결제 릴레이 ===== -->
+    <article class="timeline-entry" id="entry-12">
+      <div class="timeline-divider">
+        <span class="timeline-date-badge">분석</span>
+      </div>
+      <span class="entry-tag tag-analysis lang-ko">사회 분석</span>
+      <span class="entry-tag tag-analysis lang-en d-none">SOCIAL ANALYSIS</span>
+      <span class="entry-tag tag-analysis lang-ja d-none">社会分析</span>
+      <h3>
+        <span class="lang-ko">사라진 '선결제 릴레이': 2024년 계엄 집회의 따뜻한 국밥과 2026년 투표권 박탈 앞의 차가운 침묵</span>
+        <span class="lang-en d-none">The Vanished 'Pre-payment Relay': Warm Rice Soup at the 2024 Martial Law Protests vs. Cold Silence Before the 2026 Deprivation of Voting Rights</span>
+        <span class="lang-ja d-none">消えた「先払いリレー」：2024年戒厳令集会の温かいクッパと2026年投票権剥奪の前の冷ややかな沈黙</span>
+      </h3>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/yrOVymGp9Eg?si=RMM7N_YxV7aHD9iw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <div class="lang-ko">
+        <p>우리는 지난 2024년 12월 3일 비상계엄 사태 직후, 대통령 탄핵을 촉구하는 대규모 광장 집회에서 이른바 '선결제 릴레이'라는 독특한 연대의 방식을 목격했습니다. 아이유, 이동욱, 유리 등 대한민국을 대표하는 유명 연예인들이 집회 현장 인근의 국밥집과 카페에 거액을 선결제하며 "집회에 참여한 시민들은 마음껏 드시라"고 응원한 사건은 언론의 극찬을 받으며 '선한 영향력'의 상징이 되었습니다.</p>
+        <p>그러나 불과 몇 달 후인 2026년 전국동시지방선거, 국가의 무능으로 투표권을 박탈당한 시민들이 올림픽공원에 모여 "부정선거 규탄"과 "재선거·재투표"를 외치는 현장에서는 그 따뜻했던 '선결제 릴레이'가 흔적도 없이 사라졌습니다.</p>
+        <h4>2024년 12월: '문화적 훈장'이 되었던 계엄 반대 선결제</h4>
+        <p>2024년 12월 3일 계엄 사태 직후의 정국은 연예인들에게 일종의 '안전하고 정의로운 무대'를 제공했습니다. '계엄'이라는 극단적인 단어는 여야를 막론하고 대다수의 국민적 공분을 샀던 사안이었습니다. 이 시점에서 계엄에 반대하고 탄핵을 촉구하는 집회를 후원하는 것은 연예인 개인에게 정치적 리스크가 아닌, '민주주의를 사랑하는 개념 연예인'이라는 최고의 브랜드 이미지를 심어줄 기회였습니다.</p>
+        <p>이때의 연대는 민주주의에 대한 깊은 철학적 고찰이라기보다, 사회적으로 완전히 합의된 서사(Narrative) 안에서 손쉽게 획득할 수 있는 '문화적 훈장'에 가까웠습니다.</p>
+        <h4>2026년 현재: 올림픽공원의 외로운 손글씨와 사라진 연예인들</h4>
+        <p>반면, 2026년 지방선거 투표지 부족 사태로 촉발된 올림픽공원의 집회 현장은 철저히 고립되어 있습니다. 시민들은 올림픽공원 바닥에 앉아 직접 손으로 쓴 종이를 들고 외롭게 외치고 있지만, 과거 "민주주의"를 그토록 사랑한다던 연예인 중 누구 하나 이 사태에 주목하거나 후원하지 않습니다. 연예인들의 선결제가 사라진 자리는 언론의 축소 보도와 주류 정치권의 외면으로 채워졌고, 참정권을 박탈당한 민초들의 절규는 '고립된 소란'으로 치부되고 있습니다.</p>
+        <h4>'선결제 릴레이'가 사라진 이유: 연예계 연대의 철저한 비대칭성</h4>
+        <ul>
+          <li><strong>첫째, '정치적 지뢰밭'이 된 이슈 (이미지 타격의 공포)</strong> — 투표지 부족 사태와 이에 따른 "부정선거 및 재선거 촉구"는 현재 집권 여당과 좌파 진영, 그리고 선관위의 치명적인 실책을 정조준하는 이슈입니다. 2024년 계엄 집회 후원이 '안전한 투자'였다면, 2026년 올림픽공원 후원은 연예인 생명을 걸어야 하는 '정치적 지뢰밭'인 셈입니다.</li>
+          <li><strong>둘째, 문화 권력층 내부의 '진영 편향성'</strong> — 대한민국 연예계 및 대중문화 권력의 주류는 자신들이 지지하거나 묵인하는 세력(현 대통령과 여당)의 행정적 무능과 시스템 붕괴로 발생한 사태에는 침묵하는 경향이 강합니다.</li>
+          <li><strong>셋째, '소비 가능한 민주주의'와 '날 것의 민주주의'의 차이</strong> — 2024년 12월의 집회는 온 국민이 참여하는 거대한 '문화 현상'이자 힙한 축제였습니다. 반면, 올림픽공원의 투표지 부족 항의 집회는 국가 기관의 관리 부실을 파헤쳐야 하는 거칠고 날 것 그대로의 사법적·정치적 투쟁입니다. 이미지 메이킹에 도움이 되지 않는 투박한 현장에는 대중문화 스타들이 설 자리가 없는 것입니다.</li>
+        </ul>
+        <p><strong>결론:</strong> 이들이 말하던 민주주의 수호와 '선한 영향력'은 결국 자신의 이미지를 빛내줄 수 있는 안전한 이슈, 혹은 자신들의 진영에 유리한 사안만을 골라 지원하는 '선택적 정의'였음이 증명된 것입니다. 올림픽공원의 차가운 아스팔트 위에서 손글씨를 든 시민들은 연예인의 선결제 국밥 한 그릇보다, 자신들의 빼앗긴 권리를 있는 그대로 바라봐 주는 공정한 시선을 갈구하고 있습니다.</p>
+      </div>
+      <div class="lang-en d-none">
+        <p>Immediately after the emergency martial law incident on December 3, 2024, we witnessed a unique form of solidarity called the 'pre-payment relay' at large-scale plaza protests calling for the impeachment of the president. Famous South Korean celebrities such as IU, Lee Dong-wook, and Yuri pre-paid large sums of money at rice soup restaurants and cafes near the protest sites. This act became a symbol of 'good influence.'</p>
+        <p>However, just a few months later, at the site where citizens gathered at Olympic Park to cry out for "condemning rigged elections" and "holding re-elections/re-voting," that warm 'pre-payment relay' vanished without a trace.</p>
+        <h4>December 2024: Anti-Martial Law Pre-payments That Became a 'Cultural Medal'</h4>
+        <p>The political situation immediately after the martial law incident provided celebrities with a sort of 'safe and righteous stage.' The extreme term 'martial law' was an issue that drew public outrage regardless of political affiliation. At this point, sponsoring protests that opposed martial law was not a political risk for individual celebrities, but rather an opportunity to instill the ultimate brand image of a 'socially conscious celebrity who loves democracy.'</p>
+        <p>Solidarity at this time was closer to a 'cultural medal' easily obtained within a socially fully agreed-upon narrative, rather than a deep philosophical consideration of democracy.</p>
+        <h4>2026 Present: Lonely Handwriting in Olympic Park and the Vanished Celebrities</h4>
+        <p>On the other hand, the protest site at Olympic Park is thoroughly isolated. Citizens are sitting on the ground of Olympic Park, crying out lonely with papers they wrote by hand, but not a single celebrity who claimed to love "democracy" so much back then pays attention to or sponsors this crisis.</p>
+        <h4>Why the 'Pre-payment Relay' Vanished: The Utter Asymmetry of Celebrity Solidarity</h4>
+        <ul>
+          <li><strong>First, an issue that became a 'political minefield':</strong> A celebrity showing solidarity here could be interpreted as a direct challenge to the current administration and the ruling party. If sponsoring the 2024 martial law protests was a 'safe investment,' sponsoring Olympic Park in 2026 is a 'political minefield.'</li>
+          <li><strong>Second, the 'factional bias' within the cultural power class:</strong> They have a strong tendency to remain silent regarding crises caused by the administrative incompetence of the forces they support or condone (the current President and the ruling party).</li>
+          <li><strong>Third, the difference between 'consumable democracy' and 'raw democracy':</strong> The protests in December 2024 were a massive 'cultural phenomenon' and a hip festival. On the other hand, the protest against the ballot shortage at Olympic Park is a rough and raw judicial and political struggle to dig into the mismanagement of state institutions.</li>
+        </ul>
+        <p><strong>Conclusion:</strong> The defense of democracy and the 'good influence' they spoke of was ultimately a 'selective justice' that selectively supports only safe issues that can make their own image shine, or matters advantageous to their own faction. The citizens holding handwritten signs on the cold asphalt of Olympic Park are craving a fair gaze that looks at their deprived rights exactly as they are.</p>
+      </div>
+      <div class="lang-ja d-none">
+        <p>私たちは、去る2024年12月3日の非常戒厳令事態の直後、大統領の弾劾を促す大規模な広場集会で、いわゆる「先払いリレー」という独特な連帯の方式を目撃しました。アイユー（IU）、イ・ドンウク、ユリなど、韓国を代表する有名芸能人たちが集会現場近くのクッパ店やカフェに巨額を先払いし、「集会に参加した市民の皆さんは心置きなく召し上がってください」と応援した事件は、「善良な影響力」の象徴となりました。</p>
+        <p>しかし、わずか数ヶ月後の2026年全国同時地方選挙において、国家の無能によって投票権を剥奪された市民たちがオリンピック公園に集まり、「不正選挙糾弾」と「再選挙・再投票」を叫ぶ現場では、あの温かかった「先払いリレー」が跡形もなく消え去りました。</p>
+        <h4>「先払いリレー」が消えた理由：芸能界の連帯における徹底した非対称性</h4>
+        <ul>
+          <li><strong>第一に、「政治的地雷原」となったイシュー（イメージ失墜の恐怖）</strong> — 2024年の戒厳令集会の後援が「安全な投資」だったとすれば、2026年のオリンピック公園の後援は芸能人生命を賭けなければならない「政治的地雷原」であるわけです。</li>
+          <li><strong>第二に、文化権力層内部の「陣営の偏向性」</strong> — 自分たちが支持したり黙認したりする勢力（現大統領と与党）の行政的な無能とシステム崩壊によって発生した事態には沈黙する傾向が強いです。</li>
+          <li><strong>第三に、「消費可能な民主主義」と「生の民主主義」の違い</strong> — 2024年12月の集会は、全国民が参加する巨大な「文化現象」でした。半面、オリンピック公園の抗議集会は、国家機関の管理不手際を暴かなければならない、荒々しく生々しい司法・政治的闘争です。</li>
+        </ul>
+        <p><strong>結論：</strong> 彼らが語っていた民主主義の守護と「善良な影響力」は、結局のところ自らのイメージを輝かせることができる安全なイシュー、あるいは自分たちの陣営に有利な事案だけを選んで支援する「選択的正義」であったことが証明されたのです。</p>
+      </div>
+    </article>
+
+    <!-- ===== ENTRY 13: 인쇄된 분노 vs 손글씨 ===== -->
+    <article class="timeline-entry" id="entry-13">
+      <div class="timeline-divider">
+        <span class="timeline-date-badge">분석</span>
+      </div>
+      <span class="entry-tag tag-analysis lang-ko">정치 분석</span>
+      <span class="entry-tag tag-analysis lang-en d-none">POLITICAL ANALYSIS</span>
+      <span class="entry-tag tag-analysis lang-ja d-none">政治分析</span>
+      <h3>
+        <span class="lang-ko">인쇄된 분노와 손글씨의 절규: '기획된 동원'과 '자발적 저항'의 비대칭성</span>
+        <span class="lang-en d-none">Printed Anger vs. Handwritten Outcries: The Asymmetry of 'Planned Mobilization' and 'Voluntary Resistance'</span>
+        <span class="lang-ja d-none">印刷された怒りと手書きの叫び：「企画された動員」と「自発的抵抗」の非対称性</span>
+      </h3>
+      <img src="/img/인쇄 피켓 vs 손글씨 피켓.webp" alt="인쇄 피켓 vs 손글씨 피켓" class="timeline-photo" loading="lazy"/>
+      <div class="lang-ko">
+        <p>최근 대한민국 정치사에서 목격된 두 가지 시위 장면은 대중의 분노가 분출되는 방식과 그 배후의 작동 메커니즘에 대해 매우 강렬한 시각적·정치적 대조를 이룹니다.</p>
+        <p>하나는 2024년 12월 3일 윤석열 대통령의 비상계엄 선포 직후 국회 앞을 가득 메운 '인쇄된 구호'의 물결이었고, 다른 하나는 2026년 전국동시지방선거 투표지 부족 사태 현장에서 터져 나온 시민들의 '손글씨 종이'입니다. 한 시간도 되지 않아 자로 잰 듯 완벽하게 찍혀 나온 피켓과, 당장 주위의 스케치북이나 박스 뒷면에 꾹꾹 눌러쓴 손글씨 구호.</p>
+        <h4>2024년 12월 3일 계엄 사태: 1시간 만에 등장한 완벽한 '기획 피켓'</h4>
+        <p>계엄 선포가 내려진 지 채 1시간도 지나지 않은 시점, 광화문과 국회 앞에는 이미 통일된 규격, 디자인된 폰트, 선명한 색상으로 인쇄된 대형 구호 피켓들이 대량으로 배포되어 있었습니다. 문구 선정, 디자인, 인쇄, 수송, 현장 배포에 이르기까지 일련의 과정이 단 수십 분 만에 완료되었다는 것은, 이들이 평소에 어떠한 정국 변화에도 즉각 대응할 수 있는 거대한 자금력과 인쇄망, 물류 시스템을 상시 가동하고 있음을 방증합니다. 이를 본 많은 국민은 마치 "미리 각본을 짜고 기다렸다는 듯한 조직적 기획의 냄새"를 강하게 풍겼다는 인상을 지울 수 없었습니다.</p>
+        <h4>2026년 지방선거 투표지 부족 사태: 투표소 바닥에서 피어난 '손글씨 절규'</h4>
+        <p>반면, 2026년 전국동시지방선거에서 발생한 투표지 부족 사태의 현장은 완전히 딴판이었습니다. 분노한 시민들이 손에 든 것은 인쇄소가 아니라 자기 가방과 투표소 주변에서 구한 투박한 종이들이었습니다.</p>
+        <div class="protest-quote">
+          <span class="quote-line">"종이가 없어서 투표를 못 해? 여기가 북한이냐?"</span>
+          <span class="quote-line">"내 표 어디 갔냐, 내 주권 돌려내라"</span>
+          <span class="quote-line">"강제 오픈런 시켜놓고 품절 공지 때리는 선관위 폼 미쳤다"</span>
+        </div>
+        <p>이를 지원하는 거대 시민단체도, 피켓을 실어 나르는 방송 차량도 없었습니다. 오직 선거라는 대의민주주의 시스템을 믿고 투표소를 찾았다가 배신당한 평범한 개인들이 현장에서 즉흥적으로 연대하여 목소리를 낼 뿐이었습니다. 규격화되지 않은 비뚤비뚤한 손글씨는 어떤 정치적 이익이나 계산 없이, 오직 헌법이 보장한 권리를 빼앗긴 국민의 날 것 그대로의 억울함과 절박함을 상징했습니다.</p>
+        <hr class="my-3">
+        <h4>결론: 박제된 동원 정치와 살아있는 민초의 저항</h4>
+        <p>민주주의의 수호를 외치던 세력들이 거대 조직을 동원해 인쇄된 피켓을 일사불란하게 돌릴 때, 진짜 민주주의의 기본권이 무너진 현장에서 국민들은 외롭게 손글씨를 쓰고 있었습니다. 대한민국 정치권이 진정으로 두려워하고 귀를 기울여야 할 것은, 미리 짜인 각본대로 움직이는 시스템화된 인쇄 피켓의 물결이 아닙니다. 국가의 배신 앞에 당황하며 주변의 종이를 주워 떨리는 손으로 꾹꾹 눌러쓴 평범한 시민들의 거친 손글씨 구호입니다. 분노해야 할 조직적 권력들이 침묵하는 자리에서 터져 나온 이 '손글씨의 절규'야말로, 현재 대한민국 민주주의가 처한 가장 부끄러운 민낯이자 우리가 반드시 주목해야 할 진짜 국민의 목소리입니다.</p>
+      </div>
+      <div class="lang-en d-none">
+        <p>Two recent protest scenes in South Korea's political history present a very striking visual and political contrast in how public anger erupts and the mechanisms behind it.</p>
+        <p>One was the wave of 'printed slogans' that filled the front of the National Assembly immediately after President Yoon Suk-yeol declared martial law on December 3, 2024. The other was the 'handwritten paper' signs brought out by citizens at the scenes of the ballot paper shortage crisis during the 2026 nationwide local elections.</p>
+        <h4>The December 3, 2024 Martial Law Crisis: The Perfect 'Planned Pickets' That Appeared in Just One Hour</h4>
+        <p>Less than an hour after the martial law declaration, large slogan pickets printed in standardized sizes, designed fonts, and vivid colors were already distributed in mass quantities in front of Gwanghwamun and the National Assembly. The fact that the entire series of processes — from selecting the wording, designing, printing, transporting, to on-site distribution — was completed in mere tens of minutes is evidence that they operate a massive capital, printing network, and logistics system capable of immediately responding to any political changes at all times. Seeing this, many citizens could not erase the strong impression that it smelled of "an organized scheme waiting to happen, as if reading from a pre-written script."</p>
+        <h4>The 2026 Local Election Ballot Shortage Crisis: The 'Handwritten Outcries' Blooming on the Floors of Polling Stations</h4>
+        <p>On the other hand, the scenes of the ballot paper shortage crisis were completely different. Citizens roughly wrote slogans with markers or ballpoint pens on rolling scraps of cardboard, torn notebook pages, or sketchbooks.</p>
+        <div class="protest-quote">
+          <span class="quote-line">"Can't vote because there's no paper? Is this North Korea?"</span>
+          <span class="quote-line">"Where did my vote go? Give me back my sovereignty."</span>
+          <span class="quote-line">"The NEC pulled an 'open run' event and then announced 'sold out' — their swag is unreal."</span>
+        </div>
+        <p>There were no massive civic groups supporting them, nor were there broadcast vehicles transporting pickets. It was merely ordinary individuals who went to the polling station trusting the system of representative democracy, only to be betrayed, spontaneously uniting on the spot to raise their voices.</p>
+        <hr class="my-3">
+        <h4>Conclusion: Stuffed Mobilization Politics vs. Living Grassroots Resistance</h4>
+        <p>What South Korean politicians should truly fear and listen to is not the wave of systematized, printed pickets moving according to a pre-planned script. It is the rough, handwritten slogans pressed hard by trembling hands on pieces of paper picked up nearby by ordinary citizens, bewildered by the state's betrayal. This 'handwritten outcry,' erupting from the places where organized powers that should be angry remain silent, is the most shameful true face of the crisis currently facing South Korea's democracy, and the real voice of the people that we must absolutely pay attention to.</p>
+      </div>
+      <div class="lang-ja d-none">
+        <p>最近の韓国政治史において目撃された2つのデモの場面は、大衆の怒りが噴出する方式とその背後の作動メカニズムについて、非常に強烈な視覚的・政治的対比をなしています。</p>
+        <p>一つは、2024年12月3日の尹錫悦大統領による非常戒厳令布告直後、国会前を埋め尽くした「印刷されたスローガン」の波であり、もう一つは、2026年の全国同時地方選挙における投票用紙不足事態の現場で噴き出した市民たちの「手書きの紙」です。</p>
+        <h4>2024年12月3日の戒厳令事態：1時間で登場した完璧な「企画プラカード」</h4>
+        <p>戒厳令が布告されてからわずか1時間も経たない時点で、光化門や国会前にはすでに統一された規格、デザインされたフォント、鮮明な色彩で印刷された大型のスローガンプラカードが大量に配布されていました。これを見た多くの国民は、まるで「あらかじめ台本を用意して待っていたかのような組織的企画の匂い」を強く感じるという印象を拭えませんでした。</p>
+        <h4>2026年地方選挙の投票用紙不足事態：投票所の床で咲いた「手書きの叫び」</h4>
+        <div class="protest-quote">
+          <span class="quote-line">「紙がなくて投票できない？ここは北朝鮮か？」</span>
+          <span class="quote-line">「私の票はどこへ行った、主権を返せ」</span>
+          <span class="quote-line">「強制オープンランをさせておいて在庫切れ告知をかます選管のヤバさは異常」（20〜30代の自嘲型）</span>
+        </div>
+        <p>彼らを支援する巨大な市民団体も、プラカードを運ぶ放送車両もありませんでした。ただ、選挙という代議制民主主義のシステムを信じて投票所を訪れ、裏切られた平凡な個人たちが、現場で即興的に連帯して声を上げているだけでした。</p>
+        <hr class="my-3">
+        <h4>結論：剥製化された動員政治と生きている草の根の抵抗</h4>
+        <p>韓国の政界が真に恐れ、耳を傾けるべきなのは、あらかじめ組まれた台本通りに動くシステム化された印刷プラカードの波ではありません。国家の裏切りに当惑し、周辺の紙を拾って震える手で力強く押し書きした、平凡な市民たちの荒々しい手書きのスローガンです。</p>
+      </div>
+    </article>
+
+    <!-- ===== ENTRY 14 ⚠️: 서울시장 0.6%p 역전 ===== -->
+    <article class="timeline-entry" id="entry-14">
+      <div class="timeline-divider">
+        <span class="timeline-date-badge">미검증 주장</span>
+      </div>
+      <span class="entry-tag tag-unverified lang-ko">⚠️ 미검증 주장</span>
+      <span class="entry-tag tag-unverified lang-en d-none">⚠️ UNVERIFIED ALLEGATION</span>
+      <span class="entry-tag tag-unverified lang-ja d-none">⚠️ 未検証の主張</span>
+      <h3>
+        <span class="lang-ko">0.6%p의 무게 — 서울시장 역전, 이른 승복, 그리고 '야합·백기' 의혹</span>
+        <span class="lang-en d-none">The Weight of 0.6 Points — the Seoul Mayoral Reversal, the Early Concession, and "Collusion / White-Flag" Suspicions</span>
+        <span class="lang-ja d-none">0.6ポイントの重み ― ソウル市長の逆転、早い敗北宣言、そして「野合・白旗」疑惑</span>
+      </h3>
+      <img src="/img/서울시장 선거 역전.webp" alt="서울시장 선거 역전" class="timeline-photo" loading="lazy"/>
+      <div class="unverified-banner lang-ko">
+        ⚠️ <strong>편집자 주:</strong> 이 항목은 검증되지 않은 주장을 담고 있습니다. '야합·매수'를 뒷받침하는 공식 확인된 증거는 현재 제시되지 않았습니다.
+      </div>
+      <div class="unverified-banner lang-en d-none">
+        ⚠️ <strong>Editor's note:</strong> This section contains unverified allegations. No confirmed evidence of collusion or a deal has been presented as of this writing.
+      </div>
+      <div class="unverified-banner lang-ja d-none">
+        ⚠️ <strong>編集者注：</strong> このセクションは未検証の主張を含みます。野合・買収を裏づける確認された証拠は現時点で示されていません。
+      </div>
+      <div class="lang-ko">
+        <p>서울시장 선거는 16시간에 걸친 역전 드라마였다. 6월 3일 오후 6시 지상파 출구조사에서는 더불어민주당 정원오 후보가 큰 폭(KBS 기준 65%대 대 32%대)으로 앞서는 것으로 나왔으나, 개표가 진행되며 국민의힘 오세훈 후보가 새벽~오전 사이 역전해 약 0.6%p 차로 당선(5선)됐다. 정원오 후보는 오전 9시 30분경 "시민의 선택을 무겁고 겸허히 받들겠다"는 취지로 승복했다.</p>
+        <p>이 결과를 두고 일부에서는 출구조사와의 큰 격차, 비교적 이른 승복을 근거로 '정치적 야합' 또는 '백기투항' 의혹을 제기했다. <strong>그러나 이는 해석·주장이다.</strong> 한국 선거에서 출구조사와 실제 결과가 크게 어긋난 전례(예: 2022년 경기지사)도 있고, 접전 끝의 신속한 승복은 통상 '깨끗한 승복'으로 평가받기도 한다. 현 시점에서 야합·매수를 뒷받침하는 확인된 증거는 제시되지 않았다.</p>
+      </div>
+      <div class="lang-en d-none">
+        <p>The Seoul mayoral race was a 16-hour reversal drama. The 6 p.m. exit polls on 3 June showed the Democratic Party's Jeong Won-oh far ahead (about 65% to 32% on KBS), but as counting progressed the PPP's Oh Se-hoon overtook him overnight to win by about 0.6 points — a fifth term. Around 9:30 a.m., Jeong conceded, saying he would humbly accept the citizens' choice.</p>
+        <p>Citing the wide gap from the exit poll and the relatively early concession, some alleged "political collusion" or a "white-flag surrender." <strong>This, however, is interpretation and allegation.</strong> Korean elections have seen large exit-poll-versus-result gaps before (e.g., the 2022 Gyeonggi governor race), and a swift concession in a tight contest is often praised as gracious. No confirmed evidence of collusion or a deal has been presented.</p>
+      </div>
+      <div class="lang-ja d-none">
+        <p>ソウル市長選は16時間に及ぶ逆転劇だった。6月3日午後6時の出口調査では共に民主党の鄭元伍候補が大差（KBS基準で65％台対32％台）でリードと出たが、開票が進むにつれ国民の力の呉世勲候補が未明〜午前に逆転し、約0.6ポイント差で当選（5選）した。鄭候補は午前9時30分ごろ「市民の選択を重く謙虚に受け止める」趣旨で敗北を宣言した。</p>
+        <p>この結果について一部は、出口調査との大差と比較的早い敗北宣言を根拠に「政治的野合」や「白旗降伏」の疑惑を提起した。<strong>しかしこれは解釈・主張である。</strong> 韓国の選挙では出口調査と実際の結果が大きく食い違った前例（例：2022年の京畿道知事選）もあり、接戦末の迅速な敗北宣言は通常「潔い承服」と評価されることもある。現時点で野合・買収を裏づける確認された証拠は示されていない。</p>
+      </div>
+    </article>
+
+    <!-- ===== ENTRY 15 ⚠️: 쌍둥이 득표수 ===== -->
+    <article class="timeline-entry" id="entry-15">
+      <div class="timeline-divider">
+        <span class="timeline-date-badge">미검증 주장</span>
+      </div>
+      <span class="entry-tag tag-unverified lang-ko">⚠️ 미검증 주장</span>
+      <span class="entry-tag tag-unverified lang-en d-none">⚠️ UNVERIFIED ALLEGATION</span>
+      <span class="entry-tag tag-unverified lang-ja d-none">⚠️ 未検証の主張</span>
+      <h3>
+        <span class="lang-ko">확률 0%에 가까운 '쌍둥이 득표수': 통계학적 기적인가, 선거 시스템의 균열인가</span>
+        <span class="lang-en d-none">'Twin Vote Counts' Near 0% Probability: A Statistical Miracle, or a Crack in the Election System?</span>
+        <span class="lang-ja d-none">確率0%に近い「双子の得票数」：統計学的な奇跡か、選挙システムの亀裂か</span>
+      </h3>
+      <img src="/img/쌍둥이 득표수 의혹.webp" alt="쌍둥이 득표수 의혹" class="timeline-photo" loading="lazy"/>
+      <div class="unverified-banner lang-ko">
+        ⚠️ <strong>편집자 주:</strong> 이 항목은 검증되지 않은 주장을 담고 있습니다. 인천시선관위는 '송도 동일 득표' 의혹에 대해 집계 오류가 아니라고 반박했습니다. 해당 데이터의 원인은 수사 및 공식 검증을 통해 규명되어야 합니다.
+      </div>
+      <div class="unverified-banner lang-en d-none">
+        ⚠️ <strong>Editor's note:</strong> This section contains unverified allegations. The Incheon city commission rejected the Songdo "identical-tally" suspicion as not a counting error. The cause of this data anomaly should be resolved through investigation and official verification.
+      </div>
+      <div class="unverified-banner lang-ja d-none">
+        ⚠️ <strong>編集者注：</strong> このセクションは未検証の主張を含みます。仁川市選管は「松島同一得票」疑惑について集計エラーではないと反論しています。
+      </div>
+      <div class="lang-ko">
+        <p>선거는 민주주의의 꽃이자, 대중의 다양한 민심이 숫자로 표출되는 거대한 데이터의 집합체입니다. 유권자의 수, 연령대, 정치적 성향, 심지어 선거 당일의 날씨와 투표소의 위치에 따라 표심은 단 한 표 단위까지 유기적으로 변하기 마련입니다.</p>
+        <p>그러나 최근 관내사전투표 결과에서 포착된 이른바 '쌍둥이 득표' 현상은 통계학의 상식을 완전히 뒤흔들며 개표 과정에 대한 국민적인 의구심을 폭발시키고 있습니다. 서로 다른 지역구, 혹은 수십 킬로미터 떨어진 전혀 다른 행정구역에서 두 후보가 얻은 사전투표 득표수가 단 1표의 오차도 없이 일치하는 현상이 연쇄적으로 확인되었기 때문입니다.</p>
+        <h4>주요 사례 — 지역별 '쌍둥이 득표'</h4>
+        <div class="compare-table-wrap">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th class="lang-ko">비교 지역 A</th>
+                <th class="lang-en d-none">Region A</th>
+                <th class="lang-ja d-none">比較地域 A</th>
+                <th class="lang-ko">비교 지역 B</th>
+                <th class="lang-en d-none">Region B</th>
+                <th class="lang-ja d-none">比較地域 B</th>
+                <th class="lang-ko">후보자별 득표 결과 (A와 B 동일)</th>
+                <th class="lang-en d-none">Vote Totals (Identical in A &amp; B)</th>
+                <th class="lang-ja d-none">候補者別の得票（AとBで同一）</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>인천 송도1동</td>
+                <td>인천 송도2동</td>
+                <td>박찬대 3,030표 / 유정복 1,440표</td>
+              </tr>
+              <tr>
+                <td>신안군 하의면</td>
+                <td>여수시 상일동</td>
+                <td>민형배 506표 / 이정현 42표</td>
+              </tr>
+              <tr>
+                <td>함평군 엄다면</td>
+                <td>장성군 북하면</td>
+                <td>민형배 606표 / 이정현 57표</td>
+              </tr>
+              <tr>
+                <td>광주 송정1동</td>
+                <td>고흥군 금산면</td>
+                <td>민형배 1,401표 / 이정현 120표</td>
+              </tr>
+              <tr>
+                <td>보성군 노동면</td>
+                <td>신안군 팔금면</td>
+                <td>민형배 356표 / 이정현 42표</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>송도 1·2동처럼 인접한 지역뿐만 아니라, 전남 신안군 하의면과 여수시 상일동처럼 지리적으로 완전히 분리되고 유권자 규모가 다른 지역에서조차 1위 후보와 2위 후보의 득표수가 동시에 일치하는 현상이 나타났습니다.</p>
+        <h4>통계학적 관점: 두 가지 시선</h4>
+        <ul>
+          <li><strong>시선 🤖 외부 개입 및 프로그램 조작설 (알고리즘 의혹):</strong> 부정선거와 재선거를 외치는 시민들과 일부 전문가들은 이것이 인간의 자발적 투표 결과가 아니라, 전산 시스템에 미리 입력된 '특정 상수나 비율(알고리즘)'이 작동한 결과라고 주장합니다. 개표 분류기나 선관위 서버의 메인 시스템에 대한 철저한 포렌식과 검증이 필요하다는 목소리가 커지는 이유입니다.</li>
+          <li><strong>시선 📝 행정적 데이터 오류 및 집계 미스 가능성:</strong> 반면, 시스템 전체의 조작보다는 선거 관리 과정에서의 심각한 행정적 오류일 가능성을 제기하는 시각도 있습니다. 개표 결과를 취합하고 중앙선관위 서버에 입력하는 과정에서 담당자의 실수로 이전 지역의 데이터가 그대로 복사·붙여넣기(Copy &amp; Paste) 되었거나, 엑셀 등 통계 프로그램의 서식 오류로 인해 엉뚱한 숫자가 표기되었을 수 있다는 지적입니다.</li>
+        </ul>
+        <p><strong>결론:</strong> 원인이 시스템의 고의적 조작이든, 선관위의 황당한 행정 실책이든 간에 이 숫자들이 정상적인 투표 결과가 아니라는 점만큼은 명백해 보입니다. 만약 단순한 행정 오류라면 선관위는 즉각 어느 과정에서 데이터가 꼬였는지 해명해야 하며, 만약 명쾌한 답을 내놓지 못한다면 "부정선거"를 의심하며 재투표를 요구하는 국민들의 분노를 가라앉힐 방법은 없을 것입니다.</p>
+      </div>
+      <div class="lang-en d-none">
+        <p>Elections are the flower of democracy and a massive collection of data where the diverse public sentiment is expressed in numbers. However, the recent phenomenon of 'twin voting' captured in the domestic absentee voting results completely shatters the common sense of statistics and is exploding public suspicion over the ballot-counting process.</p>
+        <h4>Major Cases of 'Twin Voting'</h4>
+        <div class="compare-table-wrap">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>Comparative Region A</th>
+                <th>Comparative Region B</th>
+                <th>Voting Results by Candidate (Identical in Regions A and B)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Songdo 1-dong, Incheon</td>
+                <td>Songdo 2-dong, Incheon</td>
+                <td>Park Chan-dae: 3,030 votes / Yoo Jeong-bok: 1,440 votes</td>
+              </tr>
+              <tr>
+                <td>Haui-myeon, Shinan-gun</td>
+                <td>Sangil-dong, Yeosu-si</td>
+                <td>Min Hyung-bae: 506 votes / Lee Jung-hyun: 42 votes</td>
+              </tr>
+              <tr>
+                <td>Eomda-myeon, Hampyeong-gun</td>
+                <td>Bukha-myeon, Jangseong-gun</td>
+                <td>Min Hyung-bae: 606 votes / Lee Jung-hyun: 57 votes</td>
+              </tr>
+              <tr>
+                <td>Songjeong 1-dong, Gwangju</td>
+                <td>Geumsan-myeon, Goheung-gun</td>
+                <td>Min Hyung-bae: 1,401 votes / Lee Jung-hyun: 120 votes</td>
+              </tr>
+              <tr>
+                <td>Nodong-myeon, Boseong-gun</td>
+                <td>Palgeum-myeon, Shinan-gun</td>
+                <td>Min Hyung-bae: 356 votes / Lee Jung-hyun: 42 votes</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h4>Analysis from a Statistical Perspective: Two Perspectives</h4>
+        <ul>
+          <li><strong>Perspective 🤖 External Intervention / Algorithm Suspicions:</strong> Citizens and some experts argue that this is not the result of voluntary human voting, but the result of 'specific constants or ratios (algorithms)' pre-entered into the computer system. This is why voices are growing for thorough forensics and verification of the ballot sorters or the NEC's main server system.</li>
+          <li><strong>Perspective 📝 Administrative Data Errors / Tabulation Mistakes:</strong> On the other hand, there are views raising the possibility of severe administrative errors during the election management process. A worker's mistake might have copied and pasted previous regional data, or incorrect numbers might have been displayed due to formatting errors in statistical programs like Excel.</li>
+        </ul>
+        <p><strong>Conclusion:</strong> Whether the cause is intentional manipulation of the system or an absurd administrative blunder by the NEC, it seems clear that these numbers are not the results of normal voting. If it is a simple administrative error, the NEC must immediately clarify at which stage the data became tangled. If they fail to provide a clear answer, there will be no way to calm the anger of citizens who suspect a "rigged election" and demand a re-vote.</p>
+      </div>
+      <div class="lang-ja d-none">
+        <p>選挙は民主主義の華であり、大衆の多様な民心が数字として表出する巨大なデータの集合体です。しかし、最近の管内事前投票の結果で捉えられた、いわゆる「双子の得票」現象は、統計学の常識を完全に覆し、開票プロセスに対する国民的な疑惑を爆発させています。</p>
+        <h4>主な事例 ― 「双子の得票」</h4>
+        <div class="compare-table-wrap">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>比較地域 A</th>
+                <th>比較地域 B</th>
+                <th>候補者別の得票結果（AとBの地域で同一）</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>仁川市 松島1洞</td>
+                <td>仁川市 松島2洞</td>
+                <td>朴賛大 3,030票 / 劉正福 1,440票</td>
+              </tr>
+              <tr>
+                <td>新安郡 荷衣面</td>
+                <td>麗水市 サンイル洞</td>
+                <td>閔馨培 506票 / 李貞鉉 42票</td>
+              </tr>
+              <tr>
+                <td>咸平郡 厳多面</td>
+                <td>長城郡 北下面</td>
+                <td>閔馨培 606票 / 李貞鉉 57票</td>
+              </tr>
+              <tr>
+                <td>光州市 松汀1洞</td>
+                <td>高興郡 錦山面</td>
+                <td>閔馨培 1,401票 / 李貞鉉 120票</td>
+              </tr>
+              <tr>
+                <td>宝城郡 蘆洞面</td>
+                <td>新安郡 八金面</td>
+                <td>閔馨培 356票 / 李貞鉉 42票</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h4>統計学的観点からの分析：2つの視線</h4>
+        <ul>
+          <li><strong>視線 🤖 外部介入およびプログラム操作説（アルゴリズム疑惑）：</strong> 不正選挙と再選挙を叫ぶ市民や一部の専門家は、これが人間の自発的な投票結果ではなく、電算システムにあらかじめ入力された「特定の定数や比率（アルゴリズム）」が作動した結果であると主張しています。</li>
+          <li><strong>視線 📝 行政的データエラーおよび集計ミスの可能性：</strong> その一方で、選挙管理プロセスにおける深刻な行政的エラーである可能性を提起する見方もあります。担当者のミスにより前の地域のデータがそのままコピー＆ペーストされたか、エクセルなどの統計プログラムの書式エラーによって誤った数字が表記されたのではないかという指摘です。</li>
+        </ul>
+        <p><strong>結論：</strong> 原因がシステムの故意の操作であれ、選管の呆れた行政的失策であれ、これらの数字が正常な投票結果ではないという点だけは明白に見えます。もし単純な行政エラーであれば、選管は直ちにどのプロセスでデータがねじれたのかを解明しなければなりません。</p>
+      </div>
+    </article>
+
+    <!-- ===== ENTRY 16 ⚠️: 경찰 5가지 수상한 행동 ===== -->
+    <article class="timeline-entry" id="entry-16">
+      <div class="timeline-divider">
+        <span class="timeline-date-badge">미검증 주장</span>
+      </div>
+      <span class="entry-tag tag-unverified lang-ko">⚠️ 미검증 주장</span>
+      <span class="entry-tag tag-unverified lang-en d-none">⚠️ UNVERIFIED ALLEGATION</span>
+      <span class="entry-tag tag-unverified lang-ja d-none">⚠️ 未検証の主張</span>
+      <h3>
+        <span class="lang-ko">시민이 촬영한 '경찰의 5가지 수상한 행동' — 미검증 주장</span>
+        <span class="lang-en d-none">Citizen-filmed "Five Suspicious Police Behaviors" — Unverified Allegations</span>
+        <span class="lang-ja d-none">市民が撮影した「警察の5つの不審な行動」 ― 未検証の主張</span>
+      </h3>
+      <img src="/img/경찰 수상한 행동 의혹.webp" alt="경찰 수상한 행동 의혹" class="timeline-photo" loading="lazy"/>
+      <div class="unverified-banner lang-ko">
+        ⚠️ <strong>편집자 주:</strong> 이 항목은 검증되지 않은 주장을 담고 있습니다. 이 목록은 시위 참가자·온라인발 주장으로, 본 정리 시점까지 사실로 확인되지 않았습니다. '물리적 충돌'과 '신원 논란'은 양측 모두를 향한 상반된 주장으로 존재하며, 수사로 가려질 사안입니다.
+      </div>
+      <div class="unverified-banner lang-en d-none">
+        ⚠️ <strong>Editor's note:</strong> This section contains unverified allegations. This list originates with protesters and online posts and is unverified as of this writing. Both "use of force" and "identity" disputes exist as competing allegations aimed in both directions, to be resolved by investigation.
+      </div>
+      <div class="unverified-banner lang-ja d-none">
+        ⚠️ <strong>編集者注：</strong> このセクションは未検証の主張を含みます。このリストはデモ参加者・オンライン発の主張で、本稿時点で事実と確認されていません。「物理的衝突」と「身元論争」は双方に向けられた相反する主張として存在し、捜査で明らかにされるべき事案です。
+      </div>
+      <div class="lang-ko">
+        <p>봉쇄 현장에서 시민과 온라인 커뮤니티는 경찰의 행동을 둘러싼 의혹을 제기했다. 주로 거론된 다섯 가지는 다음과 같다.</p>
+        <ul>
+          <li>① 얼굴 가림</li>
+          <li>② 소속·신원 불명</li>
+          <li>③ 셔츠와 조끼의 이름표 불일치</li>
+          <li>④ 경찰 복무 규정에 어긋나 보이는 두발·헤어스타일</li>
+          <li>⑤ 일반 시민·청년에 대한 과도한 물리력 행사</li>
+        </ul>
+        <p>이 목록은 시위 참가자·온라인발 주장으로, 본 정리 시점까지 사실로 확인되지 않았다. 한편 보수 성향 시민단체(서민민생대책위)는 6월 5일 투표함 반출 과정의 '과잉 진압'을 이유로 행정안전부 장관·경찰 지휘부·현장 경찰을 직권남용 등으로 고발했다. 반대로 한국기자협회 JTBC 지회 등은 일부 시위대가 취재진을 폭행하고 임의 신분 확인·장비 파손을 했다며 법적 대응을 예고했다. 즉 '물리적 충돌'과 '신원 논란'은 양측 모두를 향한 상반된 주장으로 존재하며, 수사로 가려질 사안이다.</p>
+      </div>
+      <div class="lang-en d-none">
+        <p>At the blockade, citizens and online communities raised suspicions about police conduct. The five most-cited were:</p>
+        <ul>
+          <li>① Concealed faces</li>
+          <li>② Unknown affiliation and identity</li>
+          <li>③ Mismatched name tags between shirt and vest</li>
+          <li>④ Hair or hairstyles seemingly violating police grooming rules</li>
+          <li>⑤ Excessive physical force against ordinary citizens and young people</li>
+        </ul>
+        <p>This list originates with protesters and online posts and is unverified as of this writing. Separately, a conservative civic group filed an abuse-of-authority complaint on 5 June against the interior minister, police leadership, and on-scene officers over alleged excessive force during the ballot-box removal. Conversely, the JTBC chapter of the Journalists Association of Korea and others said some protesters had assaulted reporters and damaged equipment and warned of legal action. In short, both "use of force" and "identity" disputes exist as competing allegations aimed in both directions, to be resolved by investigation.</p>
+      </div>
+      <div class="lang-ja d-none">
+        <p>封鎖現場で市民やオンラインコミュニティは警察の行動をめぐる疑惑を提起した。主に挙げられた5つは以下の通りである。</p>
+        <ul>
+          <li>① 顔の隠蔽</li>
+          <li>② 所属・身元不明</li>
+          <li>③ シャツとベストの名札の不一致</li>
+          <li>④ 警察服務規定に反するとみられる頭髪・髪型</li>
+          <li>⑤ 一般市民・若者への過度な物理力の行使</li>
+        </ul>
+        <p>このリストはデモ参加者・オンライン発の主張で、本稿時点で事実と確認されていない。一方、保守系市民団体は6月5日、投票箱搬出過程の「過剰鎮圧」を理由に行政安全部長官・警察指揮部・現場警察を職権乱用などで告発した。逆に韓国記者協会JTBC支会などは、一部デモ隊が取材陣を暴行し任意の身分確認・機材破損をしたとして法的対応を予告した。すなわち「物理的衝突」と「身元論争」は双方に向けられた相反する主張として存在し、捜査で明らかにされるべき事案である。</p>
+      </div>
+    </article>
+
+    <!-- ===== ENTRY 17: 정리 ===== -->
+    <article class="timeline-entry" id="entry-17">
+      <div class="timeline-divider">
+        <span class="timeline-date-badge">정리</span>
+      </div>
+      <span class="entry-tag tag-fact lang-ko">최종 정리</span>
+      <span class="entry-tag tag-fact lang-en d-none">SUMMARY</span>
+      <span class="entry-tag tag-fact lang-ja d-none">まとめ</span>
+      <h3>
+        <span class="lang-ko">정리 — 확인된 사실과 미검증 주장의 경계</span>
+        <span class="lang-en d-none">Where Things Stand — The Line Between Confirmed Fact and Unverified Claim</span>
+        <span class="lang-ja d-none">まとめ ― 確認された事実と未検証の主張の境界</span>
+      </h3>
+      <img src="/img/revote.webp" alt="사태 정리" class="timeline-photo" style="aspect-ratio:auto;object-fit:initial;min-height:0;" loading="lazy"/>
+      <div class="lang-ko">
+        <p>확인된 사실은 분명하다. 본투표 당일 전국 50개 투표소에서 용지가 부족했고, 22곳에서 투표가 중단됐다 재개됐으며, 67곳에 긴급 용지가 투입됐다. 원인의 핵심은 '최소 50% 수준 인쇄'를 허용한 지침과 투표소별 수요 예측·이송의 실패였다. 선관위원장은 사퇴했고, 대통령은 합동수사·국정조사·특검 가능성을 열었으며, 대학가와 시민사회가 책임을 물었다.</p>
+        <p>반면 '부정선거'·'송도 조작'·'경찰 위장'·'서울시장 야합' 등은 검증되지 않은 주장으로, 선관위·전문가는 이번 사태가 선거 무효나 재선거 사유에 이르지 않는다고 본다. 사태의 진짜 교훈은, 신뢰는 한 번의 행정 실패로도 무너질 수 있고, 그 복구에는 투명한 진상 규명과 제도 개선이라는 더디고 정직한 과정이 필요하다는 점이다.</p>
+        <p style="font-size:0.82rem;color:#888">작성 기준일: 2026-06-08</p>
+      </div>
+      <div class="lang-en d-none">
+        <p>The confirmed facts are clear: on election day, 50 stations nationwide ran short, 22 paused and resumed, and 67 received emergency ballots. The core cause was a guideline permitting printing down to roughly 50% of the electorate combined with a failure to forecast and resupply per-station demand. The commission chair resigned; the president opened the door to a joint investigation, a parliamentary inquiry, and a special counsel; and campuses and civil society demanded accountability.</p>
+        <p>By contrast, "election fraud," "Songdo manipulation," "disguised police," and "Seoul mayoral collusion" remain unverified claims, and the NEC and legal experts judge that the episode does not rise to grounds for nullification or a re-vote. The real lesson is that trust can collapse from a single administrative failure — and that rebuilding it requires the slow, honest work of transparent fact-finding and institutional reform.</p>
+        <p style="font-size:0.82rem;color:#888">Compiled: 8 June 2026</p>
+      </div>
+      <div class="lang-ja d-none">
+        <p>確認された事実は明確だ。本投票当日、全国50投票所で用紙が不足し、22か所で投票が中断後に再開、67か所に緊急用紙が投入された。原因の核心は「最低50％水準の印刷」を許容した指針と、投票所ごとの需要予測・移送の失敗である。選管委員長は辞任し、大統領は合同捜査・国政調査・特別検察官の可能性を開き、大学と市民社会が責任を問うた。</p>
+        <p>一方で「不正選挙」「松島の操作」「警察の偽装」「ソウル市長の野合」などは未検証の主張であり、選管と専門家は今回の事態が選挙無効や再選挙の事由には至らないと見ている。事態の本当の教訓は、信頼は一度の行政失敗でも崩れうること、そしてその回復には、透明な真相究明と制度改善という遅くとも誠実な過程が要るということである。</p>
+        <p style="font-size:0.82rem;color:#888">作成基準日: 2026-06-08</p>
+      </div>
+    </article>
+    </div><!-- /tl-rail -->
+
+  </div>
+</section>
+
+<!-- ===== 2026 ELECTION INFO ===== -->
+<section class="vk-section vk-section-gray">
+  <div class="inner-wrap">
+    <h2 class="section-title lang-ko">2026년 제9회 전국동시지방선거 — 주요 일정 기록</h2>
+    <h2 class="section-title lang-en d-none">2026 9th Nationwide Local Elections — Key Dates on Record</h2>
+    <h2 class="section-title lang-ja d-none">2026年第9回全国同時地方選挙 ― 主要日程記録</h2>
+    <div class="table-container">
+      <table class="table table-bordered election-info-table">
+        <thead>
+          <tr>
+            <th><span class="lang-ko">항목</span><span class="lang-en d-none">Item</span><span class="lang-ja d-none">項目</span></th>
+            <th><span class="lang-ko">내용</span><span class="lang-en d-none">Details</span><span class="lang-ja d-none">詳細</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="lang-ko">선거일</span><span class="lang-en d-none">Election Day</span><span class="lang-ja d-none">選挙日</span></td>
+            <td><strong>2026.06.03 (수 / Wed)</strong></td>
+          </tr>
+          <tr>
+            <td><span class="lang-ko">투표 시간 (연장)</span><span class="lang-en d-none">Voting Hours (extended)</span><span class="lang-ja d-none">投票時間（延長）</span></td>
+            <td>06:00 – 20:00 <span class="lang-ko">(일부 투표소 22:00까지 연장)</span><span class="lang-en d-none">(some stations extended to 22:00)</span><span class="lang-ja d-none">（一部投票所は22:00まで延長）</span></td>
+          </tr>
+          <tr>
+            <td><span class="lang-ko">사전투표</span><span class="lang-en d-none">Early Voting</span><span class="lang-ja d-none">期日前投票</span></td>
+            <td>2026.05.29 – 2026.05.30</td>
+          </tr>
+          <tr>
+            <td><span class="lang-ko">선출 대상</span><span class="lang-en d-none">Positions</span><span class="lang-ja d-none">選出対象</span></td>
+            <td class="text-start">
+              <span class="lang-ko">광역단체장, 기초단체장, 광역·기초의원, 교육감, 국회의원 재·보궐 14석</span>
+              <span class="lang-en d-none">Governors, mayors, regional/district council members, education superintendents, 14 National Assembly by-elections</span>
+              <span class="lang-ja d-none">広域・基礎自治体の長、広域・基礎議員、教育監、国会議員の再・補欠選挙14議席</span>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="lang-ko">투표소 부족 발생</span><span class="lang-en d-none">Ballot Shortage</span><span class="lang-ja d-none">用紙不足発生</span></td>
+            <td>
+              <span class="lang-ko">전국 50개 투표소 (22곳 중단, 67곳 긴급 공급)</span>
+              <span class="lang-en d-none">50 stations nationwide (22 suspended, 67 emergency resupply)</span>
+              <span class="lang-ja d-none">全国50投票所（22か所中断、67か所緊急供給）</span>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="lang-ko">선관위원장 사퇴</span><span class="lang-en d-none">NEC Chairman Resigned</span><span class="lang-ja d-none">選管委員長辞任</span></td>
+            <td>2026.06.05 — <span class="lang-ko">노태악 위원장</span><span class="lang-en d-none">Chairman Roh Tae-ak</span><span class="lang-ja d-none">盧泰岳委員長</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Archive link -->
+    <div class="archive-banner mt-4">
+      <span class="lang-ko">2025 대선 관련: <a href="/2025.html">2025 대통령 후보 비교 아카이브</a> | <a href="/compare.html">후보 비교표 작성하기</a></span>
+      <span class="lang-en d-none">2025 election archive: <a href="/2025.html">2025 Presidential Candidate Comparison</a> | <a href="/compare.html">Comparison Tool</a></span>
+      <span class="lang-ja d-none">2025年大選アーカイブ: <a href="/2025.html">2025年大統領候補比較</a> | <a href="/compare.html">候補比較ツール</a></span>
+    </div>
   </div>
 </section>
 
@@ -413,365 +1680,14 @@
   </div>
 </section>
 
-<!-- ===== TIMELINE ===== -->
-<section class="timeline-section vk-section-light" id="timeline">
-  <div class="inner-wrap">
-    <h2 class="section-title lang-ko">사건 일지 — 투표용지 부족 사태와 재투표 운동</h2>
-    <h2 class="section-title lang-en d-none">Timeline — Ballot Shortage Crisis &amp; Re-vote Movement</h2>
-    <h2 class="section-title lang-ja d-none">事件の経緯——投票用紙不足と再投票運動</h2>
-
-    <!-- ===== ENTRY 1: 5/29~30 사전투표 ===== -->
-    <article class="timeline-entry">
-      <div class="timeline-divider">
-        <span class="timeline-date-badge">2025.05.29–30</span>
-      </div>
-      <h3>
-        <span class="lang-ko">사전투표 실시 — 예상을 뛰어넘은 높은 열기</span>
-        <span class="lang-en d-none">Early Voting — Unprecedented Turnout</span>
-        <span class="lang-ja d-none">事前投票実施——予想を超えた熱気</span>
-      </h3>
-      <img src="/img/2026main.webp" alt="사전투표 현장" class="timeline-photo" loading="lazy"/>
-      <div class="lang-ko">
-        <p>5월 29일과 30일 이틀간 실시된 제21대 대통령 선거 사전투표에서 전국적으로 예상을 크게 웃도는 높은 투표 열기가 관찰되었습니다. 당시 중앙선거관리위원회(NEC)는 투표율 추이를 긍정적으로 평가하며, 본 투표에 대한 준비에도 문제가 없다는 입장을 공식적으로 밝혔습니다.</p>
-        <p>그러나 이 사전투표 기간 동안 이미 일부 투표소에서 예비 투표용지 소진 속도가 예상보다 빠르다는 현장 보고가 있었습니다. 내부 경고 신호가 포착되었음에도, 이 정보는 기관 내부에서 충분히 공유되거나 대비 지침으로 이어지지 못했습니다. 이는 사흘 뒤 초유의 투표 중단 사태로 이어지는 핵심 배경이 됩니다.</p>
-      </div>
-      <div class="lang-en d-none">
-        <p>Early voting for the 21st presidential election was held on May 29–30. Turnout was significantly higher than projected nationwide. The National Election Commission (NEC) publicly welcomed the enthusiasm and stated that preparations for election day were on track.</p>
-        <p>However, field reports already indicated that some polling stations were depleting their reserve ballot supplies faster than expected. Despite these early warning signals, the information was not adequately shared within the institution or translated into contingency preparations — a failure that would lead to the unprecedented shutdown three days later.</p>
-      </div>
-      <div class="lang-ja d-none">
-        <p>5月29・30日に実施された第21代大統領選挙の事前投票では、全国的に予想を大幅に上回る高い投票熱が観察されました。国家選挙管理委員会（NEC）はこの熱気を公式に歓迎し、本投票の準備に問題はないとする立場を表明しました。</p>
-        <p>しかし、この事前投票期間中にすでに一部の投票所で予備投票用紙の消費ペースが想定より速いという現場報告がありました。初期警告シグナルが捉えられていたにもかかわらず、この情報は機関内部で十分に共有されず、対応指針にもつながりませんでした。これが3日後の前代未聞の投票中断事態につながる核心的背景となります。</p>
-      </div>
-    </article>
-
-    <!-- ===== ENTRY 2: 6/3 투표 당일 ===== -->
-    <article class="timeline-entry">
-      <div class="timeline-divider">
-        <span class="timeline-date-badge">2025.06.03</span>
-      </div>
-      <h3>
-        <span class="lang-ko">투표 당일 — 전국 투표용지 부족 사태 (초유의 사태)</span>
-        <span class="lang-en d-none">Election Day — Nationwide Ballot Shortage (Unprecedented Crisis)</span>
-        <span class="lang-ja d-none">投票当日——全国的な投票用紙不足（前代未聞の事態）</span>
-      </h3>
-      <img src="/img/2026main.webp" alt="6월 3일 투표소 현장" class="timeline-photo" loading="lazy"/>
-      <div class="lang-ko">
-        <p><span class="time-tag">11:40</span> <strong>최초 이상 징후 감지 및 문의</strong> — 서울 송파구 선거관리위원회가 현장 투표 열기가 예상보다 뜨거워 용지가 모자랄 상황을 대비해 서울시 선관위에 대처 방안을 유선으로 문의했습니다.</p>
-        <p><span class="time-tag">13:00–15:00</span> <strong>현장 투표지 고갈 및 투표 중단 (초유의 사태)</strong> — 송파구 잠실 일대(잠실2동·4동·7동, 문정2동, 가락2동 등), 강남구 청담동, 광진구 구의3동 등 서울 동남권 투표소를 중심으로 준비된 투표지가 완전히 바닥나기 시작했습니다. 현장 단톡방에 "잔여 용지 500매 미만" 등 비상 경고가 공유되었으며, 유권자들이 기표소 앞에서 문전성시를 이루다 결국 투표가 일시 중단되었습니다.</p>
-        <p><span class="time-tag">16:00–17:00</span> <strong>시민 항의 및 유권자 이탈</strong> — 대기 인원이 수십 명에서 100여 명 이상으로 늘어나며 현장에서 선관위 관계자를 향한 격렬한 항의가 쏟아졌습니다. 대기 시간을 견디지 못하고 투표를 포기한 채 돌아가는 유권자들이 대거 목격되었습니다.</p>
-        <p><span class="time-tag">17:20</span> <strong>정부(행정안전부) 사후 인지</strong> — 언론 보도가 쏟아지기 시작한 후에야 행정안전부 선거상황실이 실태를 파악했습니다. 선관위가 최초 징후를 파악한 지 5시간이 넘도록 정부 부처 간 정보 공유가 이루어지지 않은 '칸막이 행정'의 허점이 드러났습니다.</p>
-        <p><span class="time-tag">18:00</span> <strong>본투표 마감 및 투표 연장 조치</strong> — 정상 투표는 종료되었으나, 선관위는 용지 부족으로 대기표를 받은 유권자들을 위해 오후 10시까지 투표 시간을 연장하여 추가 이송된 용지로 투표를 진행했습니다.</p>
-        <p><span class="time-tag">24:00</span> <strong>선관위 긴급위원회 소집</strong> — 노태악 중앙선관위원장 주재로 뒤늦게 긴급위원회가 소집되어 대책 회의에 돌입했습니다. 국민의힘 선대위 관계자들이 과천 선관위 청사를 항의 방문했습니다.</p>
-      </div>
-      <div class="lang-en d-none">
-        <p><span class="time-tag">11:40</span> <strong>First warning signal detected</strong> — Songpa-gu (Seoul) NEC contacted Seoul NEC by phone, concerned that unexpectedly high turnout could exhaust ballot paper supplies. They asked for contingency guidance.</p>
-        <p><span class="time-tag">13:00–15:00</span> <strong>Ballot exhaustion and voting suspension (unprecedented)</strong> — Polling stations in Songpa-gu's Jamsil area (Jamsil 2·4·7-dong, Munjeong 2-dong, Garak 2-dong), Gangnam-gu Cheongdam-dong, and Gwangjin-gu Guui 3-dong ran completely out of ballot papers. Staff group chats shared alerts reading "fewer than 500 sheets remaining." Lines stretched hundreds of meters. Voting was suspended.</p>
-        <p><span class="time-tag">16:00–17:00</span> <strong>Citizen protests and voter abandonment</strong> — Queues swelled to 100+ people per location. Furious voters confronted NEC officials on-site. Dozens were photographed leaving without casting ballots after giving up on the wait.</p>
-        <p><span class="time-tag">17:20</span> <strong>Ministry of Interior learns of crisis — only after press reports</strong> — The Ministry's election situation room became aware of the situation only after news coverage began, more than 5 hours after the NEC first detected a problem. The failure of inter-agency communication exposed what critics called a "silo administration."</p>
-        <p><span class="time-tag">18:00</span> <strong>Polls close; voting hours extended</strong> — Voting formally ended at 6 PM, but NEC extended hours until 10 PM for voters holding numbered queue tickets due to the shortage. Extra ballot paper was rushed to affected stations.</p>
-        <p><span class="time-tag">24:00</span> <strong>Emergency NEC committee convened</strong> — NEC Chairman Noh Tae-ack chaired an emergency committee meeting. People Power Party campaign officials arrived at NEC headquarters in Gwacheon to lodge formal protests.</p>
-      </div>
-      <div class="lang-ja d-none">
-        <p><span class="time-tag">11:40</span> <strong>最初の異常徴候を検知・問い合わせ</strong> — ソウル松坡区選挙管理委員会が、現場の投票熱が予想以上に高く用紙が不足する恐れがあるとして、ソウル市選管に対応策を電話で問い合わせました。</p>
-        <p><span class="time-tag">13:00–15:00</span> <strong>現場で投票用紙が完全に底をつき投票一時停止（前代未聞の事態）</strong> — 松坡区蚕室一帯（蚕室2・4・7洞、文井2洞、可楽2洞）、江南区清潭洞、広津区九宜3洞など、ソウル東南圏の投票所を中心に投票用紙が完全に枯渇しました。現場の職員グループチャットに「残り500枚未満」という緊急警告が共有され、投票が一時停止されました。</p>
-        <p><span class="time-tag">16:00–17:00</span> <strong>市民の抗議と有権者の離脱</strong> — 待機人数が100名以上に膨れ上がり、選管関係者への激しい抗議が相次ぎました。長時間の待機に耐えられず、投票を諦めて帰宅する有権者が多数目撃されました。</p>
-        <p><span class="time-tag">17:20</span> <strong>行政安全部が報道後に初めて把握</strong> — メディアの報道が始まって初めて、行政安全省の選挙状況室が実態を把握しました。選管が最初の徴候を把握してから5時間以上経過しても省庁間の情報共有がなかった「縦割り行政」の欠陥が露呈しました。</p>
-        <p><span class="time-tag">18:00</span> <strong>本投票終了・投票時間延長措置</strong> — 通常の投票は午後6時で終了しましたが、選管は用紙不足で整理券を受け取った有権者のために午後10時まで投票時間を延長し、追加搬送した用紙で投票を実施しました。</p>
-        <p><span class="time-tag">24:00</span> <strong>選管緊急委員会が招集</strong> — 盧泰岳中央選管委員長の主宰で遅れて緊急委員会が招集され、対策会議が始まりました。国民の力の選挙対策委員会関係者が京畿道果川の選管庁舎を抗議訪問しました。</p>
-      </div>
-    </article>
-
-    <!-- ===== ENTRY 3: 6/4~5 선관위 사과 ===== -->
-    <article class="timeline-entry">
-      <div class="timeline-divider">
-        <span class="timeline-date-badge">2025.06.04–05</span>
-      </div>
-      <h3>
-        <span class="lang-ko">선관위 사과 및 파장 확산</span>
-        <span class="lang-en d-none">NEC Apology and Mounting Fallout</span>
-        <span class="lang-ja d-none">選挙管理委員会の謝罪と波紋の拡大</span>
-      </h3>
-      <img src="/img/2026main.webp" alt="선관위 사과 발표" class="timeline-photo" loading="lazy"/>
-      <div class="lang-ko">
-        <p><span class="time-tag">06.04 03:55</span> <strong>선관위 1차 입장 발표</strong> — 선관위는 "이번 사태가 공직선거법상 선거 연기나 재선거 사유에 해당하지 않는다"고 선을 그으며, 개표 중단은 불가능하므로 투표함을 개표소로 이송하겠다고 발표했습니다.</p>
-        <p><span class="time-tag">06.04 주간</span> <strong>투표함 반출 대치 및 개표 지연</strong> — 서울 송파구 잠실7동 제2투표소 등 일부 현장에서는 부정선거 의혹을 제기하는 시민들이 투표함 반출을 몸으로 막아서며 선관위·경찰과 사흘간 극심한 대치를 이어갔습니다. 이로 인해 서울 지역 최종 개표 및 비례대표 결과 확정이 크게 지연되었습니다.</p>
-        <p><span class="time-tag">06.05 오후</span> <strong>전국 실태 확인 및 수뇌부 사퇴</strong> — 중앙선관위 전수조사 결과, 당초 발표된 서울 14곳을 넘어 전국 50개 투표소에서 용지 부족이 있었고, 이 중 22곳에서 투표가 완전히 중단되었던 사실이 추가로 밝혀졌습니다 (서울 33, 인천 6, 대구 4, 부산 3, 울산 2, 경남 2). 허철훈 선관위 사무총장의 대국민 사과문 발표에 이어, 노태악 중앙선관위원장이 책임을 통감하며 사의를 표명했습니다.</p>
-      </div>
-      <div class="lang-en d-none">
-        <p><span class="time-tag">Jun 4, 3:55 AM</span> <strong>NEC's first official statement</strong> — The NEC stated the situation did not constitute legal grounds for postponing or re-running the election under the Public Official Election Act. It announced that vote-counting could not be halted and ballot boxes would be transported to counting centers.</p>
-        <p><span class="time-tag">Jun 4 daytime</span> <strong>Ballot box blockades and delayed counting</strong> — At Jamsil 7-dong No. 2 polling station in Songpa-gu and several other locations, citizens who suspected electoral fraud physically blocked the removal of ballot boxes. Three-day standoffs with NEC officials and police ensued, significantly delaying final vote tallies and proportional representation seat allocations for Seoul.</p>
-        <p><span class="time-tag">Jun 5 afternoon</span> <strong>Full national scope confirmed; NEC leadership resigns</strong> — A nationwide NEC audit revealed that the crisis extended well beyond the initially reported 14 Seoul locations: 50 polling stations across the country had experienced paper shortages, with 22 suffering complete shutdowns (Seoul 33, Incheon 6, Daegu 4, Busan 3, Ulsan 2, South Gyeongsang 2). NEC Secretary-General Heo Cheol-hoon issued a public apology, followed by NEC Chairman Noh Tae-ack announcing his resignation.</p>
-      </div>
-      <div class="lang-ja d-none">
-        <p><span class="time-tag">6月4日 午前3:55</span> <strong>選管の第一次公式声明</strong> — 選管は「今回の事態は公職選挙法上、選挙延期や再選挙の事由に該当しない」と線引きし、開票の中断は不可能であるため投票箱を開票所へ移送すると発表しました。</p>
-        <p><span class="time-tag">6月4日 日中</span> <strong>投票箱搬出をめぐる対立と開票遅延</strong> — ソウル松坡区蚕室7洞第2投票所など一部現場では、不正選挙を疑う市民が投票箱の搬出を体で阻止し、選管・警察と3日間にわたって激しく対立しました。この影響でソウル地区の最終開票と比例代表議席の確定が大幅に遅れました。</p>
-        <p><span class="time-tag">6月5日 午後</span> <strong>全国実態の確認と幹部の辞任</strong> — 中央選管の全数調査の結果、当初発表のソウル14カ所を超えて、全国50カ所の投票所で用紙不足があり、このうち22カ所で投票が完全停止していた事実が判明しました（ソウル33、仁川6、大邱4、釜山3、蔚山2、慶南2）。許哲勳選管事務総長が国民に向けた謝罪文を発表した後、盧泰岳中央選管委員長も責任を痛感するとして辞意を表明しました。</p>
-      </div>
-    </article>
-
-    <!-- ===== ENTRY 4: 잠실7동 밤샘 대치 ===== -->
-    <article class="timeline-entry">
-      <div class="timeline-divider">
-        <span class="timeline-date-badge">2025.06.03 밤 ~ 06.05</span>
-      </div>
-      <h3>
-        <span class="lang-ko">잠실7동 제2투표소 밤샘 대치 및 투표함 강제 반출</span>
-        <span class="lang-en d-none">Overnight Standoff at Jamsil-7dong Polling Station</span>
-        <span class="lang-ja d-none">蚕室7洞第2投票所での徹夜対立と投票箱の強制搬出</span>
-      </h3>
-      <img src="/img/2026main.webp" alt="잠실 투표소 대치 현장" class="timeline-photo" loading="lazy"/>
-      <div class="lang-ko">
-        <p><span class="time-tag">06.03 22:00 ~ 06.04 새벽</span> 연장 투표가 종료되자마자 부정선거를 의혹을 제기하는 보수 성향 시민들과 지역 주민들이 투표소 입구를 봉쇄했습니다. 이들은 "선거 무효", "부실 관리된 투표함의 개표소 이송 반대"를 외치며 투표함 반출을 몸으로 막아섰습니다. 밤사이 이 일대에서만 135건의 112 경찰 신고가 빗발쳤습니다.</p>
-        <p><span class="time-tag">06.04 (이틀째)</span> 황교안 자유와혁신 대표 등 보수 정치인들이 현장을 찾아 "우리가 여기를 지키지 못하면 다음 선거는 없다"며 시위대를 독려했습니다. 선관위는 이 투표소에 유권자 2천여 명의 표가 묶여 있어 개표를 진행하지 못해 서울 지역 최종 개표가 마비되었습니다.</p>
-        <p><span class="time-tag">06.05 09:30</span> <strong>경찰 강제 진입 및 반출</strong> — 경찰이 1,000여 명의 기동대 병력을 투입하여 투표소 주변 시위대를 강제 해산했습니다. 대치 35시간 만에 잠실7동 투표함 2개가 개표소인 올림픽공원으로 강제 이송되었습니다. 이후 개표 결과 송파 지역 비례대표 의석수가 뒤집히는 등 막판 파장을 낳았습니다.</p>
-      </div>
-      <div class="lang-en d-none">
-        <p><span class="time-tag">Jun 3, 10 PM – Jun 4, dawn</span> Immediately after extended voting ended, conservative-leaning citizens and local residents blockaded the polling station entrance, crying "election nullification!" and "no transporting these mismanaged ballot boxes!" Police received 135 emergency calls from the area overnight.</p>
-        <p><span class="time-tag">Jun 4 (Day 2)</span> Conservative politicians including Hwang Kyo-ahn visited the scene, telling protesters "if we can't hold this ground, there will be no next election." With approximately 2,000 votes locked inside, the NEC was unable to proceed with counting, paralyzing Seoul's final tally.</p>
-        <p><span class="time-tag">Jun 5, 9:30 AM</span> <strong>Police forced entry and removal</strong> — About 1,000 riot police were deployed to forcibly disperse the protesters. After a 35-hour standoff, two ballot boxes from Jamsil 7-dong were finally transported to the counting center at Olympic Park. The delayed count resulted in a reversal of proportional representation seat allocations for Songpa district.</p>
-      </div>
-      <div class="lang-ja d-none">
-        <p><span class="time-tag">6月3日 22:00 ~ 6月4日 未明</span> 延長投票が終了するや否や、不正選挙を疑う保守系市民と地元住民が投票所入口を封鎖しました。「選挙無効」「ずさんに管理された投票箱の移送反対」を叫びながら体で阻止し、一帯では一夜で135件の通報が相次ぎました。</p>
-        <p><span class="time-tag">6月4日（2日目）</span> 黄教安・自由と革新代表など保守系政治家が現場を訪れ「ここを守れなければ次の選挙はない」と激励しました。この投票所に約2,000人分の票が閉じ込められたため、ソウル地区の最終開票が麻痺状態に陥りました。</p>
-        <p><span class="time-tag">6月5日 午前9:30</span> <strong>警察の強制突入と搬出</strong> — 約1,000名の機動隊が投入され、デモ参加者を強制排除しました。35時間の対立の末、蚕室7洞の投票箱2個がオリンピック公園の開票所に強制搬送されました。その後の開票で松坡区の比例代表議席数が逆転するなど、最終局面でも波紋が広がりました。</p>
-      </div>
-    </article>
-
-    <!-- ===== ENTRY 5: 올림픽공원 포위 ===== -->
-    <article class="timeline-entry">
-      <div class="timeline-divider">
-        <span class="timeline-date-badge">2025.06.05–06</span>
-      </div>
-      <h3>
-        <span class="lang-ko">올림픽공원 개표소 포위 — 인간 띠와 K-팝의 기묘한 공존</span>
-        <span class="lang-en d-none">Olympic Park Counting Center Siege — Human Chain Meets K-Pop</span>
-        <span class="lang-ja d-none">五輪公園の開票所包囲——人間の鎖とK-POPの奇妙な共存</span>
-      </h3>
-      <img src="/img/2026main.webp" alt="올림픽공원 집회" class="timeline-photo" loading="lazy"/>
-      <div class="lang-ko">
-        <p><span class="time-tag">06.05 오후 ~ 06.06 새벽</span> 잠실 투표함이 올림픽공원 핸드볼경기장(개표소)으로 이송되자 시위의 중심축이 올림픽공원으로 이동했습니다. 유튜브 방송과 온라인 커뮤니티를 통해 "올림픽공원으로 집결하라"는 명령이 공유되며 보수 유튜버와 시민들이 급증했습니다. 6일 자정 기준, 참여 인원은 경찰 비공식 추산 6,000~7,000명까지 불어났습니다. 한국사 강사 출신 유튜버 전한길 씨 등이 연단에 올라 '인간 띠' 형성을 주도했고, 선관위 직원 수십 명이 내부에 고립되었습니다.</p>
-        <p><span class="time-tag">06.06 (대규모 운집 및 2030 합류)</span> 인파는 경찰 추산 1만 명에서 주최 측 주장 최대 수만 명으로 폭증했습니다. 특히 이 시위에는 기존 보수층뿐만 아니라 "참정권을 박탈당했다"며 분노한 2030 청년층과 대학생, 유모차를 끈 30대 부부들이 대거 자발적으로 합류했습니다. 이들은 이념 논쟁을 배제하고 '국민 기본권 침해에 대한 재선거'만을 요구하는 손팻말을 들었습니다.</p>
-        <p><strong>K-팝 공연과의 동선 대치:</strong> 같은 날 바로 옆 KSPO돔과 잔디마당에서 대형 K-팝 축제인 위버스 콘 페스티벌이 열려 수만 명의 팬과 시위대가 뒤섞였습니다. 주최 측과 경찰이 펜스를 치고 동선을 분리하여 물리적 충돌은 피했습니다.</p>
-      </div>
-      <div class="lang-en d-none">
-        <p><span class="time-tag">Jun 5 afternoon – Jun 6 dawn</span> When the Jamsil ballot boxes were taken to the Olympic Park Handball Gymnasium (counting center), the center of gravity of the protests shifted there. Online platforms circulated calls to "converge on Olympic Park." By midnight on June 6, police unofficially estimated 6,000–7,000 people had gathered. YouTube personality and former history lecturer Jeon Han-gil led the formation of a human chain around the building, trapping dozens of NEC employees inside.</p>
-        <p><span class="time-tag">Jun 6 (mass rally; Gen Z joins)</span> Crowds swelled to a police estimate of 10,000 and organizer claims of tens of thousands. Crucially, the protest attracted not only traditional conservative supporters but large numbers of Millennials and Gen Z — university students, young couples with strollers — who joined spontaneously, setting aside ideology and carrying signs demanding only "a re-election to remedy the violation of our constitutional right to vote."</p>
-        <p><strong>K-pop cross-traffic:</strong> The Weverse Con Festival, a major K-pop event, was being held simultaneously at the adjacent KSPO Dome and lawn area, mixing tens of thousands of fans with protesters. Organizers and police erected fences to separate the two crowds and physical clashes were avoided.</p>
-      </div>
-      <div class="lang-ja d-none">
-        <p><span class="time-tag">6月5日 午後 ~ 6月6日 未明</span> 蚕室の投票箱がオリンピック公園ハンドボール競技場（開票所）に搬送されると、抗議の中心がオリンピック公園に移りました。YouTubeやオンラインコミュニティで「オリンピック公園に集結せよ」という呼びかけが広まり、6日深夜には警察の非公式推計で6,000〜7,000人にまで膨れ上がりました。元歴史講師のYouTuberである全漢吉氏らが演壇に立って「人間の鎖」形成を主導し、選管職員数十名が建物内に孤立しました。</p>
-        <p><span class="time-tag">6月6日（大規模集結・20〜30代が合流）</span> 群衆は警察推計1万人、主催者側の主張では最大数万人にまで激増しました。特にこの抗議には従来の保守層だけでなく、「参政権を剥奪された」と怒る20〜30代の若者層・大学生、ベビーカーを押した30代の夫婦が大挙して自発的に参加しました。彼らはイデオロギー論争を排し、「基本権侵害に対する再選挙」のみを求めるプラカードを掲げました。</p>
-        <p><strong>K-POPフェスとの動線対立:</strong> 同日、隣接するKSPOドームと芝生広場ではWeverse Conフェスティバルという大規模K-POPイベントが開催され、数万人のファンと抗議参加者が入り混じりました。主催者側と警察がフェンスを設置して動線を分離し、物理的衝突は避けられました。</p>
-      </div>
-    </article>
-
-    <!-- ===== ENTRY 6: 청와대 결집 시도 ===== -->
-    <article class="timeline-entry">
-      <div class="timeline-divider">
-        <span class="timeline-date-badge">2025.06.05–06</span>
-      </div>
-      <h3>
-        <span class="lang-ko">청와대 앞 결집 시도, 차단 — 광화문으로 우회</span>
-        <span class="lang-en d-none">March on Cheongwadae Blocked — Crowd Diverts to Gwanghwamun</span>
-        <span class="lang-ja d-none">青瓦台への集結試みが阻止——光化門へ迂回</span>
-      </h3>
-      <img src="/img/2026main.webp" alt="광화문 집회" class="timeline-photo" loading="lazy"/>
-      <div class="lang-ko">
-        <p><span class="time-tag">06.05 밤</span> 올림픽공원 연단에 오른 김민수 국민의힘 최고위원 등은 "행정안전부와 정부의 사후 대처도 미흡했다"며 "6일 오후 4시 청와대 인근(사랑채 앞)에 집회 신고를 마쳤으니 이제 청와대 앞으로 모여 달라"고 선동했습니다.</p>
-        <p><span class="time-tag">06.06 오후</span> 시위대와 보수 유튜버들은 대통령 선거관리실패 책임을 물으며 청와대 정문 및 영빈관 방향으로 행진과 결집을 시도했습니다. 그러나 경찰은 청와대 춘추관 및 사랑채 진입로 일대에 철제 펜스를 치고 기동대를 촘촘히 배치하여 시위대의 청와대 경내 접근을 엄격히 차단했습니다. 진입이 막힌 시위대 중 전광훈 목사가 이끄는 대한민국바로세우기국민운동본부 등 수만 명의 인파는 광화문 광장으로 우회하여 대규모 '6·6 규탄 대회'를 열었습니다.</p>
-        <p><strong>청와대 및 대학가 공식 입장 (06.07 현재):</strong> 청와대 강유정 수석대변인은 "선관위는 국민 참정권을 보장해야 하는 독립 기관"이라며 책임 있는 규명을 요구했습니다. 서울대·고려대·연세대 등 주요 10개 대학 총학생회 공동포럼은 국정조사와 특검 도입을 촉구하는 시국 입장문을 일제히 발표했습니다.</p>
-      </div>
-      <div class="lang-en d-none">
-        <p><span class="time-tag">Jun 5 night</span> PPP senior official Kim Min-su, speaking from the Olympic Park stage, declared that the government's post-crisis response had also been inadequate, and called on protesters to converge on the area near Cheongwadae (the former presidential palace) the following afternoon.</p>
-        <p><span class="time-tag">Jun 6 afternoon</span> Protesters and conservative content creators attempted to march toward Cheongwadae's main gate and the government guest house. Police erected steel fences and deployed riot units at the Chunchu Gate and Sarangchae approaches, strictly blocking access. Blocked from entering, tens of thousands, including the Korea Patriots' Movement led by Pastor Jeon Gwang-hoon, diverted to Gwanghwamun Square for a mass "June 6 Denunciation Rally."</p>
-        <p><strong>Official positions (as of Jun 7):</strong> Presidential spokesperson Kang Yu-jeong said the NEC is an independent body that "must guarantee citizens' right to vote" and called for accountable investigation. The joint forum of 10 major university student councils — including Seoul National, Korea, and Yonsei Universities — issued statements calling for a national investigation and special counsel.</p>
-      </div>
-      <div class="lang-ja d-none">
-        <p><span class="time-tag">6月5日 夜</span> オリンピック公園の演壇に立った国民の力の金民洙最高委員らは、「行政安全部と政府の事後対応も不十分だった」として、「6日午後4時に青瓦台近くのサランチェ前への集会届を提出済みなので集まるよう」呼びかけました。</p>
-        <p><span class="time-tag">6月6日 午後</span> デモ参加者と保守系YouTuberは大統領の選挙管理失敗の責任を問い、青瓦台の正門・迎賓館方向への行進・集結を試みました。しかし警察は春秋館やサランチェへの進入路に鉄製フェンスを設置し機動隊を密集配置して経内への接近を厳しく遮断しました。行き場を失った数万人の群衆は光化門広場に迂回し、大規模な「6・6糾弾大会」を開催しました。</p>
-        <p><strong>青瓦台と大学側の公式立場（6月7日現在）:</strong> 大統領府の姜裕政首席報道官は「選管は国民の参政権を保障すべき独立機関」として責任ある究明を求めました。ソウル大・高麗大・延世大など主要10大学の総学生会共同フォーラムは、国政調査と特別検察官の導入を促す時局声明を一斉に発表しました。</p>
-      </div>
-    </article>
-
-    <!-- ===== ENTRY 7: 국정조사·특검 공방 ===== -->
-    <article class="timeline-entry">
-      <div class="timeline-divider">
-        <span class="timeline-date-badge">2025.06.08</span>
-      </div>
-      <h3>
-        <span class="lang-ko">국정조사 여야 합의 & 특검·재선거 공방</span>
-        <span class="lang-en d-none">Bipartisan National Investigation Agreement &amp; Special Counsel / Re-election Debate</span>
-        <span class="lang-ja d-none">国政調査で与野党合意・特別検察官と再選挙論争</span>
-      </h3>
-      <img src="/img/2026main.webp" alt="국회 국정조사 요구" class="timeline-photo" loading="lazy"/>
-      <div class="lang-ko">
-        <h4>1. 국정조사 요구 (여야 전격 합의)</h4>
-        <p>국민의힘과 더불어민주당은 6월 8일 각각 국정조사요구서를 당론으로 제출하기로 공표했습니다. 한병도 민주당 원내대표는 국회의장에게 신속한 본회의 소집을 강력히 요구한 상태입니다. 조사 대상은 투표용지 수요 예측 실패, 부실한 공급망 관리 체계, 기관 간 소통 부재(칸막이 행정) 등 선거 행정 전반입니다.</p>
-        <h4>2. 특별검사 도입 여야 입장 차이</h4>
-        <p><strong>국민의힘 (강경론):</strong> 장동혁 국민의힘 대표와 오세훈 서울시장은 "선관위의 고질적인 기강 해이이자 헌정 유린"이라며 국정조사와 특검을 동시에 추진해야 한다고 압박했습니다. 이준석 개혁신당 대표는 특검 요구에 힘을 실으면서도, 부정선거 음모론과 과격 시위에 대해서는 선을 그어야 한다고 조언했습니다.</p>
-        <p><strong>더불어민주당 (단계론):</strong> 민주당 지도부는 "무조건 특검부터 남발할 것이 아니라 우선 철저한 조사를 통해 잘못을 밝혀낸 후 필요에 따라 논의하자"며 선을 그었습니다.</p>
-        <h4>3. 재선거·선거법 개정 논란</h4>
-        <p>장동혁 대표는 "선거가 오염되어 정당성을 인정할 수 없다"며 문제 발생 전국 50개 투표소 중심으로 재선거 실시가 불가피하다고 주장했습니다. 국민의힘은 사전투표제 폐지·본투표 3일 연장·당일 현장 개표 도입을 제안했습니다. 한병도 원내대표는 헌법 개정을 통한 선관위 전면 재구성이라는 초강수를 꺼냈으며, 한동훈 의원은 '감사원법 개정안'을 국회 1호 법안으로 예고했습니다.</p>
-      </div>
-      <div class="lang-en d-none">
-        <h4>1. Bipartisan National Investigation Agreement</h4>
-        <p>Both the People Power Party (PPP) and Democratic Party of Korea (DP) announced they would submit national investigation requests as party-line votes on June 8. DP floor leader Han Byeong-do called on the National Assembly Speaker to convene a plenary session urgently. The investigation will target the NEC's failure to forecast demand, its supply chain management, and the inter-agency communication breakdown.</p>
-        <h4>2. Special Counsel — Divided Positions</h4>
-        <p><strong>PPP (hardline):</strong> PPP leader Chang Dong-hyeok and Seoul Mayor Oh Se-hoon called the crisis "chronic NEC negligence amounting to constitutional subversion," demanding simultaneous pursuit of national investigation and special counsel. Reform Party's Lee Jun-seok backed the special counsel push but warned against conspiracy theories and radical protest tactics.</p>
-        <p><strong>Democratic Party (step-by-step):</strong> DP leadership said a thorough investigation should precede any decision on a special counsel, cautioning against what they called excessive politicization of the crisis.</p>
-        <h4>3. Re-election and Electoral Law Reform Debate</h4>
-        <p>PPP leader Chang declared the election "contaminated and lacking legitimacy," calling for re-elections at the 50 affected polling stations. PPP proposed abolishing early voting, extending election day to three days, and introducing same-day on-site counting. DP floor leader Han raised the unprecedented prospect of a constitutional amendment to overhaul the NEC entirely. Rep. Han Dong-hoon announced plans to introduce an Audit Board Act amendment as his No. 1 bill.</p>
-      </div>
-      <div class="lang-ja d-none">
-        <h4>1. 国政調査要求——与野党が全面合意</h4>
-        <p>国民の力と共に民主党は6月8日に各々国政調査要求書を党論として提出することを公表しました。共に民主党の韓秉道院内代表は議長に対して本会議の迅速な招集を強く求めました。調査対象は投票用紙の需要予測失敗、ずさんな供給管理体制、省庁間の情報共有不在（縦割り行政）など選挙行政全般です。</p>
-        <h4>2. 特別検察官導入をめぐる与野党の立場の差</h4>
-        <p><strong>国民の力（強硬論）:</strong> 張東赫代表と呉世勲ソウル市長は「選管の慢性的な綱紀弛緩であり憲政への蹂躙」として国政調査と特検の同時推進を求めました。改革党の李俊錫代表は特検要求を支持しながらも、不正選挙の陰謀論や過激なデモには線を引くべきと助言しました。</p>
-        <p><strong>共に民主党（段階論）:</strong> 党指導部は「まず特検から乱用するのではなく、徹底した調査で誤りを明らかにした後に必要に応じて議論すべき」として距離を置きました。</p>
-        <h4>3. 再選挙・選挙法改正論争</h4>
-        <p>張東赫代表は「選挙は汚染されており正当性を認められない」として問題が発生した全国50カ所の投票所を中心に再選挙の実施が不可避だと主張しました。国民の力は事前投票制の廃止・本投票3日間への延長・当日現場開票の導入を提案しました。韓秉道原内代表は憲法改正による選管の全面再編という強硬な主張を持ち出し、韓東勲議員は「監査院法改正案」を国会1号法案として予告しました。</p>
-      </div>
-    </article>
-
-    <!-- ===== ENTRY 8: 문화·사회적 관찰 ===== -->
-    <article class="timeline-entry">
-      <div class="timeline-divider">
-        <span class="timeline-date-badge">특집 분석</span>
-      </div>
-      <h3>
-        <span class="lang-ko">이 시위가 특별한 이유 — 밥 정서, 손글씨 피켓, 그리고 2030의 분노</span>
-        <span class="lang-en d-none">Why This Protest Is Different — Rice Culture, Handwritten Signs &amp; Gen Z Rage</span>
-        <span class="lang-ja d-none">この抗議運動が特別な理由——食の文化・手書き看板・20〜30代の怒り</span>
-      </h3>
-      <img src="/img/2026main.webp" alt="시위 현장의 손글씨 피켓" class="timeline-photo" loading="lazy"/>
-      <div class="lang-ko">
-        <h4>1. 스타벅스 논란 vs 투표지 부족 — 선택적 분노</h4>
-        <p>과거 기업 마케팅이나 군인 우대 정책 논란처럼 이념적 이슈가 발생했을 때 진보 진영이 즉각적인 불매운동과 성명을 발표했던 것과 달리, 국가가 국민의 주권을 훼손한 이번 사태에 대해 일부 진보 성향 미디어와 시민단체들은 초기 입장을 내는 데 다소 신중하거나 수위를 조절하는 모습을 보였습니다. 이를 두고 보수 진영과 시위 참가자들은 "이념 이슈에는 벌떼처럼 일어나다가 참정권 침해에는 왜 이토록 조용하냐"라며 '선택적 분노', '내로남불' 논란을 강하게 제기하고 있습니다.</p>
-        <h4>2. '선결제 릴레이' 실종과 '밥에 진심인 민족'</h4>
-        <p>2025년 12월 비상계엄 선포 당시 연예인들이 시위대를 위해 카페와 식당에 수백만 원씩 '선결제'를 하며 응원하는 미담이 화제를 모았습니다. 그러나 이번 시위에서는 대중 연예인들이 정치적 리스크를 기피하며 전원 침묵을 지키고 있습니다. 대신 인근 주민들이 자발적으로 컵라면, 생수, 초코파이, 박카스를 상자째 들고 와 나눠주는 '풀뿌리 부조'가 이어졌습니다.</p>
-        <p>가장 한국적인 풍경은 올림픽공원 개표소 내부에서 포위된 선관위 직원들을 대하는 시민들의 태도였습니다. 분노하며 소리를 지르던 시위대 중 일부 중장년층 시민들이 배달된 도시락과 김밥을 건물 안으로 밀어 넣어주며 "야 이놈들아, 밥 먹고 힘내서 투표지나 제대로 세라!"라고 외쳤습니다. 적대 관계 속에서도 '밥은 굶기지 않는다'는 한국인 특유의 정서가 드러난 대목입니다.</p>
-        <h4>3. 기획된 계엄반대 인쇄물 vs 자발적 손글씨 피켓</h4>
-        <p>계엄 당시에는 사태 발령 1~2시간 만에 세련된 서체로 인쇄된 전문 현수막·피켓이 등장해 "사전에 기획된 것 아니냐"는 의혹을 낳았습니다. 이번 시위의 문구들은 스케치북·박스지에 매직으로 직접 쓴 철저한 아날로그적 자발성이 특징입니다.</p>
-        <p>현장에서 목격된 대표 손글씨 문구들:<br>
-          <em>"종이가 없어서 투표를 못 해? 여기가 북한이냐?"</em><br>
-          <em>"내 표 어디 갔냐, 내 주권 돌려내라"</em><br>
-          <em>"강제 오픈런 시켜놓고 품절 공지 때리는 선관위 폼 미쳤다"</em> (2030 자조형)
-        </p>
-      </div>
-      <div class="lang-en d-none">
-        <h4>1. Starbucks Controversy vs. Ballot Shortage — Selective Outrage</h4>
-        <p>In contrast to how progressive circles swiftly issued boycotts and statements when companies were accused of ideological bias in past incidents, some progressive-leaning media and civic groups were notably slower and more measured in responding to this state-level violation of voting rights. Conservative protesters and commentators have seized on this, accusing the left of "selective outrage" — quick to fight corporate image battles while silent when the state itself curtailed citizens' fundamental rights.</p>
-        <h4>2. The Missing "Pre-payment Relay" and Korea's Deep Food Culture</h4>
-        <p>During the December 2025 martial law crisis, celebrities made news by prepaying millions of won at cafes and restaurants near protest sites to feed demonstrators. This time, all celebrity voices are absent — political risk calculation keeps them silent. Instead, local residents filled the gap by spontaneously bringing boxed noodles, water, and snacks to distribute.</p>
-        <p>The most distinctly Korean moment: as protesters besieged the Olympic Park counting center, some middle-aged demonstrators — while still shouting angrily — slid delivered lunch boxes and gimbap through building gaps, yelling "Hey, eat first, then count the ballots properly!" Even in confrontation, the Korean instinct not to let anyone go hungry reasserted itself.</p>
-        <h4>3. Pre-printed Martial Law Signs vs. Handwritten Ballot Signs</h4>
-        <p>During the martial law crisis, professionally printed banners and placards appeared within 1–2 hours of the declaration, fueling suspicion of pre-planning. This protest's signage is entirely different: sketched on sketchbooks and cardboard with markers, each one a raw and personal expression of anger.</p>
-        <p>Representative handwritten signs spotted at the protest:<br>
-          <em>"Can't vote because there's no paper? Is this North Korea?"</em><br>
-          <em>"Where did my vote go? Give me back my sovereignty."</em><br>
-          <em>"The NEC pulled an 'open run' event and then announced 'sold out' — their swag is unreal."</em> (Gen Z self-deprecating humor)
-        </p>
-      </div>
-      <div class="lang-ja d-none">
-        <h4>1. スターバックス論争 vs 投票用紙不足——選択的な怒り</h4>
-        <p>過去に企業のマーケティングや軍人優遇政策など、イデオロギー的な問題が発生した際には即座に不買運動や声明を発表した進歩派の一部が、国家が国民主権を侵害したこの前代未聞の事態に対しては、初期の立場表明で慎重な姿勢を見せ、発言のトーンも抑制されていました。これに対して保守側と抗議参加者は「イデオロギー問題では蜂の巣をつついたように立ち上がるのに、参政権侵害にはなぜこれほど静かなのか」と「選択的な怒り」「身内に甘く他人に厳しい」との批判を強めています。</p>
-        <h4>2. 「先払いリレー」の消失と「ご飯に本気の民族」</h4>
-        <p>2025年12月の非常戒厳宣布時には、芸能人たちがデモ参加者のためにカフェや食堂に数百万ウォンを「先払い」して応援する美談が話題になりました。しかし今回の抗議では大衆芸能人は全員沈黙を守っています。政治的リスクを避けるためです。代わりに地元住民がカップ麺、ミネラルウォーター、チョコパイ、バッカスを箱ごと持参して自発的に配るという「草の根の相互扶助」が続きました。</p>
-        <p>最も韓国らしい光景は、オリンピック公園開票所内部に孤立した選管職員への市民の接し方でした。怒鳴りながら抗議していた中高年の参加者の一部が、届いたお弁当やキンパを建物内に押し込みながら「おい、ご飯を食べてから、ちゃんと票を数えろ！」と叫んだのです。敵対関係の中でも「腹を空かせてはいられない」という韓国人特有の情感が見えた瞬間でした。</p>
-        <h4>3. 計画的な戒厳反対印刷物 vs 自発的な手書き看板</h4>
-        <p>戒厳宣布時には宣言から1〜2時間以内にプロ仕様の印刷された横断幕やプラカードが登場し、「事前に計画されていたのでは」という疑念を生みました。今回の抗議のメッセージはまったく異なり、スケッチブックや段ボールにマジックで直書きした徹底したアナログの自発性が特徴です。</p>
-        <p>現場で目撃された代表的な手書き文句:<br>
-          <em>「紙がなくて投票できない？ここは北朝鮮か？」</em><br>
-          <em>「私の票はどこへ行った、主権を返せ」</em><br>
-          <em>「強制オープンランをさせておいて在庫切れ告知をかます選管のヤバさは異常」</em>（20〜30代の自嘲型）
-        </p>
-      </div>
-    </article>
-
-    <!-- ===== ENTRY 9: 2026 지방선거 ===== -->
-    <article class="timeline-entry">
-      <div class="timeline-divider">
-        <span class="timeline-date-badge">2026.06.03 (예정)</span>
-      </div>
-      <h3>
-        <span class="lang-ko">2026년 제9회 전국동시지방선거 — 이 모든 것이 2026년에 달려 있다</span>
-        <span class="lang-en d-none">2026 9th Nationwide Local Elections — Everything Hangs on 2026</span>
-        <span class="lang-ja d-none">2026年第9回全国同時地方選挙——すべては2026年にかかっている</span>
-      </h3>
-      <img src="/img/2026main.webp" alt="2026 지방선거" class="timeline-photo" loading="lazy"/>
-      <div class="lang-ko">
-        <p>2025년 6월 3일의 투표용지 부족 사태는 단순한 행정 실수가 아닙니다. 이는 대한민국 민주주의의 신뢰 기반 자체를 흔드는 사건이었습니다. 이제 1년도 채 남지 않은 <strong>2026년 6월 3일(수요일)</strong>, 제9회 전국동시지방선거가 예정되어 있습니다. 이 선거에서는 광역단체장, 기초단체장, 광역의원, 기초의원, 교육감 등 지방 권력 전체가 결정됩니다.</p>
-        <p>만약 선거 관리의 근본적 개혁이 이루어지지 않는다면, 2025년의 비극은 2026년에도 반복될 수 있습니다. 국정조사가 실질적인 책임 규명으로 이어지는지, 선관위 개혁이 투명하게 추진되는지, 재선거 또는 재투표 논의가 어떻게 결론나는지 — 이 모든 것이 2026년 지방선거의 공정성을 결정짓습니다.</p>
-        <p>당신의 한 표가 이 역사의 방향을 바꿀 수 있습니다. 아래에서 의견을 표해주세요.</p>
-      </div>
-      <div class="lang-en d-none">
-        <p>The ballot paper shortage of June 3, 2025 was not merely an administrative error. It shook the very foundations of democratic trust in South Korea. With less than a year to go until <strong>Wednesday, June 3, 2026</strong>, the 9th Nationwide Simultaneous Local Elections are approaching. These elections will determine provincial governors, municipal mayors, regional and district council members, and education superintendents across the country.</p>
-        <p>If fundamental reforms to election management are not implemented, the tragedy of 2025 risks repeating itself in 2026. Whether the national investigation produces genuine accountability, whether NEC reform is pursued transparently, and how the re-election debate concludes — all of these will determine whether the 2026 local elections are fair.</p>
-        <p>Your vote can change the direction of this history. Share your opinion below.</p>
-      </div>
-      <div class="lang-ja d-none">
-        <p>2025年6月3日の投票用紙不足事態は、単なる行政上のミスではありません。大韓民国の民主主義に対する信頼の基盤そのものを揺るがす事件でした。今から1年も経たない<strong>2026年6月3日（水曜日）</strong>、第9回全国同時地方選挙が予定されています。この選挙では広域自治体の長、基礎自治体の長、広域議員、基礎議員、教育監など、地方の権力全体が決まります。</p>
-        <p>選挙管理の根本的な改革が実現されなければ、2025年の悲劇は2026年にも繰り返されかねません。国政調査が実質的な責任追及につながるかどうか、選管改革が透明に推進されるかどうか、そして再選挙・再投票論議がどのように結論を迎えるか——これらすべてが2026年地方選挙の公正性を決定づけます。</p>
-        <p>あなたの一票が、この歴史の方向を変えることができます。以下でご意見をお聞かせください。</p>
-      </div>
-    </article>
-  </div>
-</section>
-
-<!-- ===== 2026 ELECTION INFO ===== -->
-<section class="vk-section vk-section-gray">
-  <div class="inner-wrap">
-    <h2 class="section-title lang-ko">2026년 제9회 전국동시지방선거 일정</h2>
-    <h2 class="section-title lang-en d-none">2026 9th Nationwide Local Elections Schedule</h2>
-    <h2 class="section-title lang-ja d-none">2026年第9回全国同時地方選挙日程</h2>
-    <div class="table-container">
-      <table class="table table-bordered election-info-table">
-        <thead>
-          <tr>
-            <th><span class="lang-ko">항목</span><span class="lang-en d-none">Item</span><span class="lang-ja d-none">項目</span></th>
-            <th><span class="lang-ko">내용</span><span class="lang-en d-none">Details</span><span class="lang-ja d-none">詳細</span></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><span class="lang-ko">선거일</span><span class="lang-en d-none">Election Day</span><span class="lang-ja d-none">選挙日</span></td>
-            <td><strong>2026.06.03 (수 / Wed)</strong></td>
-          </tr>
-          <tr>
-            <td><span class="lang-ko">투표 시간</span><span class="lang-en d-none">Voting Hours</span><span class="lang-ja d-none">投票時間</span></td>
-            <td>06:00 – 20:00</td>
-          </tr>
-          <tr>
-            <td><span class="lang-ko">사전투표 (예정)</span><span class="lang-en d-none">Early Voting (est.)</span><span class="lang-ja d-none">事前投票（予定）</span></td>
-            <td>2026.05.29 – 2026.05.30</td>
-          </tr>
-          <tr>
-            <td><span class="lang-ko">선출 대상</span><span class="lang-en d-none">Positions</span><span class="lang-ja d-none">選出対象</span></td>
-            <td class="text-start">
-              <span class="lang-ko">광역단체장, 기초단체장, 광역·기초의원, 교육감</span>
-              <span class="lang-en d-none">Governors, mayors, regional/district council members, education superintendents</span>
-              <span class="lang-ja d-none">広域・基礎自治体の長、広域・基礎議員、教育監</span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Archive link -->
-    <div class="archive-banner mt-4">
-      <span class="lang-ko">2025 대선 관련: <a href="/2025.html">2025 대통령 후보 비교 아카이브</a> | <a href="/compare.html">후보 비교표 작성하기</a></span>
-      <span class="lang-en d-none">2025 election archive: <a href="/2025.html">2025 Presidential Candidate Comparison</a> | <a href="/compare.html">Comparison Tool</a></span>
-      <span class="lang-ja d-none">2025年大選アーカイブ: <a href="/2025.html">2025年大統領候補比較</a> | <a href="/compare.html">候補比較ツール</a></span>
-    </div>
-  </div>
-</section>
-
 <!-- ===== FOOTER ===== -->
 <footer>
   <p>© 2025–2026 허슬업 · <a href="https://votekorea.kr/">VoteKorea.kr</a></p>
   <p>문의: <a href="mailto:hustlin.up@gmail.com">hustlin.up@gmail.com</a></p>
 </footer>
+
+<!-- BACK TO TOP -->
+<button id="back-to-top" aria-label="맨 위로">▲</button>
 
 <!-- ===== SCRIPTS ===== -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -806,6 +1722,15 @@
     setLang('ko');
   }
 
+  // ── TOC Toggle ──────────────────────────────────────
+  function toggleToc() {
+    const body = document.getElementById('toc-body');
+    const title = document.getElementById('toc-title');
+    const isHidden = body.style.display === 'none';
+    body.style.display = isHidden ? 'block' : 'none';
+    title.classList.toggle('collapsed', !isHidden);
+  }
+
   // ── Smooth scroll ───────────────────────────────────
   function smoothTo(id) {
     const el = document.getElementById(id);
@@ -813,12 +1738,18 @@
     window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 70, behavior: 'smooth' });
   }
 
+  // ── Back to Top ─────────────────────────────────────
+  const btt = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    btt.style.display = window.scrollY > 300 ? 'flex' : 'none';
+  });
+  btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
   // ── Firebase + Vote Counter ─────────────────────────
   const FIREBASE_CONFIG = (window.SITE_CONFIG && window.SITE_CONFIG.firebase) || {};
 
-  // Fallback seed (used until Firebase is configured)
-  const SEED_YES = 24183;
-  const SEED_NO  = 5247;
+  const SEED_YES  = 24183;
+  const SEED_NO   = 5247;
   const SEED_DATE = new Date('2026-06-07').getTime();
   const DAILY_YES = 920;
   const DAILY_NO  = 200;
@@ -929,9 +1860,9 @@
   // ── Share Functions ─────────────────────────────────
   const SITE_URL = 'https://votekorea.kr/';
   const SITE_TITLE = {
-    ko: '재투표해야한다! 2025 대선 투표용지 부족 사태. 민주주의를 지켜라 #재투표해야한다',
-    en: 'Re-vote needed! 2025 South Korea ballot shortage crisis. Defend democracy #KoreaReVote',
-    ja: '再投票を求める！2025年韓国大統領選挙の投票用紙不足危機 #再投票すべき'
+    ko: '재투표해야한다! 2026 지방선거 투표용지 부족 사태. 민주주의를 지켜라 #재투표해야한다',
+    en: 'Re-vote needed! 2026 South Korea local election ballot shortage crisis. Defend democracy #KoreaReVote',
+    ja: '再投票を求める！2026年韓国地方選挙の投票用紙不足危機 #再投票すべき'
   };
 
   function shareKakao() {
@@ -939,8 +1870,8 @@
     if (window.Kakao && key) {
       if (!Kakao.isInitialized()) Kakao.init(key);
       const desc = {
-        ko: '2025년 대선 투표용지 부족 사태 — 재투표 운동에 참여하세요',
-        en: '2025 ballot shortage crisis — join the re-vote movement',
+        ko: '2026년 지방선거 투표용지 부족 사태 — 재투표 운동에 참여하세요',
+        en: '2026 ballot shortage crisis — join the re-vote movement',
         ja: '投票用紙不足危機 — 再投票運動に参加しよう'
       };
       const btn = { ko: '지금 참여하기', en: 'Join Now', ja: '今すぐ参加' };
@@ -990,6 +1921,17 @@
       alert('링크가 복사되었습니다!');
     });
   }
+
+  // ── Reading Progress ─────────────────────────────────
+  (function() {
+    const bar = document.getElementById('reading-progress');
+    if (!bar) return;
+    window.addEventListener('scroll', function() {
+      const scrolled = window.scrollY;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (total > 0 ? Math.min(scrolled / total * 100, 100) : 0) + '%';
+    }, { passive: true });
+  })();
 
   // ── Init ────────────────────────────────────────────
   detectLang();
