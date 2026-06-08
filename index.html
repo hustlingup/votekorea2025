@@ -200,10 +200,10 @@
       box-shadow: 0 4px 12px rgba(0,0,0,.12);
     }
     .vote-btn:active { transform: scale(0.96); }
-    .vote-btn-yes { background: #dc3545; color: #fff; }
-    .vote-btn-yes:hover:not(:disabled) { background: #c82333; box-shadow: 0 6px 20px rgba(220,53,69,.35); }
-    .vote-btn-no  { background: #4a90e2; color: #fff; }
-    .vote-btn-no:hover:not(:disabled)  { background: #3a7bd5; box-shadow: 0 6px 20px rgba(74,144,226,.35); }
+    .vote-btn-yes { background: #111827; color: #fff; }
+    .vote-btn-yes:hover:not(:disabled) { background: #000; box-shadow: 0 6px 20px rgba(0,0,0,.3); }
+    .vote-btn-no  { background: #6b7280; color: #fff; }
+    .vote-btn-no:hover:not(:disabled)  { background: #4b5563; box-shadow: 0 6px 20px rgba(107,114,128,.35); }
     .vote-btn:disabled { opacity: 0.65; cursor: not-allowed; }
 
     .vote-btn .stamp {
@@ -230,12 +230,12 @@
     }
     .counter-label { font-size: 0.72rem; font-weight: 700; color: #6c757d; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.3rem; }
     .counter-number { font-size: clamp(1.7rem, 5vw, 2.2rem); font-weight: 900; line-height: 1; }
-    .counter-yes .counter-number { color: #dc3545; }
-    .counter-no  .counter-number { color: #4a90e2; }
+    .counter-yes .counter-number { color: #111827; }
+    .counter-no  .counter-number { color: #6b7280; }
     .counter-bar-wrap { height: 6px; background: #e9ecef; border-radius: 3px; margin-top: 0.5rem; overflow: hidden; }
     .counter-bar { height: 100%; border-radius: 3px; transition: width 0.6s ease; }
-    .bar-yes { background: #dc3545; }
-    .bar-no  { background: #4a90e2; }
+    .bar-yes { background: #111827; }
+    .bar-no  { background: #9ca3af; }
     .total-label { font-size: 0.78rem; color: #6c757d; text-align: center; margin-top: 0.6rem; }
     .already-voted-msg { font-size: 0.82rem; color: #6c757d; text-align: center; min-height: 1.2em; margin-top: 0.4rem; }
 
@@ -637,7 +637,7 @@
         <span class="lang-en d-none">Early Voting — The Rising Turnout That Sowed the Crisis</span>
         <span class="lang-ja d-none">期日前投票実施——上昇する投票率が蒔いた種</span>
       </h3>
-      <img src="/img/2026main.webp" alt="사전투표 현장" class="timeline-photo" loading="lazy"/>
+      <img src="/img/사전투표 현장.webp" alt="사전투표 현장" class="timeline-photo" loading="lazy"/>
       <div class="lang-ko">
         <p>5월 29일~30일 이틀간 제9회 전국동시지방선거 사전투표가 전국에서 정상 실시됐다. 최근 선거에서 사전투표율이 꾸준히 오른 점이 이후 본투표 용지 수량 논란의 배경이 된다.</p>
         <p>선관위는 사전투표를 마친 유권자는 본투표소에서 다시 투표하지 않으므로, 본투표소용 용지는 전체 선거인 수보다 적게 준비한다고 설명했다. 사전투표율 상승을 감안해 지방선거 용지를 선거인 수의 50% 수준까지 줄여 인쇄할 수 있도록 한 내부 지침이 있었으나, 이것이 6월 3일 사태의 씨앗이 됐다. 투표소별 당일 투표자 수 편차와 긴급 이송 절차를 충분히 반영하지 못한 채 균일 배분한 것이 문제였다.</p>
@@ -1874,16 +1874,22 @@
         en: '2026 ballot shortage crisis — join the re-vote movement',
         ja: '投票用紙不足危機 — 再投票運動に参加しよう'
       };
-      const btn = { ko: '지금 참여하기', en: 'Join Now', ja: '今すぐ参加' };
+      const btn1 = { ko: '사태 전문 보기',  en: 'Read Full Report', ja: '全文を読む' };
+      const btn2 = { ko: '투표 참여하기',   en: 'Cast Your Vote',   ja: '投票する' };
       Kakao.Share.sendDefault({
         objectType: 'feed',
         content: {
           title: SITE_TITLE[currentLang] || SITE_TITLE.ko,
           description: desc[currentLang] || desc.ko,
           imageUrl: 'https://votekorea.kr/img/2026main.webp',
+          imageWidth: 800,
+          imageHeight: 400,
           link: { mobileWebUrl: SITE_URL, webUrl: SITE_URL }
         },
-        buttons: [{ title: btn[currentLang] || btn.ko, link: { mobileWebUrl: SITE_URL, webUrl: SITE_URL } }]
+        buttons: [
+          { title: btn1[currentLang] || btn1.ko, link: { mobileWebUrl: SITE_URL, webUrl: SITE_URL } },
+          { title: btn2[currentLang] || btn2.ko, link: { mobileWebUrl: SITE_URL + '#vote-section', webUrl: SITE_URL + '#vote-section' } }
+        ]
       });
     } else {
       window.open('https://sharer.kakao.com/talk/friends/picker/link?url=' + encodeURIComponent(SITE_URL), '_blank', 'width=500,height=700');
